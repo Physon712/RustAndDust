@@ -4,14 +4,16 @@ class_name Robot
 
 
 @export var mass = 120
-@export var jump_force = 500
-@export var stopping_force = 100000
-@export var move_force = 600
-@export var air_force = 300
-@export var max_speed = 12
+@export var jump_power = 500
+@export var stopping_power = 100000
+@export var move_power = 600
+@export var ground_control = 0.2
+@export var air_control = 0.01
+@export var max_speed = 12#100#12
 
-var move_direction = Vector2.ZERO
-var focus_point = Vector3.ZERO
+@onready var head = $Head
+
+var move_direction = Vector3.ZERO
 
 var height = 1.8;
 
@@ -22,13 +24,19 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	velocity.z = -move_direction.x*move_force/mass
-	velocity.x = move_direction.y*move_force/mass
-	if(!is_on_floor()):
-		velocity.y += get_gravity().y
+	var move_speed = clamp(move_power/mass,0,max_speed)
+	var dir = move_direction.normalized()
+	head.transform.origin.y = height
+	if(is_on_floor()):
+		velocity.z = lerp(velocity.z,dir.z*move_speed,ground_control)
+		velocity.x = lerp(velocity.x,dir.x*move_speed,ground_control)
+	else:
+		velocity.y += get_gravity().y*delta
+		velocity.z = lerp(velocity.z,dir.z*move_speed,air_control)
+		velocity.x = lerp(velocity.x,dir.x*move_speed,air_control)
 	move_and_slide()
 	
 
 func action_jump():
 	if(is_on_floor()):
-		velocity.y = jump_force/mass
+		velocity.y = jump_power/mass

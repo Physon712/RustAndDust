@@ -16,6 +16,14 @@ run/main_scene="res://Levels/Test/Test.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameData="*res://Scripts/GameData.gd"
+
+[display]
+
+window/size/mode=2
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/terrain_3d/plugin.cfg")

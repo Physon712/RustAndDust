@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://0lr5w6dw4hlo"]
+
+[ext_resource type="PackedScene" uid="uid://b1xh8r84l5wsg" path="res://Models/Parts/DebugChest.glb" id="1_vy8oa"]
+
+[node name="PartCore" type="Node3D"]
+
+[node name="Mesh" parent="." instance=ExtResource("1_vy8oa")]
+
+[node name="SlotLeftLeg" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.055, 0, 0)

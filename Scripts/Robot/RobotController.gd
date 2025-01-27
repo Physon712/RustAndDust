@@ -2,14 +2,13 @@ extends CharacterBody3D
 
 class_name Robot
 
-
-@export var mass = 120
+@export var mass = 90
 @export var jump_power = 500
 @export var stopping_power = 100000
-@export var move_power = 600
-@export var ground_control = 0.2
+@export var move_power = 1000
+@export var ground_control = 0.1
 @export var air_control = 0.01
-@export var max_speed = 12#100#12
+@export var max_speed = 8#100#12
 
 @onready var head = $Head
 

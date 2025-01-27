@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://deqhmyvix7v02"]
+
+[ext_resource type="PackedScene" uid="uid://cix5uj6awdy6i" path="res://Models/Environnement/Rock.glb" id="1_yac7d"]
+[ext_resource type="Texture2D" uid="uid://ko37xf1e46nc" path="res://Textures/RoughCowPattern.png" id="2_tn61t"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_13jhq"]
+points = PackedVector3Array(-0.0461153, 0.151052, -1.04663, -0.0804149, -0.707148, 1.11708, -0.080546, -0.192365, 1.08402, 1.0916, -0.0206588, 0.294335, -0.842123, 1.01651, 0.848493, -0.884106, -0.997299, -0.887979, 0.927157, -0.995344, -0.920689, 0.881347, 0.975369, -0.599769, -0.671893, 0.985667, -0.814577, 0.853925, 0.983513, 0.84993, -0.921486, -1.00017, 0.892702, 1.00119, -0.929981, 0.787517, -0.973853, 0.0821515, -0.977605, -1.01414, 0.773928, 0.0186, 0.126141, 1.11992, -0.0849187, -0.0465749, -1.09334, 0.226008, -1.04934, -0.98894, -0.11962, -0.976649, 0.116881, 0.983063, 0.0569124, -0.988942, -1.08779, 0.949975, 0.082362, -0.874436, 0.0914638, 0.980694, 0.985594, 1.0186, 0.975221, -0.0156171, 1.02255, 0.116975, 0.880445, -0.046494, -0.988355, 1.12435, 0.0912039, 0.97705, -0.841495, 0.0916094, -0.0207767, -1.08899, 1.09144, -0.1585, -0.0846768, -0.968781, 0.970568, -0.0837686, -0.150136, 1.11974, 0.156747, -0.150454, -1.09438, -0.15451, 0.990038, -0.988513, 0.156515, -1.04947, 0.255506, 0.0186)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2eph0"]
+albedo_color = Color(0.447845, 0.205949, 0.0829638, 1)
+albedo_texture = ExtResource("2_tn61t")
+metallic_specular = 0.0
+
+[node name="Cliff" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_13jhq")
+
+[node name="Rock" parent="." instance=ExtResource("1_yac7d")]
+
+[node name="Cube" parent="Rock" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_2eph0")
+
+[editable path="Rock"]

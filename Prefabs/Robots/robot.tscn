@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://bit663ribx1au"]
+
+[ext_resource type="Script" path="res://Scripts/Robot/RobotController.gd" id="1_02gnq"]
+[ext_resource type="Script" path="res://Scripts/Robot/PlayerBrain.gd" id="2_3fohg"]
+[ext_resource type="PackedScene" uid="uid://b0h2ird02ohr" path="res://Prefabs/Parts/debug_leg.tscn" id="3_y604w"]
+[ext_resource type="PackedScene" uid="uid://0lr5w6dw4hlo" path="res://Prefabs/Parts/debug_core.tscn" id="4_s7gd6"]
+[ext_resource type="PackedScene" uid="uid://d3w5fffv1rq88" path="res://Models/Parts/DebugHead.glb" id="5_rmqqt"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_byq50"]
+
+[node name="Robot" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 3
+platform_floor_layers = 4294901761
+script = ExtResource("1_02gnq")
+
+[node name="Brain" type="Node" parent="."]
+script = ExtResource("2_3fohg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_byq50")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+
+[node name="Parts" type="Node3D" parent="."]
+
+[node name="PartLeg" parent="Parts" instance=ExtResource("3_y604w")]
+
+[node name="PartCore" parent="Parts" instance=ExtResource("4_s7gd6")]
+
+[node name="PartHead" type="Node3D" parent="Parts"]
+
+[node name="DebugHead" parent="Parts/PartHead" instance=ExtResource("5_rmqqt")]

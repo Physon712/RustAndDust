@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0h2ird02ohr"]
+
+[ext_resource type="PackedScene" uid="uid://bsg25hp1rhxlu" path="res://Models/Parts/DebugLeg.glb" id="1_4l4el"]
+
+[node name="PartLeg" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.055, 0, 0)
+
+[node name="Mesh" parent="." instance=ExtResource("1_4l4el")]
+
+[node name="SkeletonIK3D" type="SkeletonIK3D" parent="Mesh/Armature/Skeleton3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0407615, 0, 0)
+root_bone = &"Bone"
+tip_bone = &"Bone.002"
+use_magnet = true
+magnet = Vector3(0, -0.2, -0.5)
+target_node = NodePath("../../../../Target")
+max_iterations = 5
+
+[node name="Target" type="Node3D" parent="."]
+transform = Transform3D(0.0219893, 0, 0.999758, 0, 1, 0, -0.999758, 0, 0.0219893, -0.10609, -0.623615, -0.216704)
+
+[editable path="Mesh"]

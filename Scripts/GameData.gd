@@ -4,22 +4,27 @@ extends Node
 var mouse_sensivity = 0.005;
 
 ### CONST
-const armor_type_light = 0
-const armor_type_heavy = 1
-const armor_type_kevlar = 2
-const armor_type_reactive = 3
-const armor_type_magshield = 4
+const ARMOR_TYPE_LIGHT = 0
+const ARMOR_TYPE_HEAVY = 1
+const ARMOR_TYPE_KEVLAR = 2
+const ARMOR_TYPE_REACTIVE = 3
+const ARMOR_TYPE_MAGSHIELD = 4
 
-const damage_type_pistol = 0
-const damage_type_intermediate = 1
-const damage_type_rifle = 2
-const damage_type_antimaterial = 3
-const damage_type_explosive = 4
-const damage_type_kinetic = 5
+const DAMAGE_TYPE_PISTOL = 0
+const DAMAGE_TYPE_INTERMEDIATE = 1
+const DAMAGE_TYPE_RIFLE = 2
+const DAMAGE_TYPE_ANTIMATERIAL = 3
+const DAMAGE_TYPE_EXPLOSIVE = 4
+const DAMAGE_TYPE_KINETIC = 5
 
-const part_type_core = 0
-const part_type_bipedleg = 1
-const part_type_arm = 2
+const PART_TYPE_CORE = 0
+const PART_TYPE_LEG = 1
+const PART_TYPE_ARM = 2
+const PART_TYPE_QUADLEGS = 3
+
+const MOBILITY_TYPE_LEG = 0
+const MOBILITY_TYPE_QUADLEGS = 1
+const MOBILITY_TYPE_WHEEL = 2
 
 
 ### Game Rules

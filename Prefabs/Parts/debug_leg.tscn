@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://bsg25hp1rhxlu" path="res://Models/Parts/DebugLeg.glb" id="1_4l4el"]
 
 [node name="PartLeg" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.055, 0, 0)
 
 [node name="Mesh" parent="." instance=ExtResource("1_4l4el")]
 
@@ -12,11 +11,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0407615, 0, 0)
 root_bone = &"Bone"
 tip_bone = &"Bone.002"
 use_magnet = true
-magnet = Vector3(0, -0.2, -0.5)
+magnet = Vector3(-0.065, -0.2, -0.5)
 target_node = NodePath("../../../../Target")
 max_iterations = 5
 
 [node name="Target" type="Node3D" parent="."]
-transform = Transform3D(0.0219893, 0, 0.999758, 0, 1, 0, -0.999758, 0, 0.0219893, -0.10609, -0.623615, -0.216704)
+transform = Transform3D(0.0625641, -2.15714e-09, 0.998041, 0.178435, 0.983888, -0.0111855, -0.981961, 0.178785, 0.0615561, -0.1, -0.706061, -0.254)
 
 [editable path="Mesh"]

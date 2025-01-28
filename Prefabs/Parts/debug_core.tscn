@@ -1,10 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://0lr5w6dw4hlo"]
+[gd_scene load_steps=3 format=3 uid="uid://0lr5w6dw4hlo"]
 
+[ext_resource type="Script" path="res://Scripts/Parts/PartCore.gd" id="1_dg1ow"]
 [ext_resource type="PackedScene" uid="uid://b1xh8r84l5wsg" path="res://Models/Parts/DebugChest.glb" id="1_vy8oa"]
 
 [node name="PartCore" type="Node3D"]
+script = ExtResource("1_dg1ow")
 
 [node name="Mesh" parent="." instance=ExtResource("1_vy8oa")]
 
 [node name="SlotLeftLeg" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.055, 0, 0)
+
+[node name="SlotRightLeg" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0, 0)
+
+[node name="SlotHead" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.818801, 0)

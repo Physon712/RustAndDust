@@ -1,5 +1,7 @@
 extends "res://Scripts/Parts/RobotPart.gd"
 
+### The CORE is needed for the robot to work
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

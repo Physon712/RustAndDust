@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://yhsguftrisj7"]
+
+[ext_resource type="PackedScene" uid="uid://da12yss3qf20d" path="res://Models/Parts/BetaLeg.glb" id="1_kno5g"]
+[ext_resource type="Script" path="res://Scripts/Parts/PartLeg.gd" id="1_lauaw"]
+
+[node name="PartLegBeta" type="Node3D"]
+script = ExtResource("1_lauaw")
+length = 2.0
+
+[node name="Mesh" parent="." instance=ExtResource("1_kno5g")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.0931629, -1.88826, -0.0608397)
+
+[node name="Skeleton3D" parent="Mesh/Armature_001" index="0"]
+bones/0/rotation = Quaternion(0.0198873, 0.499371, 0.866121, 0.00823765)
+bones/0/scale = Vector3(1, 1, 1)
+bones/1/rotation = Quaternion(0.0202385, -0.302602, 0.952874, -0.00733263)
+bones/1/scale = Vector3(1, 1, 1)
+bones/2/rotation = Quaternion(8.51771e-08, -0.370826, 0.928703, 2.83767e-08)
+bones/3/rotation = Quaternion(3.74549e-08, 0.991499, 0.130118, 7.50272e-08)
+bones/3/scale = Vector3(1, 1, 1)
+
+[node name="SkeletonIK3D" type="SkeletonIK3D" parent="Mesh/Armature_001/Skeleton3D" index="1"]
+root_bone = &"Leg_L"
+tip_bone = &"Foot_L"
+magnet = Vector3(0.5, 0, -5)
+target_node = NodePath("../../../../Target/OffsetTarget")
+
+[node name="WorldTarget" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.260096, -1.4615, -0.0987821)
+top_level = true
+
+[node name="Target" type="Marker3D" parent="."]
+transform = Transform3D(-0.995702, -0.0859649, 0.0344584, -0.00950395, -0.275258, -0.961324, 0.0921251, -0.957519, 0.273258, -0.306, -1.69493, -0.248451)
+
+[node name="OffsetTarget" type="Marker3D" parent="Target"]
+transform = Transform3D(1, 0, -1.67638e-08, 1.11759e-07, 1, 2.68221e-07, 3.72529e-09, 0, 1, 0.0188819, -0.202391, -0.127469)
+
+[node name="RestTarget" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.272494, -0.776792, -0.486861)
+
+[editable path="Mesh"]

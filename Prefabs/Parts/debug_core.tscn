@@ -7,12 +7,20 @@
 script = ExtResource("1_dg1ow")
 
 [node name="Mesh" parent="." instance=ExtResource("1_vy8oa")]
+visible = false
 
-[node name="SlotLeftLeg" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.055, 0, 0)
-
-[node name="SlotRightLeg" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0, 0)
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0117188, 0.221271, -0.0355835)
+size = Vector3(0.425781, 0.367065, 0.391724)
 
 [node name="SlotHead" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.818801, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.416398, 0)
+
+[node name="SlotArmL" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.416398, 0)
+
+[node name="SlotArmR" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.416398, 0)
+
+[node name="SlotMovement" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0039393, 0)

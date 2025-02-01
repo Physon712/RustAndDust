@@ -1,6 +1,8 @@
 extends Node
 
-@onready var robot = get_parent()
+@onready var robot = get_parent() # Get the robot the player controls
+
+### Basically take player input, to control a robot
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

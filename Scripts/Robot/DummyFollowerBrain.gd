@@ -10,5 +10,4 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	robot.move_direction = target.global_position-robot.global_position
-	
 	robot.head.look_at(target.head.global_position)

@@ -12,4 +12,4 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta):
-	rotation.x = robot.head.rotation.x
+	global_rotation = robot.head.global_rotation

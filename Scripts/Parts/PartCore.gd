@@ -19,8 +19,11 @@ func initialize():
 	movement_module = $SlotMovement.get_child(0)
 
 func _physics_process(delta):
-	rotation.y = robot.head.rotation.y
+	if(!Input.is_action_pressed("FreeLook")):
+		rotation.y = robot.head.rotation.y
 	transform.origin.y = height
+	rotation.x = 0.2*robot.velocity.dot(robot.head.basis.z)/robot.max_speed
+	rotation.z = -0.2*robot.velocity.dot(robot.head.basis.x)/robot.max_speed
 	if(movement_module != null):
 		transform.origin.y = movement_module.height
 		

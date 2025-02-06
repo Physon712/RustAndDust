@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://5fmcgbbmusuo"]
+
+[ext_resource type="PackedScene" uid="uid://d2xsmxrdixuwj" path="res://Models/Parts/BetaArm.glb" id="1_0lo68"]
+[ext_resource type="Script" path="res://Scripts/Parts/PartArm.gd" id="1_ftahj"]
+
+[node name="BetaArm" type="Node3D" node_paths=PackedStringArray("IK")]
+script = ExtResource("1_ftahj")
+IK = NodePath("BetaArm/ArmatureArm/Skeleton3D/SkeletonIK3D")
+
+[node name="BetaArm" parent="." instance=ExtResource("1_0lo68")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.18186, -1.447, -0.0591932)
+
+[node name="SkeletonIK3D" type="SkeletonIK3D" parent="BetaArm/ArmatureArm/Skeleton3D" index="1"]
+root_bone = &"Arm_L"
+tip_bone = &"Hand_L"
+use_magnet = true
+magnet = Vector3(0, 0, -100)
+target_node = NodePath("../../../../Target/TargetOffset")
+
+[node name="RestTarget" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.606294, 0.795241, 0, -0.795241, 0.606294, -0.239062, -0.446616, -0.225428)
+
+[node name="SlotHandTool" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.223059, -0.155225, -0.37964)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="SlotHandTool"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0165689, 0.0666325, -0.116965)
+size = Vector3(0.0510864, 0.080368, 0.254456)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="SlotHandTool"]
+transform = Transform3D(1, 0, 0, 0, 0.974398, 0.224832, 0, -0.224832, 0.974398, 0.0175251, -0.0236984, -0.00671932)
+size = Vector3(0.0497437, 0.129074, 0.0589752)
+
+[node name="Target" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.223059, -0.155225, -0.37964)
+
+[node name="TargetOffset" type="Marker3D" parent="Target"]
+transform = Transform3D(0.916942, 0.0463466, -0.39632, 0.399021, -0.106503, 0.910735, 0, -0.993232, -0.116151, -0.0349023, -0.039368, 0.0678776)
+
+[editable path="BetaArm"]

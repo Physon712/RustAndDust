@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://difi2te2427t3" path="res://Prefabs/Parts/debug_head.tscn" id="4_joyp8"]
 [ext_resource type="PackedScene" uid="uid://0lr5w6dw4hlo" path="res://Prefabs/Parts/debug_core.tscn" id="4_s7gd6"]
 [ext_resource type="PackedScene" uid="uid://cpkk7jal2oc44" path="res://Prefabs/Parts/debug_movement.tscn" id="5_3hdqh"]
-[ext_resource type="PackedScene" uid="uid://yhsguftrisj7" path="res://Prefabs/Parts/beta_leg.tscn" id="6_v4jvi"]
+[ext_resource type="PackedScene" uid="uid://yhsguftrisj7" path="res://Prefabs/Parts/Beta/beta_leg.tscn" id="6_v4jvi"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_byq50"]
 
@@ -26,7 +26,7 @@ shape = SubResource("CapsuleShape3D_byq50")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.161557, 5.4142)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.470201, 3.44796)
 
 [node name="Parts" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.564913, 0)
@@ -38,7 +38,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00477159, 0)
 
 [node name="PartMovement" parent="Parts/PartCore/SlotMovement" index="0" instance=ExtResource("5_3hdqh")]
 
-[node name="Node3D" parent="Parts/PartCore/SlotMovement/PartMovement/SlotLegR" index="0" instance=ExtResource("6_v4jvi")]
+[node name="PartLegBeta" parent="Parts/PartCore/SlotMovement/PartMovement/SlotLegR" index="0" instance=ExtResource("6_v4jvi")]
 
 [node name="Node3D" parent="Parts/PartCore/SlotMovement/PartMovement/SlotLegL" index="0" instance=ExtResource("6_v4jvi")]
 

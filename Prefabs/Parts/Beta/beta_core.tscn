@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0fssjvs1knfm"]
+
+[ext_resource type="Script" path="res://Scripts/Parts/PartCore.gd" id="1_y0nbn"]
+[ext_resource type="PackedScene" uid="uid://c5pwmk1ce72xa" path="res://Models/Parts/BetaCore.glb" id="3_ykk4p"]
+
+[node name="PartCore" type="Node3D"]
+script = ExtResource("1_y0nbn")
+
+[node name="SlotHead" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.347, 0)
+
+[node name="SlotArmL" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.204638, 0.193682, 0.0606688)
+
+[node name="SlotArmR" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 0.205, 0.194053, 0.0606688)
+
+[node name="SlotMovement" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.004, 0.062)
+
+[node name="BetaCore" parent="." instance=ExtResource("3_ykk4p")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1.251, -0.013)

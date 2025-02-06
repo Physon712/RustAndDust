@@ -8,7 +8,7 @@ class_name Robot
 @export var move_power = 1000
 @export var ground_control = 0.1
 @export var air_control = 0.01
-@export var max_speed = 8#100#12
+@export var max_speed = 5#100#12
 
 @onready var head = $Head
 

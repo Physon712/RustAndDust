@@ -1,0 +1,47 @@
+[gd_scene load_steps=9 format=3 uid="uid://bf0odot6klq0i"]
+
+[ext_resource type="Script" path="res://Scripts/Robot/RobotController.gd" id="1_1ctkx"]
+[ext_resource type="Script" path="res://Scripts/Robot/PlayerBrain.gd" id="2_cpj83"]
+[ext_resource type="PackedScene" uid="uid://d0fssjvs1knfm" path="res://Prefabs/Parts/Beta/beta_core.tscn" id="3_r4kjy"]
+[ext_resource type="PackedScene" uid="uid://cxj6d0aoyacem" path="res://Prefabs/Parts/Beta/beta_head.tscn" id="4_dresk"]
+[ext_resource type="PackedScene" uid="uid://5fmcgbbmusuo" path="res://Prefabs/Parts/Beta/beta_arm.tscn" id="5_6yr6d"]
+[ext_resource type="PackedScene" uid="uid://d3i41uiqmxr3p" path="res://Prefabs/Parts/Beta/beta_lower.tscn" id="5_msbew"]
+[ext_resource type="PackedScene" uid="uid://yhsguftrisj7" path="res://Prefabs/Parts/Beta/beta_leg.tscn" id="6_v3gj3"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_byq50"]
+
+[node name="Robot" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 3
+platform_floor_layers = 4294901761
+script = ExtResource("1_1ctkx")
+
+[node name="Brain" type="Node" parent="."]
+script = ExtResource("2_cpj83")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_byq50")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+
+[node name="Parts" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.564913, 0)
+
+[node name="PartCore" parent="Parts" instance=ExtResource("3_r4kjy")]
+
+[node name="PartHead" parent="Parts/PartCore/SlotHead" index="0" instance=ExtResource("4_dresk")]
+
+[node name="BetaArm" parent="Parts/PartCore/SlotArmL" index="0" instance=ExtResource("5_6yr6d")]
+
+[node name="BetaArm" parent="Parts/PartCore/SlotArmR" index="0" instance=ExtResource("5_6yr6d")]
+
+[node name="PartMovement" parent="Parts/PartCore/SlotMovement" index="0" instance=ExtResource("5_msbew")]
+
+[node name="PartLegBeta" parent="Parts/PartCore/SlotMovement/PartMovement/SlotLegR" index="0" instance=ExtResource("6_v3gj3")]
+
+[node name="PartLegBeta" parent="Parts/PartCore/SlotMovement/PartMovement/SlotLegL" index="0" instance=ExtResource("6_v3gj3")]
+
+[editable path="Parts/PartCore"]
+[editable path="Parts/PartCore/SlotMovement/PartMovement"]

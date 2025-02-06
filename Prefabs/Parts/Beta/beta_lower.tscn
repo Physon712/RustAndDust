@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3i41uiqmxr3p"]
+
+[ext_resource type="Script" path="res://Scripts/Parts/PartBipedLegs.gd" id="1_jrrob"]
+[ext_resource type="PackedScene" uid="uid://dlig70pm6eoyv" path="res://Models/Parts/BetaLower.glb" id="2_kmy8k"]
+
+[node name="PartMovement" type="Node3D"]
+script = ExtResource("1_jrrob")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.214, -0.03)
+visible = false
+size = Vector3(0.255798, 0.491455, 0.286865)
+
+[node name="SlotLegR" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 0.132965, -0.365733, -0.0483278)
+
+[node name="SlotLegL" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.133, -0.366139, -0.0483278)
+
+[node name="marker1" type="CSGSphere3D" parent="."]
+visible = false
+radius = 0.1
+
+[node name="marker2" type="CSGSphere3D" parent="."]
+visible = false
+radius = 0.1
+
+[node name="marker3" type="CSGSphere3D" parent="."]
+visible = false
+radius = 0.1
+
+[node name="LegsCenter" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.433388, 0)
+
+[node name="BetaLower" parent="." instance=ExtResource("2_kmy8k")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.32503e-08, -1.31661, -0.0816059)

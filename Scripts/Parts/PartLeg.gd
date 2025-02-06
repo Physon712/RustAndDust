@@ -9,7 +9,7 @@ extends "res://Scripts/Parts/RobotPart.gd"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$Mesh/Armature_001/Skeleton3D/SkeletonIK3D.start()
+	$Mesh/Armature/Skeleton3D/SkeletonIK3D.start()
 
 
 func _physics_process(delta: float) -> void:

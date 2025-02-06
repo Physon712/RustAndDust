@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxj6d0aoyacem"]
+
+[ext_resource type="Script" path="res://Scripts/Parts/PartHead.gd" id="1_4et2o"]
+[ext_resource type="PackedScene" uid="uid://dgnnwc64divc" path="res://Models/Parts/BetaHead.glb" id="2_n8fod"]
+
+[node name="PartHead" type="Node3D"]
+script = ExtResource("1_4et2o")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.203571, -0.145586)
+near = 0.1
+
+[node name="BetaHead" parent="." instance=ExtResource("2_n8fod")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8.67393e-11, -1.59103, 0.000992179)

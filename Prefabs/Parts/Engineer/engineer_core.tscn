@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bohxn7hu2gmfk"]
+
+[ext_resource type="Script" path="res://Scripts/Parts/PartCore.gd" id="1_0fudk"]
+[ext_resource type="PackedScene" uid="uid://d0854pk3xpyyc" path="res://Models/Parts/Engineer/EngineerCore.glb" id="2_d15jw"]
+[ext_resource type="Material" uid="uid://bucp5fy2db5xn" path="res://Textures/Materials/engineer_armature.tres" id="3_rijmh"]
+[ext_resource type="Material" uid="uid://cnm7p0a8w5nmb" path="res://Textures/Materials/engineer_plate.tres" id="4_iuo8d"]
+
+[node name="EngineerCore" type="Node3D"]
+script = ExtResource("1_0fudk")
+
+[node name="EngineerCore" parent="." instance=ExtResource("2_d15jw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.18083, -0.0283463)
+
+[node name="Body_002" parent="EngineerCore" index="0"]
+surface_material_override/0 = ExtResource("3_rijmh")
+surface_material_override/1 = ExtResource("4_iuo8d")
+
+[node name="SlotArmL" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.302143, 0.182046, -0.0201968)
+
+[node name="SlotArmR" type="Marker3D" parent="."]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 0.302, 0.182, -0.02)
+
+[node name="SlotHead" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.366512, 0.0233328)
+
+[node name="SlotMovement" type="Marker3D" parent="."]
+
+[editable path="EngineerCore"]

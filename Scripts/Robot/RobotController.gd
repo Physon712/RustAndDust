@@ -9,6 +9,7 @@ class_name Robot
 @export var ground_control = 0.1
 @export var air_control = 0.01
 @export var max_speed = 5#100#12
+@export var max_air_speed = 100
 
 @onready var head = $Head
 
@@ -30,6 +31,7 @@ func _physics_process(delta):
 		velocity.z = lerp(velocity.z,dir.z*move_speed,ground_control)
 		velocity.x = lerp(velocity.x,dir.x*move_speed,ground_control)
 	else:
+		#move_speed = clamp(move_power/mass,0,max_air_speed)
 		velocity.y += get_gravity().y*delta
 		velocity.z = lerp(velocity.z,dir.z*move_speed,air_control)
 		velocity.x = lerp(velocity.x,dir.x*move_speed,air_control)

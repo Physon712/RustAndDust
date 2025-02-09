@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdflht11veebq"]
+
+[ext_resource type="PackedScene" uid="uid://c0qvlx5u0tts4" path="res://Models/Parts/Engineer/EngineerHead.glb" id="1_0k5bl"]
+[ext_resource type="Script" path="res://Scripts/Parts/PartHead.gd" id="1_jwwnd"]
+[ext_resource type="Material" uid="uid://bucp5fy2db5xn" path="res://Textures/Materials/engineer_armature.tres" id="3_wxl7k"]
+[ext_resource type="Material" uid="uid://cnm7p0a8w5nmb" path="res://Textures/Materials/engineer_plate.tres" id="4_qk1h2"]
+
+[node name="EngineerHead" type="Node3D"]
+script = ExtResource("1_jwwnd")
+
+[node name="EngineerHead" parent="." instance=ExtResource("1_0k5bl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.54946, -0.0602335)
+
+[node name="Body_003" parent="EngineerHead" index="0"]
+surface_material_override/0 = ExtResource("3_wxl7k")
+surface_material_override/1 = ExtResource("4_qk1h2")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.267235, 0.00197762)
+current = true
+near = 0.41
+
+[editable path="EngineerHead"]

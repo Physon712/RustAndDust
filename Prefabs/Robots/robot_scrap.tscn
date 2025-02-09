@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://bl0uckl4khvfd"]
+
+[ext_resource type="Script" path="res://Scripts/Robot/RobotController.gd" id="1_nienf"]
+[ext_resource type="Script" path="res://Scripts/Robot/PlayerBrain.gd" id="2_c8aau"]
+[ext_resource type="PackedScene" uid="uid://bohxn7hu2gmfk" path="res://Prefabs/Parts/Engineer/engineer_core.tscn" id="3_4nj4h"]
+[ext_resource type="PackedScene" uid="uid://osay08vocqxj" path="res://Prefabs/Parts/Engineer/engineer_arm.tscn" id="4_mxwha"]
+[ext_resource type="PackedScene" uid="uid://cdflht11veebq" path="res://Prefabs/Parts/Engineer/engineer_head.tscn" id="5_wnynk"]
+[ext_resource type="PackedScene" uid="uid://75ncvrb6jw87" path="res://Prefabs/Parts/Engineer/engineer_lower.tscn" id="6_31djm"]
+[ext_resource type="PackedScene" uid="uid://dyo3ytle7ux47" path="res://Prefabs/Parts/Engineer/engineer_quad_leg.tscn" id="7_aaqkh"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_byq50"]
+
+[node name="Robot" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 3
+platform_floor_layers = 4294901761
+script = ExtResource("1_nienf")
+
+[node name="Brain" type="Node" parent="."]
+script = ExtResource("2_c8aau")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
+shape = SubResource("CapsuleShape3D_byq50")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+
+[node name="CameraTPS" type="Camera3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.470201, 3.44796)
+visible = false
+
+[node name="Parts" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.564913, 0)
+
+[node name="EngineerCore" parent="Parts" instance=ExtResource("3_4nj4h")]
+
+[node name="EngineerArm" parent="Parts/EngineerCore/SlotArmL" index="0" instance=ExtResource("4_mxwha")]
+
+[node name="EngineerArm" parent="Parts/EngineerCore/SlotArmR" index="0" instance=ExtResource("4_mxwha")]
+
+[node name="EngineerHead" parent="Parts/EngineerCore/SlotHead" index="0" instance=ExtResource("5_wnynk")]
+
+[node name="EngineerLower" parent="Parts/EngineerCore/SlotMovement" index="0" instance=ExtResource("6_31djm")]
+
+[node name="QuadLeg" parent="Parts/EngineerCore/SlotMovement/EngineerLower/SlotLegFR" index="0" instance=ExtResource("7_aaqkh")]
+
+[node name="QuadLeg" parent="Parts/EngineerCore/SlotMovement/EngineerLower/SlotLegBR" index="0" instance=ExtResource("7_aaqkh")]
+
+[node name="QuadLeg" parent="Parts/EngineerCore/SlotMovement/EngineerLower/SlotLegFL" index="0" instance=ExtResource("7_aaqkh")]
+
+[node name="QuadLeg" parent="Parts/EngineerCore/SlotMovement/EngineerLower/SlotLegBL" index="0" instance=ExtResource("7_aaqkh")]
+
+[editable path="Parts/EngineerCore"]
+[editable path="Parts/EngineerCore/EngineerCore"]
+[editable path="Parts/EngineerCore/SlotMovement/EngineerLower"]
+[editable path="Parts/EngineerCore/SlotMovement/EngineerLower/EngineerLower"]

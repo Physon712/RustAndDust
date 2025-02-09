@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://5fmcgbbmusuo"]
+[gd_scene load_steps=5 format=3 uid="uid://5fmcgbbmusuo"]
 
 [ext_resource type="PackedScene" uid="uid://d2xsmxrdixuwj" path="res://Models/Parts/BetaArm.glb" id="1_0lo68"]
 [ext_resource type="Script" path="res://Scripts/Parts/PartArm.gd" id="1_ftahj"]
+[ext_resource type="Material" uid="uid://dl3f5cthok1pf" path="res://Textures/Materials/beta_armature.tres" id="3_d7ajm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7rp1b"]
 
 [node name="BetaArm" type="Node3D" node_paths=PackedStringArray("IK")]
 script = ExtResource("1_ftahj")
@@ -9,6 +12,24 @@ IK = NodePath("BetaArm/ArmatureArm/Skeleton3D/SkeletonIK3D")
 
 [node name="BetaArm" parent="." instance=ExtResource("1_0lo68")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.18186, -1.447, -0.0591932)
+
+[node name="Skeleton3D" parent="BetaArm/ArmatureArm" index="0"]
+bones/0/rotation = Quaternion(0.193399, 0.00125487, 0.981118, -0.00135872)
+bones/2/rotation = Quaternion(0.0738663, 0.0292125, 0.200212, 0.976527)
+bones/2/scale = Vector3(1, 1, 1)
+bones/3/scale = Vector3(1, 1, 1)
+bones/4/rotation = Quaternion(0.0448846, -0.0120479, 0.309527, 0.949754)
+bones/5/rotation = Quaternion(-0.154091, 0.0522474, -0.638194, 0.752486)
+bones/5/scale = Vector3(1, 1, 1)
+bones/6/rotation = Quaternion(-0.236324, -0.107685, -0.598433, 0.757913)
+bones/7/rotation = Quaternion(-0.164851, 0.0617706, -0.635908, 0.751418)
+bones/7/scale = Vector3(1, 1, 1)
+bones/8/rotation = Quaternion(-0.233695, -0.0925648, -0.605239, 0.755317)
+bones/8/scale = Vector3(1, 1, 1)
+
+[node name="Cube_003" parent="BetaArm/ArmatureArm/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_7rp1b")
+surface_material_override/1 = ExtResource("3_d7ajm")
 
 [node name="SkeletonIK3D" type="SkeletonIK3D" parent="BetaArm/ArmatureArm/Skeleton3D" index="1"]
 root_bone = &"Arm_L"
@@ -25,10 +46,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.223059, -0.155225, -0.3796
 
 [node name="CSGBox3D" type="CSGBox3D" parent="SlotHandTool"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0165689, 0.0666325, -0.116965)
+visible = false
 size = Vector3(0.0510864, 0.080368, 0.254456)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="SlotHandTool"]
 transform = Transform3D(1, 0, 0, 0, 0.974398, 0.224832, 0, -0.224832, 0.974398, 0.0175251, -0.0236984, -0.00671932)
+visible = false
 size = Vector3(0.0497437, 0.129074, 0.0589752)
 
 [node name="Target" type="Marker3D" parent="."]

@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cxj6d0aoyacem" path="res://Prefabs/Parts/Beta/beta_head.tscn" id="4_dresk"]
 [ext_resource type="PackedScene" uid="uid://5fmcgbbmusuo" path="res://Prefabs/Parts/Beta/beta_arm.tscn" id="5_6yr6d"]
 [ext_resource type="PackedScene" uid="uid://d3i41uiqmxr3p" path="res://Prefabs/Parts/Beta/beta_lower.tscn" id="5_msbew"]
-[ext_resource type="PackedScene" uid="uid://yhsguftrisj7" path="res://Prefabs/Parts/Beta/beta_leg.tscn" id="6_v3gj3"]
+[ext_resource type="PackedScene" uid="uid://yhsguftrisj7" path="res://Prefabs/Parts/Beta/beta_leg.tscn" id="7_k3eb2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_byq50"]
 
@@ -39,9 +39,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.564913, 0)
 
 [node name="PartMovement" parent="Parts/PartCore/SlotMovement" index="0" instance=ExtResource("5_msbew")]
 
-[node name="PartLegBeta" parent="Parts/PartCore/SlotMovement/PartMovement/SlotLegR" index="0" instance=ExtResource("6_v3gj3")]
+[node name="PartLegBeta" parent="Parts/PartCore/SlotMovement/PartMovement/SlotLegR" index="0" instance=ExtResource("7_k3eb2")]
 
-[node name="PartLegBeta" parent="Parts/PartCore/SlotMovement/PartMovement/SlotLegL" index="0" instance=ExtResource("6_v3gj3")]
+[node name="PartLegBeta" parent="Parts/PartCore/SlotMovement/PartMovement/SlotLegL" index="0" instance=ExtResource("7_k3eb2")]
 
 [editable path="Parts/PartCore"]
 [editable path="Parts/PartCore/SlotMovement/PartMovement"]

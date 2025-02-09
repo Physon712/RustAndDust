@@ -13,6 +13,10 @@ var robot = null
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	robot = look_for_parent_robot()
+	initialize()
+	
+func initialize():
+	pass
 
 func look_for_parent_robot():
 	var parent = get_parent().get_parent() #Get the robot that the part is parented to 

@@ -10,14 +10,13 @@ extends "res://Scripts/Parts/RobotPart.gd"
 
 @export var IK : SkeletonIK3D
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	super()
+
+func initialize():
 	IK.start()
 
-
 func _physics_process(delta: float) -> void:
-	rotation.x = robot.head.rotation.x
+	pass
+	#rotation.x = robot.head.rotation.x
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

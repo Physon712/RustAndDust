@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://osay08vocqxj"]
+
+[ext_resource type="Script" path="res://Scripts/Parts/PartArm.gd" id="1_0kfdc"]
+[ext_resource type="PackedScene" uid="uid://c2bnnlfsms16q" path="res://Models/Parts/Engineer/EngineerArm.glb" id="1_ldero"]
+[ext_resource type="Material" uid="uid://bucp5fy2db5xn" path="res://Textures/Materials/engineer_armature.tres" id="3_bk4ey"]
+[ext_resource type="Material" uid="uid://cnm7p0a8w5nmb" path="res://Textures/Materials/engineer_plate.tres" id="4_pqrkl"]
+
+[node name="EngineerArm" type="Node3D" node_paths=PackedStringArray("IK")]
+script = ExtResource("1_0kfdc")
+IK = NodePath("EngineerArm/Armature_001/Skeleton3D/SkeletonIK3D")
+
+[node name="EngineerArm" parent="." instance=ExtResource("1_ldero")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.276461, -1.32204, 0)
+
+[node name="Body_004" parent="EngineerArm/Armature_001/Skeleton3D" index="0"]
+surface_material_override/0 = ExtResource("3_bk4ey")
+surface_material_override/1 = ExtResource("4_pqrkl")
+
+[node name="SkeletonIK3D" type="SkeletonIK3D" parent="EngineerArm/Armature_001/Skeleton3D" index="1"]
+root_bone = &"Arm.L"
+tip_bone = &"Forearm.L.001"
+use_magnet = true
+magnet = Vector3(0, 0, 5)
+target_node = NodePath("../../../../Target/TargetOffset")
+
+[node name="RestTarget" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.606294, 0.795241, 0, -0.795241, 0.606294, -0.239062, -0.446616, -0.225428)
+
+[node name="SlotHandTool" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.223059, -0.155225, -0.37964)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="SlotHandTool"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0165689, 0.0666325, -0.116965)
+visible = false
+size = Vector3(0.0510864, 0.080368, 0.254456)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="SlotHandTool"]
+transform = Transform3D(1, 0, 0, 0, 0.974398, 0.224832, 0, -0.224832, 0.974398, 0.0175251, -0.0236984, -0.00671932)
+visible = false
+size = Vector3(0.0497437, 0.129074, 0.0589752)
+
+[node name="Target" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.223059, -0.166789, -0.37964)
+
+[node name="TargetOffset" type="Marker3D" parent="Target"]
+transform = Transform3D(0.916942, 0.0463466, -0.39632, 0.399021, -0.106503, 0.910735, 0, -0.993232, -0.116151, -0.0349023, -0.039368, 0.0678776)
+
+[editable path="EngineerArm"]

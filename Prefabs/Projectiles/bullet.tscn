@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dagynd5xwmiuv"]
+
+[ext_resource type="Script" path="res://Scripts/Projectile/Bullet.gd" id="1_6fhc5"]
+
+[node name="Bullet" type="Node3D"]
+script = ExtResource("1_6fhc5")
+speed = 50
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+size = Vector3(0.1, 0.1, 0.1)

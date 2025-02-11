@@ -32,7 +32,7 @@ func _physics_process(delta):
 		velocity.x = lerp(velocity.x,dir.x*move_speed,ground_control)
 	else:
 		#move_speed = clamp(move_power/mass,0,max_air_speed)
-		velocity.y += get_gravity().y*delta
+		velocity.y += GameData.GRAVITY*delta
 		velocity.z = lerp(velocity.z,dir.z*move_speed,air_control)
 		velocity.x = lerp(velocity.x,dir.x*move_speed,air_control)
 	move_and_slide()

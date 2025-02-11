@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://22j0rdhdpffb" path="res://Models/Parts/Engineer/EngineerLower.glb" id="1_dmw05"]
 [ext_resource type="Script" path="res://Scripts/Parts/PartQuadLegs.gd" id="1_njori"]
 [ext_resource type="Material" uid="uid://bucp5fy2db5xn" path="res://Textures/Materials/engineer_armature.tres" id="3_mt76g"]
-[ext_resource type="Material" uid="uid://cnm7p0a8w5nmb" path="res://Textures/Materials/engineer_plate.tres" id="4_m43ex"]
+[ext_resource type="Material" uid="uid://dyai2s24mjp2q" path="res://Textures/Materials/WearMetal.tres" id="4_c5tj1"]
 
 [node name="EngineerLower" type="Node3D"]
 script = ExtResource("1_njori")
@@ -13,7 +13,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14961, -0.0406948)
 
 [node name="Body_006" parent="EngineerLower" index="0"]
 surface_material_override/0 = ExtResource("3_mt76g")
-surface_material_override/1 = ExtResource("4_m43ex")
+surface_material_override/1 = ExtResource("4_c5tj1")
 
 [node name="SlotLegFR" type="Marker3D" parent="."]
 transform = Transform3D(-0.707107, 6.18172e-08, 0.707107, 8.74228e-08, 1, 0, 0.707107, -6.18172e-08, 0.707107, 0.118609, -0.545279, -0.233922)

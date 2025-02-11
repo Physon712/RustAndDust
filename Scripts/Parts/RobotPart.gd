@@ -4,19 +4,25 @@ class_name RobotPart
 
 var robot = null
 
-@export var integrity = 30
-@export var armor = 30
+var is_attached = false
 
+@export var integrity = 30
 @export var wear = 0
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	robot = look_for_parent_robot()
-	initialize()
+	attach()
 	
-func initialize():
-	pass
+func attach():
+	robot = look_for_parent_robot()
+	if(robot != null):
+		is_attached = true
+	else:
+		is_attached = false
+
+func detach():
+	is_attached = false
 
 func look_for_parent_robot():
 	var parent = get_parent().get_parent() #Get the robot that the part is parented to 

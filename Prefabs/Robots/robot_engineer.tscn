@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bxwr05wkukokk"]
+[gd_scene load_steps=14 format=3 uid="uid://bxwr05wkukokk"]
 
 [ext_resource type="Script" path="res://Scripts/Robot/RobotController.gd" id="1_rlgnq"]
 [ext_resource type="Script" path="res://Scripts/Robot/PlayerBrain.gd" id="2_xysy0"]
@@ -7,8 +7,24 @@
 [ext_resource type="PackedScene" uid="uid://cdflht11veebq" path="res://Prefabs/Parts/Engineer/engineer_head.tscn" id="5_s5atw"]
 [ext_resource type="PackedScene" uid="uid://75ncvrb6jw87" path="res://Prefabs/Parts/Engineer/engineer_lower.tscn" id="6_wkjhf"]
 [ext_resource type="PackedScene" uid="uid://dyo3ytle7ux47" path="res://Prefabs/Parts/Engineer/engineer_quad_leg.tscn" id="7_duhap"]
+[ext_resource type="Shader" path="res://Shaders/WearingMetal.gdshader" id="7_vhtte"]
+[ext_resource type="Texture2D" uid="uid://ko37xf1e46nc" path="res://Textures/RoughCowPattern.png" id="8_5tcod"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_byq50"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4pgkc"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_u4qon"]
+noise = SubResource("FastNoiseLite_4pgkc")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f2t2b"]
+render_priority = 0
+shader = ExtResource("7_vhtte")
+shader_parameter/mainColor = Color(0.976471, 0.901961, 0.25098, 1)
+shader_parameter/wearColor = Color(0.166127, 0.122625, 0.0283153, 1)
+shader_parameter/wear = 0.508
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_u4qon")
+shader_parameter/wearTexture = ExtResource("8_5tcod")
 
 [node name="Robot" type="CharacterBody3D"]
 collision_layer = 2
@@ -41,6 +57,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.564913, 0)
 [node name="EngineerHead" parent="Parts/EngineerCore/SlotHead" index="0" instance=ExtResource("5_s5atw")]
 
 [node name="EngineerLower" parent="Parts/EngineerCore/SlotMovement" index="0" instance=ExtResource("6_wkjhf")]
+
+[node name="Body_006" parent="Parts/EngineerCore/SlotMovement/EngineerLower/EngineerLower" index="0"]
+surface_material_override/1 = SubResource("ShaderMaterial_f2t2b")
 
 [node name="QuadLeg" parent="Parts/EngineerCore/SlotMovement/EngineerLower/SlotLegFR" index="0" instance=ExtResource("7_duhap")]
 

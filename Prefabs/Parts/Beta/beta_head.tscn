@@ -7,7 +7,7 @@
 script = ExtResource("1_4et2o")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.203571, -0.145586)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.204, -0.146)
 near = 0.1
 
 [node name="BetaHead" parent="." instance=ExtResource("2_n8fod")]

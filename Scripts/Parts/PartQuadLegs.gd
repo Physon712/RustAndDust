@@ -1,6 +1,6 @@
 extends "res://Scripts/Parts/RobotPart.gd"
 
-# Called when the node enters the scene tree for the first time.
+### Must have 4 slots for 4 legs (FR, FL, BR, BL)
 
 var fright_leg = null
 var fleft_leg = null
@@ -13,9 +13,6 @@ var opposite_index = []
 var leg_count = 4
 var legs_targets = []
 
-
-@onready var legs_center = $LegsCenter
-
 var min_length = 0.2
 var height = 0.2
 var max_height = 0.7
@@ -27,12 +24,16 @@ var stepping = false;
 func _ready() -> void:
 	super()
 
-func initialize():
-	fright_leg = $SlotLegFR.get_child(0)
-	fleft_leg = $SlotLegFL.get_child(0)
-	
-	bright_leg = $SlotLegBR.get_child(0)
-	bleft_leg = $SlotLegBL.get_child(0)
+func attach():
+	super()
+	if($SlotLegFR.get_child_count() > 0):
+		fright_leg = $SlotLegFR.get_child(0)
+	if($SlotLegFL.get_child_count() > 0):
+		fleft_leg = $SlotLegFL.get_child(0)
+	if($SlotLegBR.get_child_count() > 0):
+		bright_leg = $SlotLegBR.get_child(0)
+	if($SlotLegBL.get_child_count() > 0):
+		bleft_leg = $SlotLegBL.get_child(0)
 	
 	if(fright_leg != null):
 		legs.append(fright_leg)
@@ -90,6 +91,9 @@ func initialize():
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	if(!is_attached):
+		pass
+	
 	for i in range(leg_count):
 		legs_targets[i] = look_for_foothold(legs[i])
 	
@@ -132,9 +136,7 @@ func step(leg,target): #Update the foot location to the target with an animation
 	
 func look_for_foothold(leg):
 	var space_state = get_world_3d().direct_space_state
-	#var dir = (robot.global_transform.origin-robot.head.transform.basis.x*min_length*0.2 + robot.velocity*step_time)-legs_center.global_position
 	var dir = (leg.placement_target.global_position) + robot.velocity*1*leg.step_time - leg.placement_top.global_position
-	#var query = PhysicsRayQueryParameters3D.create(legs_center.global_position,legs_center.global_position+dir*2,0b001)
 	var query = PhysicsRayQueryParameters3D.create(leg.placement_top.global_position,leg.placement_top.global_position + 5*dir,0b001)
 	var result = space_state.intersect_ray(query)
 	if(result):

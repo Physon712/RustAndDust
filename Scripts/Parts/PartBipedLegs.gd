@@ -20,10 +20,8 @@ var stride_distance = 0.1
 
 var stepping = false;
 
-func _ready() -> void:
+func attach():
 	super()
-
-func initialize():
 	right_leg = $SlotLegR.get_child(0)
 	left_leg = $SlotLegL.get_child(0)
 	

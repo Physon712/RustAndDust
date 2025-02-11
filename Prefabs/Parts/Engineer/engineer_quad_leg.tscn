@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/Parts/PartLeg.gd" id="1_nvabi"]
 [ext_resource type="PackedScene" uid="uid://dhnqboav0dptx" path="res://Models/Parts/Engineer/EngineerQuadLeg.glb" id="2_x17qk"]
 [ext_resource type="Material" uid="uid://bucp5fy2db5xn" path="res://Textures/Materials/engineer_armature.tres" id="3_bgv1f"]
-[ext_resource type="Material" uid="uid://cnm7p0a8w5nmb" path="res://Textures/Materials/engineer_plate.tres" id="4_ia41m"]
+[ext_resource type="Material" uid="uid://dyai2s24mjp2q" path="res://Textures/Materials/WearMetal.tres" id="4_re3y3"]
 
 [node name="QuadLeg" type="Node3D" node_paths=PackedStringArray("IK")]
 script = ExtResource("1_nvabi")
@@ -23,7 +23,7 @@ bones/2/rotation = Quaternion(0.000546423, 0.00122562, -0.00122559, 0.999998)
 
 [node name="Body_005" parent="EngineerQuadLeg/Armature_002/Skeleton3D" index="0"]
 surface_material_override/0 = ExtResource("3_bgv1f")
-surface_material_override/1 = ExtResource("4_ia41m")
+surface_material_override/1 = ExtResource("4_re3y3")
 
 [node name="SkeletonIK3D" type="SkeletonIK3D" parent="EngineerQuadLeg/Armature_002/Skeleton3D" index="1"]
 root_bone = &"LegFront.L"

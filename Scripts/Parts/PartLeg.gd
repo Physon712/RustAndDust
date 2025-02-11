@@ -17,7 +17,8 @@ extends "res://Scripts/Parts/RobotPart.gd"
 @onready var placement_top = $PlacementTop
 @export var IK : SkeletonIK3D
 
-func initialize():
+func attach():
+	super()
 	IK.start()
 
 func _physics_process(delta: float) -> void:

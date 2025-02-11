@@ -1,9 +1,13 @@
 extends Node
 
-### INPUT SETTINGS
+### PLAYER SETTINGS
 var mouse_sensivity = 0.005;
 
-### CONST
+var third_person = false;
+
+### GAME CONST
+const GRAVITY = -9.8 
+
 const ARMOR_TYPE_LIGHT = 0
 const ARMOR_TYPE_HEAVY = 1
 const ARMOR_TYPE_KEVLAR = 2

@@ -7,10 +7,8 @@
 
 [node name="QuadLeg" type="Node3D" node_paths=PackedStringArray("IK")]
 script = ExtResource("1_nvabi")
-length = 1.05
 max_speed = 5
-move_power = 1000
-ground_control = 0.2
+length = 1.05
 IK = NodePath("EngineerQuadLeg/Armature_002/Skeleton3D/SkeletonIK3D")
 
 [node name="EngineerQuadLeg" parent="." instance=ExtResource("2_x17qk")]

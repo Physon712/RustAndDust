@@ -4,7 +4,7 @@ extends Node3D
 @export var damage = 5
 
 @onready var velocity = -basis.z*speed
-var next_position = global_position
+var next_position = Vector3.ZERO
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:

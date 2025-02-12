@@ -31,6 +31,8 @@ func _physics_process(delta: float) -> void:
 	if(is_flipped):
 		tool_target.global_rotation.x = -robot.head.global_rotation.x
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func recoil(push,climb,deviation):
+	#Push is the force going backward
+	#Climb is the torque going up
+	#Deviation is the torque going left
 	pass

@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 class_name Robot
 
-@export var mass = 180
+@export var mass = 90
 
 @export var jump_momentum = 500
 
@@ -33,9 +33,6 @@ func attach_parts():
 	air_acceleration = float(air_acceleration_force)/mass
 	jump_speed = float(jump_momentum)/mass
 
-func _process(delta):
-	print(1/delta)
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	head.transform.origin.y = height
@@ -60,7 +57,6 @@ func _physics_process(delta):
 			adjusting_velocity = dif_velocity*(air_acceleration/dif_length)*delta
 		if(adjusting_velocity.length() > dif_length):
 			adjusting_velocity = dif_velocity
-		print(adjusting_velocity)
 		velocity += adjusting_velocity
 	move_and_slide()
 	

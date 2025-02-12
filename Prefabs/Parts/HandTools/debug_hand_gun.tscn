@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://dg25i0qryeyv0"]
+[gd_scene load_steps=2 format=3 uid="uid://dg25i0qryeyv0"]
+
+[ext_resource type="Script" path="res://Scripts/Parts/HandGun.gd" id="1_gqs6q"]
 
 [node name="DebugHandGun" type="Node3D"]
+script = ExtResource("1_gqs6q")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0165689, 0.0666325, -0.116965)

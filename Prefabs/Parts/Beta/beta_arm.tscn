@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://5fmcgbbmusuo"]
+[gd_scene load_steps=6 format=3 uid="uid://5fmcgbbmusuo"]
 
 [ext_resource type="PackedScene" uid="uid://d2xsmxrdixuwj" path="res://Models/Parts/BetaArm.glb" id="1_0lo68"]
 [ext_resource type="Script" path="res://Scripts/Parts/PartArm.gd" id="1_ftahj"]
 [ext_resource type="Material" uid="uid://dl3f5cthok1pf" path="res://Textures/Materials/beta_armature.tres" id="3_d7ajm"]
+[ext_resource type="Script" path="res://Scripts/Parts/SlotRecoil.gd" id="4_gojro"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7rp1b"]
 
@@ -41,11 +42,11 @@ target_node = NodePath("../../../../Target/TargetOffset")
 [node name="RestTarget" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.606294, 0.795241, 0, -0.795241, 0.606294, -0.239062, -0.446616, -0.225428)
 
-[node name="SlotHandTool" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.142134, -0.0109238, -0.504709)
+[node name="ToolTarget" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00913672, -0.0707416, -0.311506)
 
-[node name="RestTargetHandTool" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.142134, -0.0109238, -0.504709)
+[node name="SlotHandTool" type="Marker3D" parent="ToolTarget"]
+script = ExtResource("4_gojro")
 
 [node name="Target" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.223059, -0.155225, -0.37964)

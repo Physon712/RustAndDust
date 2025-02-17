@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://cfukrygrecg7f"]
+
+[ext_resource type="Script" path="res://Scripts/Parts/HandGun.gd" id="1_kd1xd"]
+[ext_resource type="PackedScene" uid="uid://c7tvcmsehqhu6" path="res://Models/HandWeapons/LightMachineGun.glb" id="2_0oii7"]
+[ext_resource type="Material" uid="uid://bs0a5kuq35kox" path="res://Textures/Materials/beta_plate.tres" id="3_schrx"]
+[ext_resource type="Material" uid="uid://dl3f5cthok1pf" path="res://Textures/Materials/beta_armature.tres" id="4_l8u8v"]
+
+[node name="LightMachineGun" type="RigidBody3D" node_paths=PackedStringArray("main_hand_target", "off_hand_target")]
+freeze = true
+script = ExtResource("1_kd1xd")
+main_hand_target = NodePath("LeftHand")
+off_hand_target = NodePath("RightHand")
+
+[node name="LightMachineGun" parent="." instance=ExtResource("2_0oii7")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Cylinder" parent="LightMachineGun" index="0"]
+surface_material_override/0 = ExtResource("3_schrx")
+surface_material_override/1 = ExtResource("4_l8u8v")
+
+[node name="LeftHand" type="Marker3D" parent="."]
+
+[node name="RightHand" type="Marker3D" parent="."]
+transform = Transform3D(0.0121472, 0, 0.999926, 0, 1, 0, -0.999926, 0, 0.0121472, 0.0109429, 0.0502154, -0.504932)
+
+[node name="Muzzle" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.139054, -1.28334)
+
+[editable path="LightMachineGun"]

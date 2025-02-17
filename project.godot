@@ -24,6 +24,14 @@ GameData="*res://Scripts/GameData.gd"
 
 enabled=PackedStringArray("res://addons/terrain_3d/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://Models/": "red",
+"res://Prefabs/": "green",
+"res://Scripts/": "blue"
+}
+
 [filesystem]
 
 import/blender/enabled=false

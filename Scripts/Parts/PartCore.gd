@@ -7,6 +7,8 @@ var left_arm = null
 var movement_module = null
 
 var height = 0.5
+
+var rotation_offset = 0.0
 	
 func attach():
 	super()
@@ -16,28 +18,26 @@ func attach():
 		left_arm = $SlotArmL.get_child(0)
 	if($SlotMovement.get_child_count() > 0):
 		movement_module = $SlotMovement.get_child(0)
+		
+	if(right_arm != null && left_arm != null): #Handle hand cooperation
+		if(right_arm.is_hand_free() && !left_arm.is_hand_free()):
+			if(left_arm.hand_tool != null):
+				rotation_offset = PI/4
+				right_arm.assigned_target = left_arm.hand_tool.off_hand_target
+		if(!right_arm.is_hand_free() && left_arm.is_hand_free()):
+			if(right_arm.hand_tool != null):
+				rotation_offset = -PI/4
+				left_arm.assigned_target = right_arm.hand_tool.off_hand_target
 
 func _physics_process(delta):
 	
-	rotation.y = robot.head.rotation.y
+	rotation.y = robot.head.rotation.y + rotation_offset
 	transform.origin.y = height
 	rotation.x = 0.2*robot.velocity.dot(robot.head.basis.z)/robot.max_speed
 	rotation.z = -0.2*robot.velocity.dot(robot.head.basis.x)/robot.max_speed
 	if(movement_module != null):
 		transform.origin.y = movement_module.height
 	
-	if(right_arm != null):
-		if(right_arm.hand_tool != null):
-			right_arm.target.transform = right_arm.tool_target.transform
-		else:
-			right_arm.target.global_position = right_arm.rest_target.global_position
-	
-	
-	if(left_arm != null):
-		if(left_arm.hand_tool != null):
-			left_arm.target.transform = left_arm.tool_target.transform
-		else:
-			left_arm.target.global_position = left_arm.rest_target.global_position
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass

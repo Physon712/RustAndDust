@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://c7tvcmsehqhu6"
-path="res://.godot/imported/LightMachineGun.glb-870edd9b588148bf3ccc3523a5c13f18.scn"
+path="res://.godot/imported/LightMachineGun.glb-cdbdd3803a2c75459accb501b5719fe4.scn"
 
 [deps]
 
-source_file="res://Models/HandWeapons/LightMachineGun.glb"
-dest_files=["res://.godot/imported/LightMachineGun.glb-870edd9b588148bf3ccc3523a5c13f18.scn"]
+source_file="res://Models/Parts/HandWeapons/LightMachineGun.glb"
+dest_files=["res://.godot/imported/LightMachineGun.glb-cdbdd3803a2c75459accb501b5719fe4.scn"]
 
 [params]
 

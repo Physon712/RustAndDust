@@ -14,6 +14,7 @@ func _physics_process(delta: float) -> void:
 	global_position = next_position
 		
 func check_for_collision():
+	#Raycast from current position to futur position
 	var space_state = get_world_3d().direct_space_state
 	var query = PhysicsRayQueryParameters3D.create(global_position,next_position,0b001)
 	var result = space_state.intersect_ray(query)

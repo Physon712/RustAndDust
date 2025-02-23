@@ -1,7 +1,6 @@
-extends Node
+extends "res://Scripts/Parts/PartBrain.gd"
 
 @export var target : Robot
-@onready var robot = get_parent() # Get the robot the player controls
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.

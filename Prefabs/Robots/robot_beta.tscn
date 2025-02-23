@@ -17,10 +17,7 @@ collision_mask = 3
 platform_floor_layers = 4294901761
 script = ExtResource("1_1ctkx")
 
-[node name="Brain" type="Node" parent="."]
-script = ExtResource("2_cpj83")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="Collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_byq50")
 
@@ -28,45 +25,19 @@ shape = SubResource("CapsuleShape3D_byq50")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 
 [node name="Parts" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.564913, 0)
 
 [node name="PartCore" parent="Parts" instance=ExtResource("3_r4kjy")]
 
 [node name="PartHead" parent="Parts/PartCore/SlotHead" index="0" instance=ExtResource("4_dresk")]
 
-[node name="BetaArm" parent="Parts/PartCore/SlotArmL" index="0" instance=ExtResource("5_6yr6d")]
+[node name="PlayerBrain" type="Node3D" parent="Parts/PartCore/SlotHead/PartHead/SlotBrain" index="0"]
+script = ExtResource("2_cpj83")
 
-[node name="Skeleton3D" parent="Parts/PartCore/SlotArmL/BetaArm/BetaArm/ArmatureArm" index="0"]
-bones/0/rotation = Quaternion(0.193399, 0.00125487, 0.981118, -0.00135872)
-bones/2/rotation = Quaternion(0.0738663, 0.0292125, 0.200212, 0.976527)
-bones/2/scale = Vector3(1, 1, 1)
-bones/3/scale = Vector3(1, 1, 1)
-bones/4/rotation = Quaternion(0.0448846, -0.0120479, 0.309527, 0.949754)
-bones/5/rotation = Quaternion(-0.154091, 0.0522474, -0.638194, 0.752486)
-bones/5/scale = Vector3(1, 1, 1)
-bones/6/rotation = Quaternion(-0.236324, -0.107685, -0.598433, 0.757913)
-bones/7/rotation = Quaternion(-0.164851, 0.0617706, -0.635908, 0.751418)
-bones/7/scale = Vector3(1, 1, 1)
-bones/8/rotation = Quaternion(-0.233695, -0.0925648, -0.605239, 0.755317)
-bones/8/scale = Vector3(1, 1, 1)
+[node name="BetaArm" parent="Parts/PartCore/SlotArmL" index="0" instance=ExtResource("5_6yr6d")]
 
 [node name="LightMachineGun" parent="Parts/PartCore/SlotArmL/BetaArm/ToolTarget/SlotHandTool" index="0" instance=ExtResource("6_uvm54")]
 
 [node name="BetaArm" parent="Parts/PartCore/SlotArmR" index="0" instance=ExtResource("5_6yr6d")]
-
-[node name="Skeleton3D" parent="Parts/PartCore/SlotArmR/BetaArm/BetaArm/ArmatureArm" index="0"]
-bones/0/rotation = Quaternion(0.193399, 0.00125487, 0.981118, -0.00135872)
-bones/2/rotation = Quaternion(0.0738663, 0.0292125, 0.200212, 0.976527)
-bones/2/scale = Vector3(1, 1, 1)
-bones/3/scale = Vector3(1, 1, 1)
-bones/4/rotation = Quaternion(0.0448846, -0.0120479, 0.309527, 0.949754)
-bones/5/rotation = Quaternion(-0.154091, 0.0522474, -0.638194, 0.752486)
-bones/5/scale = Vector3(1, 1, 1)
-bones/6/rotation = Quaternion(-0.236324, -0.107685, -0.598433, 0.757913)
-bones/7/rotation = Quaternion(-0.164851, 0.0617706, -0.635908, 0.751418)
-bones/7/scale = Vector3(1, 1, 1)
-bones/8/rotation = Quaternion(-0.233695, -0.0925648, -0.605239, 0.755317)
-bones/8/scale = Vector3(1, 1, 1)
 
 [node name="PartMovement" parent="Parts/PartCore/SlotMovement" index="0" instance=ExtResource("5_msbew")]
 
@@ -75,6 +46,7 @@ bones/8/scale = Vector3(1, 1, 1)
 [node name="PartLegBeta" parent="Parts/PartCore/SlotMovement/PartMovement/SlotLegL" index="0" instance=ExtResource("7_k3eb2")]
 
 [editable path="Parts/PartCore"]
+[editable path="Parts/PartCore/SlotHead/PartHead"]
 [editable path="Parts/PartCore/SlotArmL/BetaArm"]
 [editable path="Parts/PartCore/SlotArmL/BetaArm/BetaArm"]
 [editable path="Parts/PartCore/SlotArmR/BetaArm"]

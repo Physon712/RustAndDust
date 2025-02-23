@@ -10,6 +10,7 @@ freeze = true
 script = ExtResource("1_kd1xd")
 main_hand_target = NodePath("LeftHand")
 off_hand_target = NodePath("RightHand")
+dispersion = 0.01
 
 [node name="LightMachineGun" parent="." instance=ExtResource("2_0oii7")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)

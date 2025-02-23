@@ -13,6 +13,6 @@ render_priority = 0
 shader = ExtResource("1_arkf7")
 shader_parameter/mainColor = Color(0.98, 0.861093, 0.0882, 1)
 shader_parameter/wearColor = Color(0, 0, 0, 1)
-shader_parameter/wear = 0.556
+shader_parameter/wear = 0.426
 shader_parameter/noiseTexture = SubResource("NoiseTexture2D_u4qon")
 shader_parameter/wearTexture = ExtResource("2_8x4de")

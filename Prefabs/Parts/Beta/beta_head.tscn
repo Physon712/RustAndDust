@@ -5,6 +5,7 @@
 
 [node name="PartHead" type="Node3D"]
 script = ExtResource("1_4et2o")
+mass = 10
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.204, -0.146)
@@ -12,3 +13,6 @@ near = 0.1
 
 [node name="BetaHead" parent="." instance=ExtResource("2_n8fod")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8.67393e-11, -1.59103, 0.000992179)
+
+[node name="SlotBrain" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.195677, 0)

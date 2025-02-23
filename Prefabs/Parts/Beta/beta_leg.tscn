@@ -7,10 +7,10 @@
 
 [node name="PartLegBeta" type="Node3D" node_paths=PackedStringArray("IK")]
 script = ExtResource("1_llxeu")
-length = 1.0
-max_speed = 6
-move_power = 360
+max_speed = 3
+length = 1.2
 IK = NodePath("Mesh/Armature/Skeleton3D/SkeletonIK3D")
+mass = 20
 
 [node name="Mesh" parent="." instance=ExtResource("2_ehim1")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.0931629, -0.945396, -0.0608397)
@@ -39,7 +39,7 @@ target_node = NodePath("../../../../Target/OffsetTarget")
 top_level = true
 
 [node name="Target" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.110991, -0.844648, -0.0888225)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.110991, -1.21175, 0.0010445)
 
 [node name="OffsetTarget" type="Marker3D" parent="Target"]
 transform = Transform3D(-0.995702, -0.0859651, 0.0344584, -0.00950392, -0.275258, -0.961323, 0.0921252, -0.95752, 0.273258, 0.01, 0.0792463, 0.0883495)

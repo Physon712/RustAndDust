@@ -1,0 +1,37 @@
+@startuml
+class RobotPart
+class MovementModule
+class Core
+class Brain
+class Weapon
+class MeleeWeapon
+class Gun
+class HandGun
+class Arm
+class ArmHand
+class Leg
+class BipedsLegs
+class QuadLegs
+class Wheel
+class Head
+
+MovementModule --> BipedsLegs
+MovementModule --> QuadLegs
+MovementModule --> Wheel
+
+RobotPart --> Core
+RobotPart --> Brain
+RobotPart --> Weapon
+RobotPart --> Arm
+RobotPart --> Leg
+RobotPart --> Head
+RobotPart --> MovementModule
+
+Arm --> ArmHand
+
+Weapon --> Gun
+Weapon --> MeleeWeapon
+
+Gun --> HandGun
+
+@enduml

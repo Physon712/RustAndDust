@@ -1,5 +1,6 @@
 extends "res://Scripts/Parts/RobotPart.gd"
 
+class_name Leg
 
 ###STAT
 @export var acceleration_force = 2000

@@ -1,9 +1,9 @@
 [gd_scene load_steps=14 format=3 uid="uid://bxwr05wkukokk"]
 
 [ext_resource type="Script" path="res://Scripts/Robot/RobotController.gd" id="1_rlgnq"]
-[ext_resource type="Script" path="res://Scripts/Robot/PlayerBrain.gd" id="2_xysy0"]
 [ext_resource type="PackedScene" uid="uid://bohxn7hu2gmfk" path="res://Prefabs/Parts/Engineer/engineer_core.tscn" id="3_loni0"]
 [ext_resource type="PackedScene" uid="uid://osay08vocqxj" path="res://Prefabs/Parts/Engineer/engineer_arm.tscn" id="4_025ds"]
+[ext_resource type="PackedScene" uid="uid://cfukrygrecg7f" path="res://Prefabs/Parts/HandTools/light_machine_gun.tscn" id="5_4sv1w"]
 [ext_resource type="PackedScene" uid="uid://cdflht11veebq" path="res://Prefabs/Parts/Engineer/engineer_head.tscn" id="5_s5atw"]
 [ext_resource type="PackedScene" uid="uid://75ncvrb6jw87" path="res://Prefabs/Parts/Engineer/engineer_lower.tscn" id="6_wkjhf"]
 [ext_resource type="PackedScene" uid="uid://dyo3ytle7ux47" path="res://Prefabs/Parts/Engineer/engineer_quad_leg.tscn" id="7_duhap"]
@@ -32,9 +32,6 @@ collision_mask = 3
 platform_floor_layers = 4294901761
 script = ExtResource("1_rlgnq")
 
-[node name="Brain" type="Node" parent="."]
-script = ExtResource("2_xysy0")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_byq50")
@@ -52,7 +49,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.564913, 0)
 
 [node name="EngineerArm" parent="Parts/EngineerCore/SlotArmL" index="0" instance=ExtResource("4_025ds")]
 
+[node name="LightMachineGun" parent="Parts/EngineerCore/SlotArmL/EngineerArm/ToolTarget/SlotHandTool" index="0" instance=ExtResource("5_4sv1w")]
+
 [node name="EngineerArm" parent="Parts/EngineerCore/SlotArmR" index="0" instance=ExtResource("4_025ds")]
+
+[node name="LightMachineGun" parent="Parts/EngineerCore/SlotArmR/EngineerArm/ToolTarget/SlotHandTool" index="0" instance=ExtResource("5_4sv1w")]
 
 [node name="EngineerHead" parent="Parts/EngineerCore/SlotHead" index="0" instance=ExtResource("5_s5atw")]
 
@@ -71,5 +72,11 @@ surface_material_override/1 = SubResource("ShaderMaterial_f2t2b")
 
 [editable path="Parts/EngineerCore"]
 [editable path="Parts/EngineerCore/EngineerCore"]
+[editable path="Parts/EngineerCore/SlotArmL/EngineerArm"]
+[editable path="Parts/EngineerCore/SlotArmL/EngineerArm/EngineerArm"]
+[editable path="Parts/EngineerCore/SlotArmR/EngineerArm"]
+[editable path="Parts/EngineerCore/SlotArmR/EngineerArm/EngineerArm"]
+[editable path="Parts/EngineerCore/SlotHead/EngineerHead"]
+[editable path="Parts/EngineerCore/SlotHead/EngineerHead/EngineerHead"]
 [editable path="Parts/EngineerCore/SlotMovement/EngineerLower"]
 [editable path="Parts/EngineerCore/SlotMovement/EngineerLower/EngineerLower"]

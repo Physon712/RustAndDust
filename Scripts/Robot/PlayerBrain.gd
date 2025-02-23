@@ -1,11 +1,15 @@
-extends Node
+extends "res://Scripts/Parts/PartBrain.gd"
 
-@onready var robot = get_parent() # Get the robot the player controls
 
 ### Basically take player input, to control a robot
 
-func _ready():
+func attach():
+	super()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func _process(delta):
+	if(Input.is_action_pressed("Fire")):
+		robot.weapons[0].use()
 
 func _physics_process(delta):
 	if(Input.is_action_pressed("Jump")):
@@ -27,3 +31,10 @@ func _input(event):
 		robot.head.rotation.y += -GameData.mouse_sensivity*event.relative.x
 		robot.head.rotation.x += -GameData.mouse_sensivity*event.relative.y
 		robot.head.rotation.x = clamp(robot.head.rotation.x,-1.5,1.5)
+
+
+func look_for_parent_robot():
+	var parent = get_parent() #Get the robot that the part is parented to 
+	while(!(parent is Robot)):
+		parent = parent.get_parent()
+	return parent

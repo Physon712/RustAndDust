@@ -1,4 +1,6 @@
-extends "res://Scripts/Parts/RobotPart.gd"
+extends "res://Scripts/Parts/PartMovement.gd"
+
+class_name QuadLegs
 
 ### Must have 4 slots for 4 legs (FR, FL, BR, BL)
 
@@ -14,7 +16,6 @@ var leg_count = 4
 var legs_targets = []
 
 var min_length = 0.2
-var height = 0.2
 var max_height = 0.7
 var min_height = 0.35
 var stride_distance = 0.1
@@ -61,28 +62,10 @@ func attach():
 	
 	if(legs.is_empty()): #Worst case scenario, no legs avaible
 		min_length = 0
-		robot.max_speed = 1
-		robot.move_power = 200
-		robot.jump_power = 0
-		robot.ground_control = 0.1
 	else: #At least one leg
 		min_length = legs[0].length
-		robot.max_speed = legs[0].max_speed
-		robot.move_power= legs[0].move_power
-		robot.jump_power = legs[0].jump_power
-		robot.ground_control = legs[0].ground_control
-	
 	for i in range(1,legs.size()): #All the other legs (only one though)
 		min_length = min(min_length,legs[i].length)
-		robot.max_speed = min(robot.max_speed,legs[i].max_speed)
-		robot.move_power += legs[i].move_power
-		robot.jump_power += legs[i].jump_power
-		robot.ground_control = max(robot.ground_control,legs[i].ground_control)
-		
-	if(legs.size() <= 2): #Special speed penality for when two legged
-		robot.max_speed = robot.max_speed/2
-		if(legs.size() <= 1): #Special speed penality for when two legged
-			robot.max_speed = robot.max_speed/2
 		
 	height = min_length*0.6
 	min_height = min_length*0.6

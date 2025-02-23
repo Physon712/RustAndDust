@@ -3,11 +3,13 @@ extends Node3D
 class_name RobotPart
 
 var robot = null
-
 var is_attached = false
 
 @export var integrity = 30
 @export var wear = 0
+
+@export var mass = 5
+@export var energy_consumption = 5
 
 
 # Called when the node enters the scene tree for the first time.

@@ -1,10 +1,12 @@
 extends "res://Scripts/Parts/RobotPart.gd"
 
-var hand_tool = null
+class_name ArmHand
 
-@export var length = 0.8
-@export var max_speed = 2
-@export var step_time = 0.3
+var hand_tool = null
+###Stats
+@export var inaccuracy = 0.02
+@export var strength = 5
+
 @export var recoil_control = 0.2
 
 @onready var target = $Target
@@ -24,6 +26,7 @@ func attach():
 	if(tool_slot.get_child_count() > 0):
 		hand_tool = tool_slot.get_child(0)
 		assigned_target = hand_tool.main_hand_target
+		hand_tool.inaccuracy = inaccuracy
 	if(get_parent().scale.x < 0):
 		is_flipped = true
 	

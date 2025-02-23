@@ -1,6 +1,7 @@
-extends "res://Scripts/Parts/RobotPart.gd"
+extends "res://Scripts/Parts/PartMovement.gd"
 
-# Called when the node enters the scene tree for the first time.
+
+class_name BipedLegs
 
 var right_leg = null
 var left_leg = null
@@ -12,8 +13,7 @@ var left_target = global_transform.origin-Vector3.UP
 
 @onready var legs_center = $LegsCenter
 
-var min_length = 0.2
-var height = 0.2
+var min_length = 0
 var max_height = 0.7
 var min_height = 0.35
 var stride_distance = 0.1
@@ -30,29 +30,36 @@ func attach():
 	if(left_leg != null):
 		legs.append(left_leg)
 	
+	#if(legs.is_empty()): #Worst case scenario, no legs available
+		#min_length = 0
+		#robot.max_speed = 1
+		#robot.acceleration_force = 200
+		#robot.jump_momentum = 0
+	#else: #At least one leg
+		#min_length = legs[0].length
+		#robot.max_speed = legs[0].max_speed
+		#robot.acceleration_force = legs[0].acceleration_force
+		#robot.jump_momentum = legs[0].jump_momentum
+	#
+	#for i in range(1,legs.size()): #All the other legs (only one though)
+		#min_length = min(min_length,legs[i].length)
+		#robot.max_speed = min(robot.max_speed,legs[i].max_speed)
+		#robot.acceleration_force += legs[i].acceleration_force
+		#robot.jump_momentum += legs[i].jump_momentum
+		
+	#if(legs.size() <= 1): #Special speed penality for when one legged
+		#robot.max_speed = float(robot.max_speed)/2.0
+		
 	if(legs.is_empty()): #Worst case scenario, no legs avaible
 		min_length = 0
-		robot.max_speed = 1
-		robot.acceleration_force = 200
-		robot.jump_momentum = 0
 	else: #At least one leg
 		min_length = legs[0].length
-		robot.max_speed = legs[0].max_speed
-		robot.acceleration_force = legs[0].acceleration_force
-		robot.jump_momentum = legs[0].jump_momentum
-	
 	for i in range(1,legs.size()): #All the other legs (only one though)
 		min_length = min(min_length,legs[i].length)
-		robot.max_speed = min(robot.max_speed,legs[i].max_speed)
-		robot.acceleration_force += legs[i].acceleration_force
-		robot.jump_momentum += legs[i].jump_momentum
 		
-	if(legs.size() <= 1): #Special speed penality for when one legged
-		robot.max_speed = robot.max_speed/2
-		
-	height = min_length*0.6
-	min_height = min_length*0.6
-	max_height = min_length*0.8
+	height = min_length
+	min_height = min_length*0.8
+	max_height = min_length
 	right_target = robot.global_transform.origin+Vector3.RIGHT*min_length*0.2
 	left_target = robot.global_transform.origin-Vector3.RIGHT*min_length*0.2
 
@@ -97,9 +104,7 @@ func step(leg,target): #Update the foot location to the target with an animation
 	
 func look_for_foothold(leg):
 	var space_state = get_world_3d().direct_space_state
-	#var dir = (robot.global_transform.origin-robot.head.transform.basis.x*min_length*0.2 + robot.velocity*step_time)-legs_center.global_position
 	var dir = (leg.placement_target.global_position) + robot.velocity*1.25*leg.step_time - leg.global_position
-	#var query = PhysicsRayQueryParameters3D.create(legs_center.global_position,legs_center.global_position+dir*2,0b001)
 	var query = PhysicsRayQueryParameters3D.create(leg.global_position,leg.global_position + 5*dir,0b001)
 	var result = space_state.intersect_ray(query)
 	if(result):

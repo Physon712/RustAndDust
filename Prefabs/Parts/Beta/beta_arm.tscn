@@ -10,6 +10,7 @@
 [node name="BetaArm" type="Node3D" node_paths=PackedStringArray("IK")]
 script = ExtResource("1_ftahj")
 IK = NodePath("BetaArm/ArmatureArm/Skeleton3D/SkeletonIK3D")
+mass = 12
 
 [node name="BetaArm" parent="." instance=ExtResource("1_0lo68")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.18186, -1.447, -0.0591932)

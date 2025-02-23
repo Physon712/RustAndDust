@@ -2,55 +2,109 @@ extends CharacterBody3D
 
 class_name Robot
 
-@export var mass = 90
+###Stats
+var mass
+var energy_production
+var energy_consumption
 
-@export var jump_momentum = 500
+var jump_momentum
+var acceleration_force
+var air_acceleration_force
+var max_speed
 
-@export var acceleration_force = 1200
-#@export var side_acceleration_force = 1200
-@export var air_acceleration_force = 420
-#@export var side_air_acceleration_force = 420
-
-@export var max_speed = 5#100#12
+var movement_instability
 
 @onready var head = $Head
+@onready var collider = $Collider
 
+var parts = []
+var weapons = []
 var move_direction = Vector3.ZERO
 
 var height = 1.8;
+var inaccuracy = 0;
+var recoil = 0 
 
-var acceleration = float(acceleration_force)/mass
-#var side_acceleration = side_acceleration_force/mass
-var air_acceleration = float(air_acceleration_force)/mass
-#var side_air_acceleration = side_air_acceleration_force/mass
-var jump_speed = float(jump_momentum)/mass
+var acceleration
+var side_acceleration
+var air_acceleration
+var side_air_acceleration
+var jump_speed
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	attach_parts()
 
-func attach_parts():
+
+func attach_parts(): #Attach all parts and create the establish the list of the parts
+	mass = 1
+	energy_production = 0
+	energy_consumption = 0
+	
+	jump_momentum = 0
+	acceleration_force = 0
+	air_acceleration_force = 0
+	max_speed = 0.2
+	
+	movement_instability = 0
+	
+	get_parts(self)
+	
+	for p in parts:
+		p.attach()
+		#Add basic properties
+		mass += p.mass
+		energy_consumption += p.energy_consumption
+		#Add optionnal properties
+		if("energy_production" in p):
+			energy_production += p.energy_production
+		if("jump_momentum" in p):
+			jump_momentum += p.jump_momentum
+		if("acceleration_force" in p):
+			acceleration_force += p.acceleration_force
+		if("air_acceleration_force" in p):
+			air_acceleration_force += p.air_acceleration_force
+		if("max_speed" in p):
+			max_speed += p.max_speed
+			
+		if("movement_instability" in p):
+			movement_instability += p.movement_instability
+			
 	acceleration = float(acceleration_force)/mass
 	air_acceleration = float(air_acceleration_force)/mass
 	jump_speed = float(jump_momentum)/mass
+	print(parts)
+	
+	for p in parts:
+		if(p is Weapon):
+			weapons.append(p)
+	
+		
+func get_parts(node): ##Get every parts equipped and list them in parts
+	for _n in node.get_children():
+		get_parts(_n)
+		if(_n is RobotPart):
+			parts.append(_n)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	head.transform.origin.y = height
-	
+	collider.shape.height = height
+	collider.position.y = height/2
 	var dir = move_direction.normalized()
 	var wanted_velocity = dir*max_speed
 	
 	var dif_velocity = wanted_velocity-velocity
 	dif_velocity.y = 0
 	var dif_length = dif_velocity.length()
-	if(is_on_floor()):
+	
+	if(is_on_floor()): ##Ground movement
 		var adjusting_velocity = Vector3.ZERO
 		if(dif_length > 0):
 			adjusting_velocity = dif_velocity*(acceleration/dif_length)*delta
 		if(adjusting_velocity.length() > dif_length):
 			adjusting_velocity = dif_velocity
 		velocity += adjusting_velocity
-	else:
+	else: ##Air movement
 		velocity.y += GameData.GRAVITY*delta
 		var adjusting_velocity = Vector3.ZERO
 		if(dif_length > 0):
@@ -58,6 +112,9 @@ func _physics_process(delta):
 		if(adjusting_velocity.length() > dif_length):
 			adjusting_velocity = dif_velocity
 		velocity += adjusting_velocity
+		
+	inaccuracy = (velocity.length()/max_speed) * movement_instability
+		
 	move_and_slide()
 	
 

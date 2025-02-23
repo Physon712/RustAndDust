@@ -1,15 +1,16 @@
 extends "res://Scripts/Parts/RobotPart.gd"
 
+class_name Core
+
 ### The CORE is needed for the robot to work
+@export var energy_production = 100
 
 var right_arm = null
 var left_arm = null
 var movement_module = null
-
 var height = 0.5
-
 var rotation_offset = 0.0
-	
+
 func attach():
 	super()
 	if($SlotArmR.get_child_count() > 0):
@@ -18,16 +19,16 @@ func attach():
 		left_arm = $SlotArmL.get_child(0)
 	if($SlotMovement.get_child_count() > 0):
 		movement_module = $SlotMovement.get_child(0)
-		
-	if(right_arm != null && left_arm != null): #Handle hand cooperation
-		if(right_arm.is_hand_free() && !left_arm.is_hand_free()):
-			if(left_arm.hand_tool != null):
-				rotation_offset = PI/4
-				right_arm.assigned_target = left_arm.hand_tool.off_hand_target
-		if(!right_arm.is_hand_free() && left_arm.is_hand_free()):
-			if(right_arm.hand_tool != null):
-				rotation_offset = -PI/4
-				left_arm.assigned_target = right_arm.hand_tool.off_hand_target
+	
+	#if(right_arm != null && left_arm != null): #Handle hand cooperation
+		#if(right_arm.is_hand_free() && !left_arm.is_hand_free()):
+			#if(left_arm.hand_tool != null):
+				#rotation_offset = PI/4
+				#right_arm.assigned_target = left_arm.hand_tool.off_hand_target
+		#if(!right_arm.is_hand_free() && left_arm.is_hand_free()):
+			#if(right_arm.hand_tool != null):
+				#rotation_offset = -PI/4
+				#left_arm.assigned_target = right_arm.hand_tool.off_hand_target
 
 func _physics_process(delta):
 	

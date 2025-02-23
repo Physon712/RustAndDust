@@ -1,0 +1,49 @@
+[gd_resource type="Sky" load_steps=9 format=3 uid="uid://cwctma1dkfkus"]
+
+[ext_resource type="Shader" path="res://Shaders/Sky.gdshader" id="1_kli50"]
+[ext_resource type="Texture2D" uid="uid://drswoll0ili8f" path="res://Textures/Particles/Flare01.png" id="2_vkjgu"]
+
+[sub_resource type="Curve" id="Curve_aqx7y"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.459459, 0.912088), 0.0, 0.0, 0, 0, Vector2(0.885135, 0.923077), 0.0, 0.0, 0, 0, Vector2(1, 0.604396), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_embxo"]
+curve = SubResource("Curve_aqx7y")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wkgh1"]
+noise_type = 3
+frequency = 0.0177
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_sfvr6"]
+noise = SubResource("FastNoiseLite_wkgh1")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_isfry"]
+seamless = true
+noise = SubResource("FastNoiseLite_wkgh1")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rgcmy"]
+shader = ExtResource("1_kli50")
+shader_parameter/clouds_samples = 32
+shader_parameter/shadow_sample = 4
+shader_parameter/clouds_density = 0.4
+shader_parameter/clouds_scale = 0.9
+shader_parameter/clouds_smoothness = 0.05
+shader_parameter/clouds_light_color = Color(0.706096, 0.481366, 0.387522, 1)
+shader_parameter/clouds_shadow_intensity = 1.0
+shader_parameter/cloud_shape_sampler = SubResource("NoiseTexture2D_isfry")
+shader_parameter/cloud_noise_sampler = SubResource("NoiseTexture2D_sfvr6")
+shader_parameter/cloud_curves = SubResource("CurveTexture_embxo")
+shader_parameter/high_clouds_density = 0.0
+shader_parameter/top_color = Color(0.813723, 0.5525, 0.496353, 1)
+shader_parameter/bottom_color = Color(0.376439, 0.316879, 0.235565, 1)
+shader_parameter/sun_scatter = Color(0.54902, 0.368627, 0.184314, 1)
+shader_parameter/astro_tint = Color(1, 0.87451, 0.74902, 1)
+shader_parameter/astro_scale = 0.5
+shader_parameter/astro_intensity = 2.0
+shader_parameter/astro_sampler = ExtResource("2_vkjgu")
+shader_parameter/stars_intensity = 0.0
+shader_parameter/shooting_stars_intensity = 0.0
+shader_parameter/shooting_star_tint = null
+
+[resource]
+sky_material = SubResource("ShaderMaterial_rgcmy")

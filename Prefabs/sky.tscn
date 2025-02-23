@@ -1,0 +1,197 @@
+[gd_scene load_steps=8 format=3 uid="uid://dyl8gvieoknak"]
+
+[ext_resource type="Script" path="res://Scripts/SkyCycle.gd" id="1_laxbq"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pnjn4"]
+sky_top_color = Color(0.158828, 0.416281, 0.88099, 1)
+sky_horizon_color = Color(0.58328, 0.743608, 0.996561, 1)
+sky_curve = 0.454715
+ground_horizon_color = Color(0.584314, 0.745098, 0.996078, 1)
+
+[sub_resource type="Sky" id="Sky_odybw"]
+sky_material = SubResource("ProceduralSkyMaterial_pnjn4")
+
+[sub_resource type="Environment" id="Environment_klp25"]
+background_mode = 2
+sky = SubResource("Sky_odybw")
+ambient_light_source = 3
+ambient_light_sky_contribution = 0.5
+tonemap_exposure = 1.5
+fog_light_color = Color(0.670248, 0.481566, 0.286365, 1)
+fog_density = 0.005
+fog_sky_affect = 0.0
+
+[sub_resource type="Animation" id="Animation_spg47"]
+resource_name = "SimpleDayAndNightCycle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SunPivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(6.28319, 0, 0), Vector3(3.14159, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WorldEnvironment:environment:sky:sky_material:sky_top_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.333333, 0.5, 0.6, 0.7, 0.733333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.158828, 0.416281, 0.88099, 1), Color(0.638072, 0.319361, 0.529988, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0.14675, 0.160078, 0.260855, 1), Color(0.391939, 0.471969, 0.522119, 1), Color(0.158828, 0.416281, 0.88099, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WorldEnvironment:environment:sky:sky_material:sky_horizon_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.333333, 0.5, 0.6, 0.7, 0.733333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.58328, 0.743608, 0.996561, 1), Color(0.932425, 0.685786, 0.312935, 1), Color(0.160766, 0.167207, 0.304607, 1), Color(0.0455281, 0.185185, 0.338057, 1), Color(0.160766, 0.167207, 0.304607, 1), Color(0.532013, 0.438075, 0.260414, 1), Color(0.932425, 0.685786, 0.312935, 1), Color(0.58328, 0.743608, 0.996561, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WorldEnvironment:environment:sky:sky_material:ground_horizon_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.333333, 0.5, 0.6, 0.7, 0.733333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.584314, 0.745098, 0.996078, 1), Color(0.933333, 0.686275, 0.313726, 1), Color(0.160784, 0.168627, 0.305882, 1), Color(0.160784, 0.168627, 0.305882, 1), Color(0.160784, 0.168627, 0.305882, 1), Color(0.547059, 0.427451, 0.309804, 1), Color(0.933333, 0.686275, 0.313726, 1), Color(0.584314, 0.745098, 0.996078, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("WorldEnvironment:environment:background_energy_multiplier")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 0.5, 1.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SunPivot/Sun:light_energy")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.3, 0.5, 0.7, 0.733333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 1.0, 0.0, 0.0, 0.0, 1.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_w5nue"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SunPivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WorldEnvironment:environment:sky:sky_material:sky_top_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.158828, 0.416281, 0.88099, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WorldEnvironment:environment:sky:sky_material:sky_horizon_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.58328, 0.743608, 0.996561, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WorldEnvironment:environment:sky:sky_material:ground_horizon_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.584314, 0.745098, 0.996078, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("WorldEnvironment:environment:background_energy_multiplier")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SunPivot/Sun:light_energy")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a6wxt"]
+_data = {
+"RESET": SubResource("Animation_w5nue"),
+"SimpleDayAndNightCycle": SubResource("Animation_spg47")
+}
+
+[node name="Sky" type="Node3D"]
+script = ExtResource("1_laxbq")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_klp25")
+
+[node name="SunPivot" type="Node3D" parent="."]
+
+[node name="Sun" type="DirectionalLight3D" parent="SunPivot"]
+transform = Transform3D(0.866025, 5.85621e-09, -0.5, 0.5, -2.18557e-08, 0.866025, -5.85622e-09, -1, -2.18557e-08, 0, 0, 0)
+shadow_enabled = true
+
+[node name="DayAndNightCycle" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_a6wxt")
+}
+speed_scale = 0.001

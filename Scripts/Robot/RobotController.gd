@@ -48,6 +48,8 @@ func attach_parts(): #Attach all parts and create the establish the list of the 
 	
 	movement_instability = 0
 	
+	parts = []
+	weapons = []
 	get_parts(self)
 	
 	for p in parts:
@@ -55,7 +57,7 @@ func attach_parts(): #Attach all parts and create the establish the list of the 
 		#Add basic properties
 		mass += p.mass
 		energy_consumption += p.energy_consumption
-		#Add optionnal properties
+		#Add optionnal properties and add them to total
 		if("energy_production" in p):
 			energy_production += p.energy_production
 		if("jump_momentum" in p):
@@ -75,6 +77,10 @@ func attach_parts(): #Attach all parts and create the establish the list of the 
 	jump_speed = float(jump_momentum)/mass
 	print(parts)
 	
+	if(acceleration <= 0): ##Always able to move, to avoid softlock of player
+		max_speed = 0.2
+		acceleration = 3
+	
 	for p in parts:
 		if(p is Weapon):
 			weapons.append(p)
@@ -88,8 +94,9 @@ func get_parts(node): ##Get every parts equipped and list them in parts
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	collider.shape.height = height
-	collider.position.y = height/2
+	if(height > 0):
+		collider.shape.height = height
+		collider.position.y = height/2
 	var dir = move_direction.normalized()
 	var wanted_velocity = dir*max_speed
 	
@@ -101,7 +108,7 @@ func _physics_process(delta):
 		var adjusting_velocity = Vector3.ZERO
 		if(dif_length > 0):
 			adjusting_velocity = dif_velocity*(acceleration/dif_length)*delta
-		if(adjusting_velocity.length() > dif_length):
+		if(adjusting_velocity.length() > dif_length): #Immobilize when close enough to 0
 			adjusting_velocity = dif_velocity
 		velocity += adjusting_velocity
 	else: ##Air movement

@@ -1,10 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://d0fssjvs1knfm"]
+[gd_scene load_steps=4 format=3 uid="uid://d0fssjvs1knfm"]
 
 [ext_resource type="Script" path="res://Scripts/Parts/PartCore.gd" id="1_y0nbn"]
 [ext_resource type="PackedScene" uid="uid://c5pwmk1ce72xa" path="res://Models/Parts/BetaCore.glb" id="3_ykk4p"]
 
-[node name="PartCore" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_34okd"]
+size = Vector3(0.4, 0.423, 0.454)
+
+[node name="PartCore" type="RigidBody3D"]
+collision_layer = 4
+mass = 25
+freeze = true
 script = ExtResource("1_y0nbn")
+integrity = 60
 mass = 25
 
 [node name="SlotHead" type="Node3D" parent="."]
@@ -21,3 +28,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.004, 0.062)
 
 [node name="BetaCore" parent="." instance=ExtResource("3_ykk4p")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1.251, -0.013)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.919513, 0.393059, 0, -0.393059, 0.919513, 0, 0.183544, 0.0416206)
+shape = SubResource("BoxShape3D_34okd")

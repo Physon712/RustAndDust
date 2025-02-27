@@ -7,6 +7,7 @@
 
 [node name="EngineerLower" type="Node3D"]
 script = ExtResource("1_njori")
+integrity = 30
 
 [node name="EngineerLower" parent="." instance=ExtResource("1_dmw05")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14961, -0.0406948)

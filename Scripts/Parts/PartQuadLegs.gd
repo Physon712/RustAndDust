@@ -36,6 +36,7 @@ func attach():
 	if($SlotLegBL.get_child_count() > 0):
 		bleft_leg = $SlotLegBL.get_child(0)
 	
+	legs = []
 	if(fright_leg != null):
 		legs.append(fright_leg)
 		legs_targets.append(fright_leg.rest_target.global_position)

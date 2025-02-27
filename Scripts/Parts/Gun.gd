@@ -9,7 +9,6 @@ class_name Gun
 @export var bullet_speed = 150;
 @export var bullet = preload("res://Prefabs/Projectiles/bullet.tscn");
 
-@onready var world = get_tree().get_current_scene()
 
 @onready var muzzle = $Muzzle
 

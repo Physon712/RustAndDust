@@ -22,6 +22,7 @@ var stepping = false;
 
 func attach():
 	super()
+	legs = []
 	right_leg = $SlotLegR.get_child(0)
 	left_leg = $SlotLegL.get_child(0)
 	
@@ -30,35 +31,15 @@ func attach():
 	if(left_leg != null):
 		legs.append(left_leg)
 	
-	#if(legs.is_empty()): #Worst case scenario, no legs available
-		#min_length = 0
-		#robot.max_speed = 1
-		#robot.acceleration_force = 200
-		#robot.jump_momentum = 0
-	#else: #At least one leg
-		#min_length = legs[0].length
-		#robot.max_speed = legs[0].max_speed
-		#robot.acceleration_force = legs[0].acceleration_force
-		#robot.jump_momentum = legs[0].jump_momentum
-	#
-	#for i in range(1,legs.size()): #All the other legs (only one though)
-		#min_length = min(min_length,legs[i].length)
-		#robot.max_speed = min(robot.max_speed,legs[i].max_speed)
-		#robot.acceleration_force += legs[i].acceleration_force
-		#robot.jump_momentum += legs[i].jump_momentum
-		
-	#if(legs.size() <= 1): #Special speed penality for when one legged
-		#robot.max_speed = float(robot.max_speed)/2.0
-		
 	if(legs.is_empty()): #Worst case scenario, no legs avaible
-		min_length = 0
+		min_length = 0.2
 	else: #At least one leg
 		min_length = legs[0].length
 	for i in range(1,legs.size()): #All the other legs (only one though)
 		min_length = min(min_length,legs[i].length)
 		
 	height = min_length
-	min_height = min_length*0.8
+	min_height = min_length*0.9
 	max_height = min_length
 	right_target = robot.global_transform.origin+Vector3.RIGHT*min_length*0.2
 	left_target = robot.global_transform.origin-Vector3.RIGHT*min_length*0.2
@@ -104,8 +85,8 @@ func step(leg,target): #Update the foot location to the target with an animation
 	
 func look_for_foothold(leg):
 	var space_state = get_world_3d().direct_space_state
-	var dir = (leg.placement_target.global_position) + robot.velocity*1.25*leg.step_time - leg.global_position
-	var query = PhysicsRayQueryParameters3D.create(leg.global_position,leg.global_position + 5*dir,0b001)
+	var dir = (leg.placement_target.global_position) + robot.velocity*1.25*leg.step_time - leg.placement_top.global_position
+	var query = PhysicsRayQueryParameters3D.create(leg.placement_top.global_position,leg.placement_top.global_position + 5*dir,0b001)
 	var result = space_state.intersect_ray(query)
 	if(result):
 		return result.position

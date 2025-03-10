@@ -18,6 +18,7 @@ class_name Leg
 @onready var placement_target = $PlacementTarget
 @onready var placement_top = $PlacementTop
 @export var IK : SkeletonIK3D
+@export var skeleton : PhysicalBoneSimulator3D
 
 func attach():
 	super()
@@ -29,3 +30,9 @@ func _physics_process(delta: float) -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+func activate_physics():
+	if(skeleton != null):
+		IK.active = false
+		skeleton.physical_bones_start_simulation()
+		skeleton.influence = 1

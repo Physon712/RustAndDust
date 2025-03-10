@@ -5,16 +5,21 @@ class_name Gun
 ###Stats
 @export var fire_rate = 0.1;
 @export var max_ammo = 320;
-@export var dispersion = 0.1
+@export var dispersion = 0.01 #Degrees
 @export var bullet_speed = 150;
 @export var bullet = preload("res://Prefabs/Projectiles/bullet.tscn");
-
+@export var animator : AnimationPlayer;
+@export var firesound : AudioStreamPlayer3D;
+@export var fireparticle : GPUParticles3D;
 
 @onready var muzzle = $Muzzle
 
 var output_transform:Transform3D;
 var ammo = max_ammo;
 var time_since_last_shot = 0;
+
+func attach():
+	super()
 
 func _physics_process(delta):
 	if(is_attached):
@@ -32,13 +37,19 @@ func fire():
 			fire_a_shot()
 			ammo -= 1
 			time_since_last_shot = 0
+			if(animator != null):
+				animator.play("Fire")
+			if(firesound != null):
+				firesound.play(0.0)
+			if(fireparticle != null):
+				fireparticle.emitting = true
 	
 func fire_a_shot():
 	var b = bullet.instantiate()
 	world.add_child(b)
 	var dir = -robot.head.basis.z
-	var dispersion = inaccuracy+robot.inaccuracy+dispersion
-	dir = dir.rotated(robot.head.basis.y,randf_range(-dispersion,dispersion))
-	dir = dir.rotated(robot.head.basis.x,randf_range(-dispersion,dispersion))
+	var dispersion = deg_to_rad(inaccuracy+robot.inaccuracy+dispersion)
+	dir = dir.rotated(robot.head.basis.y,randf_range(-dispersion,dispersion) + rotation.y)
+	dir = dir.rotated(robot.head.basis.x,randf_range(-dispersion,dispersion) + rotation.x)
 	b.transform = robot.head.global_transform
 	b.velocity = dir*bullet_speed

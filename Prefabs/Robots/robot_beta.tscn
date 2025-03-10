@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cxj6d0aoyacem" path="res://Prefabs/Parts/Beta/beta_head.tscn" id="4_dresk"]
 [ext_resource type="PackedScene" uid="uid://5fmcgbbmusuo" path="res://Prefabs/Parts/Beta/beta_arm.tscn" id="5_6yr6d"]
 [ext_resource type="PackedScene" uid="uid://d3i41uiqmxr3p" path="res://Prefabs/Parts/Beta/beta_lower.tscn" id="5_msbew"]
-[ext_resource type="PackedScene" uid="uid://cfukrygrecg7f" path="res://Prefabs/Parts/HandTools/light_machine_gun.tscn" id="6_uvm54"]
+[ext_resource type="PackedScene" uid="uid://cmjw3hbsiuicu" path="res://Prefabs/Parts/HandTools/pistol_10_mm.tscn" id="6_yga4h"]
 [ext_resource type="PackedScene" uid="uid://yhsguftrisj7" path="res://Prefabs/Parts/Beta/beta_leg.tscn" id="7_k3eb2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_byq50"]
@@ -36,28 +36,33 @@ script = ExtResource("2_cpj83")
 [node name="BetaArm" parent="Parts/PartCore/SlotArmL" index="0" instance=ExtResource("5_6yr6d")]
 
 [node name="Physical Bone Arm_L" parent="Parts/PartCore/SlotArmL/BetaArm/BetaArm/ArmatureArm/Skeleton3D/PhysicalBoneSimulator3D" index="0"]
-transform = Transform3D(-0.92519, 0.379491, -0.00315149, -0.00218072, 0.00298791, 0.999993, 0.379498, 0.925191, -0.00193682, 0.318596, 1.29214, -0.0798543)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.15778e-09, -5.67847e-09, 0.160235)
-body_offset = Transform3D(1, 2.08616e-07, -3.21888e-08, -3.23053e-08, -1.08266e-08, -1, -2.08616e-07, 1, -1.10595e-08, 0, 0.160235, 7.45058e-09)
+transform = Transform3D(-0.92519, 0.379491, -0.00315149, -0.00218072, 0.00298792, 0.999993, 0.379498, 0.925191, -0.00193683, 0.318596, 1.29214, -0.0798543)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.30903e-09, -5.1002e-09, 0.160235)
+body_offset = Transform3D(1, 2.08616e-07, -2.68919e-08, -2.70084e-08, -1.43191e-08, -1, -2.08616e-07, 1, -1.46683e-08, 0, 0.160235, 7.45058e-09)
 
 [node name="Physical Bone ForeArm_L" parent="Parts/PartCore/SlotArmL/BetaArm/BetaArm/ArmatureArm/Skeleton3D/PhysicalBoneSimulator3D" index="1"]
-transform = Transform3D(-0.92519, 0.379491, -0.00315146, -0.0021807, 0.00298789, 0.999993, 0.379498, 0.925191, -0.0019368, 0.319572, 0.98243, -0.0792544)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.34255e-08, -5.05531e-08, 0.14948)
-body_offset = Transform3D(1, 2.98023e-08, -8.98144e-08, -8.9407e-08, -1.02445e-08, -1, 0, 1, -1.07102e-08, 0, 0.14948, 5.21541e-08)
+transform = Transform3D(-0.92519, 0.379491, -0.00315147, -0.00218071, 0.00298789, 0.999993, 0.379498, 0.925191, -0.00193681, 0.319572, 0.98243, -0.0792544)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2625e-08, -5.00311e-08, 0.14948)
+body_offset = Transform3D(1, 2.98023e-08, -8.44593e-08, -8.40519e-08, -1.3737e-08, -1, 0, 1, -1.42027e-08, 0, 0.14948, 5.21541e-08)
 
-[node name="LightMachineGun" parent="Parts/PartCore/SlotArmL/BetaArm/ToolTarget/SlotHandTool" index="0" instance=ExtResource("6_uvm54")]
+[node name="Pistol10mm" parent="Parts/PartCore/SlotArmL/BetaArm/ToolTarget/SlotHandTool" index="0" instance=ExtResource("6_yga4h")]
 
 [node name="BetaArm" parent="Parts/PartCore/SlotArmR" index="0" instance=ExtResource("5_6yr6d")]
 
 [node name="Physical Bone Arm_L" parent="Parts/PartCore/SlotArmR/BetaArm/BetaArm/ArmatureArm/Skeleton3D/PhysicalBoneSimulator3D" index="0"]
-transform = Transform3D(-0.92519, 0.379491, -0.00315149, -0.00218072, 0.00298791, 0.999993, 0.379498, 0.925191, -0.00193682, 0.318596, 1.29214, -0.0798543)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.49601e-08, 1.77212e-09, 0.160235)
-body_offset = Transform3D(1, 2.08616e-07, -3.21888e-08, -3.23053e-08, -1.08266e-08, -1, -2.08616e-07, 1, -1.10595e-08, -2.98023e-08, 0.160235, 0)
+transform = Transform3D(-0.92519, 0.379491, -0.00315149, -0.00218072, 0.00298792, 0.999993, 0.379498, 0.925191, -0.00193683, 0.318596, 1.29214, -0.0798543)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.41114e-08, 2.35039e-09, 0.160235)
+body_offset = Transform3D(1, 2.08616e-07, -2.68919e-08, -2.70084e-08, -1.43191e-08, -1, -2.08616e-07, 1, -1.46683e-08, -2.98023e-08, 0.160235, 0)
 
 [node name="Physical Bone ForeArm_L" parent="Parts/PartCore/SlotArmR/BetaArm/BetaArm/ArmatureArm/Skeleton3D/PhysicalBoneSimulator3D" index="1"]
-transform = Transform3D(-0.92519, 0.379491, -0.00315146, -0.0021807, 0.00298789, 0.999993, 0.379498, 0.925191, -0.0019368, 0.319572, 0.98243, -0.0792545)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02832e-07, 1.65021e-08, 0.14948)
-body_offset = Transform3D(1, 2.98023e-08, -8.98144e-08, -8.9407e-08, -1.02445e-08, -1, 0, 1, -1.07102e-08, -8.9407e-08, 0.14948, -1.49012e-08)
+transform = Transform3D(-0.92519, 0.379491, -0.00315147, -0.00218071, 0.00298789, 0.999993, 0.379498, 0.925191, -0.00193681, 0.319572, 0.98243, -0.0792545)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02032e-07, 1.70242e-08, 0.14948)
+body_offset = Transform3D(1, 2.98023e-08, -8.44593e-08, -8.40519e-08, -1.3737e-08, -1, 0, 1, -1.42027e-08, -8.9407e-08, 0.14948, -1.49012e-08)
+
+[node name="Pistol10mm" parent="Parts/PartCore/SlotArmR/BetaArm/ToolTarget/SlotHandTool" index="0" instance=ExtResource("6_yga4h")]
+
+[node name="FireParticle" parent="Parts/PartCore/SlotArmR/BetaArm/ToolTarget/SlotHandTool/Pistol10mm/Muzzle" index="1"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 
 [node name="PartMovement" parent="Parts/PartCore/SlotMovement" index="0" instance=ExtResource("5_msbew")]
 
@@ -71,4 +76,6 @@ body_offset = Transform3D(1, 2.98023e-08, -8.98144e-08, -8.9407e-08, -1.02445e-0
 [editable path="Parts/PartCore/SlotArmL/BetaArm/BetaArm"]
 [editable path="Parts/PartCore/SlotArmR/BetaArm"]
 [editable path="Parts/PartCore/SlotArmR/BetaArm/BetaArm"]
+[editable path="Parts/PartCore/SlotArmR/BetaArm/ToolTarget/SlotHandTool/Pistol10mm"]
+[editable path="Parts/PartCore/SlotArmR/BetaArm/ToolTarget/SlotHandTool/Pistol10mm/Pistol"]
 [editable path="Parts/PartCore/SlotMovement/PartMovement"]

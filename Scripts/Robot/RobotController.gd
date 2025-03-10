@@ -23,7 +23,6 @@ var move_direction = Vector3.ZERO
 
 var height = 1.8;
 var inaccuracy = 0;
-var recoil = 0 
 
 var acceleration
 var side_acceleration
@@ -121,9 +120,10 @@ func _physics_process(delta):
 		velocity += adjusting_velocity
 		
 	inaccuracy = (velocity.length()/max_speed) * movement_instability
-		
 	move_and_slide()
 	
+	##Revert to default value and await further instruction
+	move_direction = Vector3.ZERO
 
 func action_jump():
 	if(is_on_floor()):

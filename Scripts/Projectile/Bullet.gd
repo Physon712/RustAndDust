@@ -6,6 +6,10 @@ extends Node3D
 @onready var velocity = -basis.z*speed
 var next_position = Vector3.ZERO
 
+@export var spark_prefab = preload("res://Prefabs/FX/bullet_impact_spark.tscn")
+
+@onready var world = get_tree().get_current_scene() 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	next_position = global_position+velocity * delta
@@ -22,3 +26,9 @@ func check_for_collision():
 		print(result.collider.name)
 		if(result.collider.has_method("bullet_hit")):
 				result.collider.call("bullet_hit",damage)
+				
+				##Create impact spark effect
+				var explosion = spark_prefab.instantiate()
+				world.add_child(explosion)
+				explosion.transform.origin = result.position - basis.z*0.1
+				explosion.transform = explosion.transform.looking_at(-basis.z+explosion.transform.origin,Vector3.UP)

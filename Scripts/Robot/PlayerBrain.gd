@@ -8,8 +8,10 @@ func attach():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _process(delta):
-	if(Input.is_action_pressed("Fire")):
+	if(robot.weapons.size() > 0 && Input.is_action_pressed("Fire")):
 		robot.weapons[0].use()
+	if(robot.weapons.size() > 1 && Input.is_action_pressed("Fire2")):
+		robot.weapons[1].use()
 
 func _physics_process(delta):
 	if(Input.is_action_pressed("Jump")):

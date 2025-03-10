@@ -47,33 +47,34 @@ func attach():
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	if(right_leg != null): #Look for ideal foot placement
-		right_target = look_for_foothold(right_leg)
-	if(left_leg != null):
-		left_target = look_for_foothold(left_leg)
-	
-	var distance_to_right_target = 0
-	var distance_to_left_target = 0
-	
-	if(right_leg != null && right_target != null): #Measure distance from foot location to ideal foot placement
-		distance_to_right_target = right_target.distance_to(right_leg.target.global_position)
-	if(left_leg != null && left_target != null):
-		distance_to_left_target = left_target.distance_to(left_leg.target.global_position)
-	
-	#Evaluate which leg to step, if needed at all
-	if(right_leg != null && right_target != null && !stepping && distance_to_right_target > stride_distance && distance_to_right_target > distance_to_left_target):
-		step(right_leg,right_target)	
-	if(left_leg != null && left_target != null && !stepping && distance_to_left_target > stride_distance):
-		step(left_leg,left_target)
-	
-	#Lower the the hips when going fast to make reaching the foot target easier
-	height = lerp(max_height,min_height,robot.velocity.length()/robot.max_speed)
-	
-	#Update the foot placement to the calculated one, TODO: Move this code to the code of the leg
-	if(right_leg != null):
-		right_leg.local_target.global_transform.origin = right_leg.target.global_position
-	if(left_leg != null):
-		left_leg.local_target.global_transform.origin = left_leg.target.global_position
+	if(is_attached):
+		if(right_leg != null): #Look for ideal foot placement
+			right_target = look_for_foothold(right_leg)
+		if(left_leg != null):
+			left_target = look_for_foothold(left_leg)
+		
+		var distance_to_right_target = 0
+		var distance_to_left_target = 0
+		
+		if(right_leg != null && right_target != null): #Measure distance from foot location to ideal foot placement
+			distance_to_right_target = right_target.distance_to(right_leg.target.global_position)
+		if(left_leg != null && left_target != null):
+			distance_to_left_target = left_target.distance_to(left_leg.target.global_position)
+		
+		#Evaluate which leg to step, if needed at all
+		if(right_leg != null && right_target != null && !stepping && distance_to_right_target > stride_distance && distance_to_right_target > distance_to_left_target):
+			step(right_leg,right_target)	
+		if(left_leg != null && left_target != null && !stepping && distance_to_left_target > stride_distance):
+			step(left_leg,left_target)
+		
+		#Lower the the hips when going fast to make reaching the foot target easier
+		height = lerp(max_height,min_height,robot.velocity.length()/robot.max_speed)
+		
+		#Update the foot placement to the calculated one, TODO: Move this code to the code of the leg
+		if(right_leg != null):
+			right_leg.local_target.global_transform.origin = right_leg.target.global_position
+		if(left_leg != null):
+			left_leg.local_target.global_transform.origin = left_leg.target.global_position
 	
 func step(leg,target): #Update the foot location to the target with an animation
 	stepping = true

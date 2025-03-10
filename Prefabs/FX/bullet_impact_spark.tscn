@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://b4dc81337rvha"]
+
+[ext_resource type="Script" path="res://Scripts/FX/ImpactSpark.gd" id="1_agvr7"]
+[ext_resource type="Texture2D" uid="uid://cjoockfy7yjuw" path="res://Textures/Particles/Particle.png" id="1_w5dti"]
+[ext_resource type="AudioStream" uid="uid://br3syduh06w5o" path="res://Audio/Sounds/Guns/RFPistolFire.wav" id="3_iqbqc"]
+
+[sub_resource type="Curve" id="Curve_h5dgp"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.04992, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_fvhly"]
+curve = SubResource("Curve_h5dgp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_myd7o"]
+spread = 180.0
+initial_velocity_min = 3.0
+initial_velocity_max = 7.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 0.7
+scale_curve = SubResource("CurveTexture_fvhly")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vfsk1"]
+transparency = 1
+blend_mode = 1
+albedo_color = Color(1, 0.757717, 0.678536, 1)
+albedo_texture = ExtResource("1_w5dti")
+emission_enabled = true
+emission = Color(0.941176, 0.584314, 0.270588, 1)
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_tjayh"]
+material = SubResource("StandardMaterial3D_vfsk1")
+
+[node name="BulletImpactSpark" type="Node3D" node_paths=PackedStringArray("part", "sound")]
+script = ExtResource("1_agvr7")
+part = NodePath("Particle")
+sound = NodePath("Sound")
+
+[node name="Particle" type="GPUParticles3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+emitting = false
+lifetime = 0.1
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_myd7o")
+draw_pass_1 = SubResource("QuadMesh_tjayh")
+
+[node name="Sound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_iqbqc")
+pitch_scale = 2.0
+bus = &"SFX"

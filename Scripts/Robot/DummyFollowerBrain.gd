@@ -5,6 +5,9 @@ extends "res://Scripts/Parts/PartBrain.gd"
 func _ready() -> void:
 	pass # Replace with function body.
 
+func _process(delta):
+	if(robot.weapons.size() > 0):
+		robot.weapons[0].use()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:

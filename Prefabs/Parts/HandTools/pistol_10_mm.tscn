@@ -1,0 +1,138 @@
+[gd_scene load_steps=15 format=3 uid="uid://cmjw3hbsiuicu"]
+
+[ext_resource type="Script" path="res://Scripts/Parts/HandGun.gd" id="1_wvupq"]
+[ext_resource type="PackedScene" uid="uid://dgr36aiwj0pp0" path="res://Models/Parts/HandWeapons/Pistol.glb" id="2_jxe23"]
+[ext_resource type="Material" uid="uid://dyai2s24mjp2q" path="res://Textures/Materials/WearMetal.tres" id="3_iedo4"]
+[ext_resource type="AudioStream" uid="uid://br3syduh06w5o" path="res://Audio/Sounds/Guns/RFPistolFire.wav" id="4_wvg8i"]
+[ext_resource type="Texture2D" uid="uid://cjoockfy7yjuw" path="res://Textures/Particles/Particle.png" id="5_05pu6"]
+
+[sub_resource type="Curve" id="Curve_3el03"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.04992, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vc0ln"]
+curve = SubResource("Curve_3el03")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cu1vc"]
+angle_min = -15.0
+angle_max = 15.0
+initial_velocity_min = 1.0
+initial_velocity_max = 4.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 0.7
+scale_curve = SubResource("CurveTexture_vc0ln")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l2qxy"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+albedo_color = Color(1, 0.757717, 0.678536, 1)
+albedo_texture = ExtResource("5_05pu6")
+emission_enabled = true
+emission = Color(0.941176, 0.584314, 0.270588, 1)
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_axnff"]
+material = SubResource("StandardMaterial3D_l2qxy")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0guu7"]
+size = Vector3(0.102, 0.276, 0.504)
+
+[sub_resource type="Animation" id="Animation_mq2wi"]
+resource_name = "Fire"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pistol/Culasse:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(4.80509e-09, 0, -0.0549638), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vjshp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pistol/Culasse:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4p016"]
+_data = {
+"Fire": SubResource("Animation_mq2wi"),
+"RESET": SubResource("Animation_vjshp")
+}
+
+[node name="Pistol10mm" type="RigidBody3D" node_paths=PackedStringArray("main_hand_target", "off_hand_target", "animator", "firesound", "fireparticle")]
+collision_layer = 4
+freeze = true
+script = ExtResource("1_wvupq")
+main_hand_target = NodePath("LeftHand")
+off_hand_target = NodePath("RightHand")
+fire_rate = 0.25
+bullet_speed = 300
+animator = NodePath("Animator")
+firesound = NodePath("Muzzle/FireSound")
+fireparticle = NodePath("Muzzle/FireParticle")
+
+[node name="Pistol" parent="." instance=ExtResource("2_jxe23")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.0167352, -0.311001)
+
+[node name="Gun" parent="Pistol" index="0"]
+surface_material_override/0 = ExtResource("3_iedo4")
+
+[node name="Culasse" parent="Pistol" index="1"]
+surface_material_override/0 = ExtResource("3_iedo4")
+
+[node name="LeftHand" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.306449)
+
+[node name="RightHand" type="Marker3D" parent="."]
+transform = Transform3D(0.0121472, 0, 0.999926, 0, 1, 0, -0.999926, 0, 0.0121472, 0.0109429, -0.0335614, -0.457738)
+
+[node name="Muzzle" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11733, -0.77001)
+
+[node name="FireSound" type="AudioStreamPlayer3D" parent="Muzzle"]
+stream = ExtResource("4_wvg8i")
+max_distance = 50.0
+bus = &"SFX"
+
+[node name="FireParticle" type="GPUParticles3D" parent="Muzzle"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+emitting = false
+lifetime = 0.1
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_cu1vc")
+draw_pass_1 = SubResource("QuadMesh_axnff")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.014, -0.50593)
+shape = SubResource("BoxShape3D_0guu7")
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4p016")
+}
+
+[editable path="Pistol"]

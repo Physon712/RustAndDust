@@ -5,7 +5,7 @@ extends "res://Scripts/Parts/RobotPart.gd"
 class_name MovementModule
 
 ###Stats
-@export var movement_instability = 0.1
+@export var movement_instability = 2
 var height = 0.2
 
 func attach():

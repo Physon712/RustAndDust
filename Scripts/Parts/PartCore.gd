@@ -32,13 +32,13 @@ func attach():
 var max_tilt = PI/4
 
 func _physics_process(delta):
-	
-	rotation.y = robot.head.rotation.y + rotation_offset
-	#transform.origin.y = height
-	rotation.x = clamp(0.2*robot.velocity.dot(robot.head.basis.z)/robot.max_speed,-max_tilt,max_tilt)
-	rotation.z = clamp(-0.2*robot.velocity.dot(robot.head.basis.x)/robot.max_speed,-max_tilt,max_tilt)
-	if(movement_module != null):
-		transform.origin.y = movement_module.height
+	if(is_attached):
+		rotation.y = robot.head.rotation.y + rotation_offset
+		#transform.origin.y = height
+		rotation.x = clamp(0.2*robot.velocity.dot(robot.head.basis.z)/robot.max_speed,-max_tilt,max_tilt)
+		rotation.z = clamp(-0.2*robot.velocity.dot(robot.head.basis.x)/robot.max_speed,-max_tilt,max_tilt)
+		if(movement_module != null):
+			transform.origin.y = movement_module.height
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

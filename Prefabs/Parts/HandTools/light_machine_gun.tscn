@@ -1,16 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfukrygrecg7f"]
+[gd_scene load_steps=6 format=3 uid="uid://cfukrygrecg7f"]
 
 [ext_resource type="Script" path="res://Scripts/Parts/HandGun.gd" id="1_kd1xd"]
 [ext_resource type="PackedScene" uid="uid://c7tvcmsehqhu6" path="res://Models/Parts/HandWeapons/LightMachineGun.glb" id="2_0oii7"]
 [ext_resource type="Material" uid="uid://bs0a5kuq35kox" path="res://Textures/Materials/beta_plate.tres" id="3_schrx"]
 [ext_resource type="Material" uid="uid://dl3f5cthok1pf" path="res://Textures/Materials/beta_armature.tres" id="4_l8u8v"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_dq77v"]
+size = Vector3(0.142273, 0.275391, 1.29431)
+
 [node name="LightMachineGun" type="RigidBody3D" node_paths=PackedStringArray("main_hand_target", "off_hand_target")]
+collision_layer = 4
 freeze = true
 script = ExtResource("1_kd1xd")
 main_hand_target = NodePath("LeftHand")
 off_hand_target = NodePath("RightHand")
-dispersion = 0.01
 
 [node name="LightMachineGun" parent="." instance=ExtResource("2_0oii7")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
@@ -26,5 +29,9 @@ transform = Transform3D(0.0121472, 0, 0.999926, 0, 1, 0, -0.999926, 0, 0.0121472
 
 [node name="Muzzle" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.139054, -1.28334)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0590781, -0.627)
+shape = SubResource("BoxShape3D_dq77v")
 
 [editable path="LightMachineGun"]

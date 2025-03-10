@@ -53,7 +53,7 @@ influence = 0.0
 [node name="Physical Bone Arm_L" type="PhysicalBone3D" parent="BetaArm/ArmatureArm/Skeleton3D/PhysicalBoneSimulator3D"]
 transform = Transform3D(-0.92519, 0.379491, -0.00315149, -0.00218072, 0.00298792, 0.999993, 0.379498, 0.925191, -0.00193683, 0.318596, 1.29214, -0.0798543)
 collision_layer = 4
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.00496e-08, -5.39866e-09, 0.160235)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.00496e-08, -5.39865e-09, 0.160235)
 body_offset = Transform3D(1, 2.08616e-07, -3.21306e-08, -3.23053e-08, -1.24564e-08, -1, -2.08616e-07, 1, -1.28057e-08, -1.49012e-08, 0.160235, 7.45058e-09)
 bone_name = "Arm_L"
 script = ExtResource("4_mtkwt")

@@ -6,6 +6,8 @@ var robot = null
 var is_attached = false
 
 @export var integrity = 10
+@export var max_integrity = 10
+
 @export var wear = 0
 
 @export var mass = 5
@@ -47,8 +49,8 @@ func detach_parts(): ##Detach part and children without updading the attached pa
 	activate_physics()
 
 func activate_physics():
-	print("FALLING")
-	freeze = false
+	#freeze = false
+	queue_free()
 	
 
 func look_for_parent_robot():
@@ -75,7 +77,6 @@ func bullet_hit(damage):
 	
 func take_damage(damage):
 	integrity -= damage
-	print(integrity)
 	if(integrity <= 0):
 		detach()
 		

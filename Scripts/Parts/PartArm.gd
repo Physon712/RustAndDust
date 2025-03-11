@@ -38,17 +38,15 @@ func is_hand_free():
 	return (hand_tool == null)
 	
 func _physics_process(delta: float) -> void:
-	if(!is_attached): #If part is detached from robot
-		pass
-		
-	target.global_position = assigned_target.global_position
-	target.global_rotation = assigned_target.global_rotation
-		
-	###Handle gun rotation and recoil
-	tool_target.global_rotation = robot.head.global_rotation
-	if(is_flipped):
-		target.rotate_object_local(Vector3.LEFT,PI)
-		tool_target.global_rotation.x = -robot.head.global_rotation.x
+	if(is_attached):
+		target.global_position = assigned_target.global_position
+		target.global_rotation = assigned_target.global_rotation
+			
+		###Handle gun rotation and recoil
+		tool_target.global_rotation = robot.head.global_rotation
+		if(is_flipped):
+			target.rotate_object_local(Vector3.LEFT,PI)
+			tool_target.global_rotation.x = -robot.head.global_rotation.x
 	
 func activate_physics():
 	if(skeleton != null):
@@ -56,4 +54,3 @@ func activate_physics():
 		IK.influence = 0
 		skeleton.physical_bones_start_simulation()
 		skeleton.influence = 1
-		print("ezf")

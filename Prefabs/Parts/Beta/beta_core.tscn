@@ -12,6 +12,7 @@ mass = 25
 freeze = true
 script = ExtResource("1_y0nbn")
 integrity = 60
+max_integrity = 60
 mass = 25
 
 [node name="SlotHead" type="Node3D" parent="."]

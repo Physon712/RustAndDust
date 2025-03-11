@@ -12,6 +12,5 @@ func _ready():
 	part = look_for_parent_part()
 
 func bullet_hit(damage):
-	print("armhit")
 	part.bullet_hit(damage)
 	

@@ -74,7 +74,6 @@ func attach_parts(): #Attach all parts and create the establish the list of the 
 	acceleration = float(acceleration_force)/mass
 	air_acceleration = float(air_acceleration_force)/mass
 	jump_speed = float(jump_momentum)/mass
-	print(parts)
 	
 	if(acceleration <= 0): ##Always able to move, to avoid softlock of player
 		max_speed = 0.2

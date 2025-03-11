@@ -1,11 +1,27 @@
 extends "res://Scripts/Parts/PartBrain.gd"
 
-
 ### Basically take player input, to control a robot
+##As well as display information about the robot in control
+
+@export var hud_prefab = preload("res://Prefabs/UI/robot_hud.tscn")
+var hud = null
+
 
 func attach():
 	super()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	print(hud)
+	if(hud == null):
+		hud = hud_prefab.instantiate()
+		world.add_child.call_deferred(hud)
+	print(world.get_children())
+	hud.robot = robot
+	hud.evaluate_robot()
+	
+func detach():
+	super()
+	if(hud != null):
+		hud.queue_free()
 
 func _process(delta):
 	if(robot.weapons.size() > 0 && Input.is_action_pressed("Fire")):

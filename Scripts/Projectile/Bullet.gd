@@ -23,7 +23,6 @@ func check_for_collision():
 	var query = PhysicsRayQueryParameters3D.create(global_position,next_position,0b101)
 	var result = space_state.intersect_ray(query)
 	if(result):
-		print(result.collider.name)
 		if(result.collider.has_method("bullet_hit")):
 				result.collider.call("bullet_hit",damage)
 				
@@ -32,3 +31,4 @@ func check_for_collision():
 				world.add_child(explosion)
 				explosion.transform.origin = result.position - basis.z*0.1
 				explosion.transform = explosion.transform.looking_at(-basis.z+explosion.transform.origin,Vector3.UP)
+		queue_free()

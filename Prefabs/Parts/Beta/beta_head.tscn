@@ -1,29 +1,72 @@
-[gd_scene load_steps=4 format=3 uid="uid://cxj6d0aoyacem"]
+[gd_scene load_steps=14 format=3 uid="uid://cxj6d0aoyacem"]
 
 [ext_resource type="Script" path="res://Scripts/Parts/PartHead.gd" id="1_4et2o"]
+[ext_resource type="Script" path="res://Scripts/Parts/PhysicalPart.gd" id="2_ki6ah"]
 [ext_resource type="PackedScene" uid="uid://dgnnwc64divc" path="res://Models/Parts/BetaHead.glb" id="2_n8fod"]
+[ext_resource type="Shader" path="res://Shaders/WearingMetal.gdshader" id="4_lshbl"]
+[ext_resource type="Script" path="res://Scripts/Parts/PaintedMesh.gd" id="5_1d25v"]
+[ext_resource type="Texture2D" uid="uid://ko37xf1e46nc" path="res://Textures/RoughCowPattern.png" id="5_sgta1"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_305oj"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mjsct"]
+noise = SubResource("FastNoiseLite_305oj")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6ksjw"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("4_lshbl")
+shader_parameter/mainColor = Color(0.98, 0.861093, 0.0882, 1)
+shader_parameter/wearColor = Color(0.20871, 0.20871, 0.20871, 1)
+shader_parameter/wear = 0.0
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_mjsct")
+shader_parameter/wearTexture = ExtResource("5_sgta1")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_87iup"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ku8vm"]
+noise = SubResource("FastNoiseLite_87iup")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qsk8g"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("4_lshbl")
+shader_parameter/mainColor = Color(0.98, 0.861093, 0.0882, 1)
+shader_parameter/wearColor = Color(0.20871, 0.20871, 0.20871, 1)
+shader_parameter/wear = 0.0
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_ku8vm")
+shader_parameter/wearTexture = ExtResource("5_sgta1")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2w61h"]
 size = Vector3(0.237549, 0.370605, 0.49353)
 
-[node name="PartHead" type="RigidBody3D"]
-collision_layer = 4
-mass = 10
-freeze = true
+[node name="PartHead" type="Node3D"]
 script = ExtResource("1_4et2o")
+paint_material = SubResource("ShaderMaterial_6ksjw")
 mass = 10
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.193115, 0.0192261)
-shape = SubResource("BoxShape3D_2w61h")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.204, -0.146)
 current = true
 near = 0.1
 
-[node name="BetaHead" parent="." instance=ExtResource("2_n8fod")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8.67393e-11, -1.59103, 0.000992179)
-
 [node name="SlotBrain" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.195677, 0)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+collision_layer = 4
+freeze = true
+script = ExtResource("2_ki6ah")
+
+[node name="BetaHead" parent="RigidBody3D" instance=ExtResource("2_n8fod")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8.67393e-11, -1.59103, 0.000992179)
+
+[node name="Cube_005" parent="RigidBody3D/BetaHead" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_qsk8g")
+script = ExtResource("5_1d25v")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.193115, 0.0192261)
+shape = SubResource("BoxShape3D_2w61h")
+
+[editable path="RigidBody3D/BetaHead"]

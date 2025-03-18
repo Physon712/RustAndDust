@@ -5,6 +5,9 @@ class_name RobotPart
 var robot = null
 var is_attached = false
 
+@export var paint_color : Color = Color.YELLOW
+@export var paint_material : ShaderMaterial = preload("res://Textures/Materials/base_wearmat.tres").duplicate()
+
 @export var integrity = 10
 @export var max_integrity = 10
 
@@ -14,12 +17,12 @@ var is_attached = false
 @export var energy_consumption = 5
 
 @onready var world = get_tree().get_current_scene()
-
-var slot_parts = []
+var paint_job;
 var freeze = true;
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	attach()
+	
 	
 func attach():
 	robot = look_for_parent_robot()
@@ -28,10 +31,13 @@ func attach():
 		position = Vector3.ZERO
 	else:
 		is_attached = false
+	paint_material.set_shader_parameter("main_color",paint_color)
 
 func detach():
-	detach_parts()
-	robot.attach_parts()
+	if(is_attached && robot != null):
+		var old_robot = robot
+		detach_parts()
+		old_robot.attach_parts()
 
 
 func detach_parts(): ##Detach part and children without updading the attached part of the robot	
@@ -41,16 +47,27 @@ func detach_parts(): ##Detach part and children without updading the attached pa
 	world.add_child(self)
 	global_transform = new_transform
 	is_attached = false
+	robot = null
+	print(self)
 	var part_childs = get_slot_parts(self)
 	for child in part_childs:
 		child.detach_parts()
 	#queue_free()
 	##TODO : Activate physics
 	activate_physics()
+	
+func paint_meshes():
+	var meshes = []
+	
+	
 
 func activate_physics():
 	#freeze = false
-	queue_free()
+	var children = get_children()
+	for c in children:
+		if(c is RigidBody3D):
+			c.freeze = false
+			c.mass = mass
 	
 
 func look_for_parent_robot():
@@ -77,6 +94,7 @@ func bullet_hit(damage):
 	
 func take_damage(damage):
 	integrity -= damage
+	paint_material.set_shader_parameter("wear",1-(float(integrity)/max_integrity))
 	if(integrity <= 0):
 		detach()
 		

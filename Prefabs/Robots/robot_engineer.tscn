@@ -49,9 +49,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.564913, 0)
 
 [node name="EngineerArm" parent="Parts/EngineerCore/SlotArmL" index="0" instance=ExtResource("4_025ds")]
 
+[node name="Physical Bone Arm_L" parent="Parts/EngineerCore/SlotArmL/EngineerArm/EngineerArm/Armature_001/Skeleton3D/PhysicalBoneSimulator3D" index="0"]
+transform = Transform3D(-0.983763, -0.17947, 4.23957e-08, 7.47081e-08, -1.73284e-07, 1, -0.17947, 0.983763, 1.83878e-07, -0.366692, 1.1692, -0.00498496)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.45505e-08, -6.11435e-10, 0.156305)
+
+[node name="Physical Bone Forearm_L" parent="Parts/EngineerCore/SlotArmL/EngineerArm/EngineerArm/Armature_001/Skeleton3D/PhysicalBoneSimulator3D" index="1"]
+transform = Transform3D(-0.983763, -0.17947, -3.56679e-08, -3.25851e-08, -2.01247e-08, 1, -0.17947, 0.983763, 1.39499e-08, -0.366692, 0.817011, -0.004985)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.75246e-09, -1.11378e-09, 0.195882)
+
 [node name="LightMachineGun" parent="Parts/EngineerCore/SlotArmL/EngineerArm/ToolTarget/SlotHandTool" index="0" instance=ExtResource("5_4sv1w")]
 
 [node name="EngineerArm" parent="Parts/EngineerCore/SlotArmR" index="0" instance=ExtResource("4_025ds")]
+
+[node name="Physical Bone Arm_L" parent="Parts/EngineerCore/SlotArmR/EngineerArm/EngineerArm/Armature_001/Skeleton3D/PhysicalBoneSimulator3D" index="0"]
+transform = Transform3D(-0.983763, -0.17947, 4.23957e-08, 7.47081e-08, -1.73284e-07, 1, -0.17947, 0.983763, 1.83878e-07, -0.366692, 1.1692, -0.00498496)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.45505e-08, -6.11435e-10, 0.156305)
+
+[node name="Physical Bone Forearm_L" parent="Parts/EngineerCore/SlotArmR/EngineerArm/EngineerArm/Armature_001/Skeleton3D/PhysicalBoneSimulator3D" index="1"]
+transform = Transform3D(-0.983763, -0.17947, -3.56679e-08, -3.25851e-08, -2.01247e-08, 1, -0.17947, 0.983763, 1.39499e-08, -0.366692, 0.817011, -0.004985)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.75246e-09, -1.11378e-09, 0.195882)
 
 [node name="LightMachineGun" parent="Parts/EngineerCore/SlotArmR/EngineerArm/ToolTarget/SlotHandTool" index="0" instance=ExtResource("5_4sv1w")]
 

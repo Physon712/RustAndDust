@@ -18,6 +18,8 @@ var movement_instability
 @onready var collider = $Collider
 
 var parts = []
+var part_core = null
+var camera = null
 var weapons = []
 var move_direction = Vector3.ZERO
 
@@ -36,7 +38,7 @@ func _ready():
 
 
 func attach_parts(): #Attach all parts and create the establish the list of the parts
-	mass = 1
+	mass = 0
 	energy_production = 0
 	energy_consumption = 0
 	
@@ -49,12 +51,17 @@ func attach_parts(): #Attach all parts and create the establish the list of the 
 	
 	parts = []
 	weapons = []
+	part_core = null
 	get_parts(self)
+	
+	if($Parts.get_child_count() > 0):
+		part_core = $Parts.get_child(0)
+	else:
+		queue_free()
 	
 	for p in parts:
 		p.attach()
 		#Add basic properties
-		mass += p.mass
 		energy_consumption += p.energy_consumption
 		#Add optionnal properties and add them to total
 		if("energy_production" in p):
@@ -76,8 +83,8 @@ func attach_parts(): #Attach all parts and create the establish the list of the 
 	jump_speed = float(jump_momentum)/mass
 	
 	if(acceleration <= 0): ##Always able to move, to avoid softlock of player
-		max_speed = 0.2
-		acceleration = 3
+		max_speed = 0.6
+		acceleration = 2
 	
 	for p in parts:
 		if(p is Weapon):
@@ -88,6 +95,7 @@ func get_parts(node): ##Get every parts equipped and list them in parts
 	for _n in node.get_children():
 		get_parts(_n)
 		if(_n is RobotPart):
+			mass += _n.mass
 			parts.append(_n)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

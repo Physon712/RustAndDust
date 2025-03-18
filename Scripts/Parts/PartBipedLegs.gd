@@ -1,17 +1,13 @@
 extends "res://Scripts/Parts/PartMovement.gd"
 
-
 class_name BipedLegs
 
 var right_leg = null
 var left_leg = null
 var legs = []
 
-
-var right_target = global_transform.origin-Vector3.UP
-var left_target = global_transform.origin-Vector3.UP
-
-@onready var legs_center = $LegsCenter
+var right_target = Vector3.UP
+var left_target = Vector3.UP
 
 var min_length = 0
 var max_height = 0.7

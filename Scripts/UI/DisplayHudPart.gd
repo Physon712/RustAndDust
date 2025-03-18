@@ -1,17 +1,17 @@
-extends Panel
+extends Container
 
 @export var robot : Robot
 @export var part : RobotPart
 
-@onready var integrity_bar = $Status/Integrity
-@onready var name_display = $Status/Label
+@onready var integrity_bar = $Container/Status/Integrity
+@onready var name_display = $Container/Status/Label 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
 
 func initialize():
-	$Status/Label.text = part.name
-	$Status/Integrity.max_value = part.max_integrity
+	$Container/Status/Label.text = part.name
+	$Container/Status/Integrity.max_value = part.max_integrity
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

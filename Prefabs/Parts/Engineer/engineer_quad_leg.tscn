@@ -1,9 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://dyo3ytle7ux47"]
+[gd_scene load_steps=8 format=3 uid="uid://dyo3ytle7ux47"]
 
 [ext_resource type="Script" path="res://Scripts/Parts/PartLeg.gd" id="1_nvabi"]
 [ext_resource type="PackedScene" uid="uid://dhnqboav0dptx" path="res://Models/Parts/Engineer/EngineerQuadLeg.glb" id="2_x17qk"]
 [ext_resource type="Material" uid="uid://bucp5fy2db5xn" path="res://Textures/Materials/engineer_armature.tres" id="3_bgv1f"]
 [ext_resource type="Material" uid="uid://dyai2s24mjp2q" path="res://Textures/Materials/WearMetal.tres" id="4_re3y3"]
+[ext_resource type="Script" path="res://Scripts/Parts/PhysicalBone.gd" id="5_iumly"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2blf5"]
+radius = 0.0783734
+height = 0.783734
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1af12"]
+radius = 0.0759931
+height = 0.759931
 
 [node name="QuadLeg" type="Node3D" node_paths=PackedStringArray("IK")]
 script = ExtResource("1_nvabi")
@@ -30,6 +39,37 @@ override_tip_basis = false
 use_magnet = true
 magnet = Vector3(0, 100, 0)
 target_node = NodePath("../../../../Target")
+
+[node name="PhysicalBoneSimulator3D" type="PhysicalBoneSimulator3D" parent="EngineerQuadLeg/Armature_002/Skeleton3D" index="2"]
+influence = 0.0
+
+[node name="Physical Bone LegFront_L" type="PhysicalBone3D" parent="EngineerQuadLeg/Armature_002/Skeleton3D/PhysicalBoneSimulator3D"]
+transform = Transform3D(0.137257, 0.344709, 0.928621, 0.344709, 0.862272, -0.37103, -0.928621, 0.37103, -0.000471612, -0.363177, 0.644323, 0.00209347)
+collision_layer = 4
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.06267e-08, -1.10646e-08, 0.391867)
+body_offset = Transform3D(1, -2.98023e-08, -4.5402e-09, -1.46974e-08, -5.40895e-08, -1, 5.96046e-08, 1, -3.35567e-08, -8.84756e-09, 0.391867, 2.42144e-08)
+bone_name = "LegFront.L"
+script = ExtResource("5_iumly")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EngineerQuadLeg/Armature_002/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone LegFront_L"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_2blf5")
+
+[node name="Physical Bone ForelegFront_L" type="PhysicalBone3D" parent="EngineerQuadLeg/Armature_002/Skeleton3D/PhysicalBoneSimulator3D"]
+transform = Transform3D(0.999994, -0.00245322, 0.00245033, -0.00245301, -0.00108969, 0.999996, -0.00245054, -0.999996, -0.0010957, -0.728004, 0.409753, 0.00269457)
+collision_layer = 4
+joint_type = 1
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.31378e-08, -1.9563e-08, 0.379966)
+body_offset = Transform3D(1, -8.61473e-08, -4.33376e-08, -1.63609e-08, 3.49246e-10, -1, 4.65661e-10, 1, 5.08735e-08, 5.96046e-08, 0.379966, 2.32831e-10)
+bone_name = "ForelegFront.L"
+joint_constraints/bias = 0.3
+joint_constraints/damping = 1.0
+joint_constraints/impulse_clamp = 0.0
+script = ExtResource("5_iumly")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EngineerQuadLeg/Armature_002/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone ForelegFront_L"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_1af12")
 
 [node name="Target" type="Marker3D" parent="."]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -0.753151, -0.662339, 0)

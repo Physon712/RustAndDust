@@ -1,10 +1,28 @@
-[gd_scene load_steps=9 format=3 uid="uid://5fmcgbbmusuo"]
+[gd_scene load_steps=15 format=3 uid="uid://5fmcgbbmusuo"]
 
 [ext_resource type="PackedScene" uid="uid://d2xsmxrdixuwj" path="res://Models/Parts/BetaArm.glb" id="1_0lo68"]
 [ext_resource type="Script" path="res://Scripts/Parts/PartArm.gd" id="1_ftahj"]
+[ext_resource type="Shader" path="res://Shaders/WearingMetal.gdshader" id="2_awvj8"]
 [ext_resource type="Material" uid="uid://dl3f5cthok1pf" path="res://Textures/Materials/beta_armature.tres" id="3_d7ajm"]
+[ext_resource type="Texture2D" uid="uid://ko37xf1e46nc" path="res://Textures/RoughCowPattern.png" id="3_g8h1j"]
+[ext_resource type="Script" path="res://Scripts/Parts/PaintedMesh.gd" id="4_3ssxk"]
 [ext_resource type="Script" path="res://Scripts/Parts/SlotRecoil.gd" id="4_gojro"]
 [ext_resource type="Script" path="res://Scripts/Parts/PhysicalBone.gd" id="4_mtkwt"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_madeh"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_y78cj"]
+noise = SubResource("FastNoiseLite_madeh")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dn3h2"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_awvj8")
+shader_parameter/mainColor = Color(0.98, 0.861093, 0.0882, 1)
+shader_parameter/wearColor = Color(0.20871, 0.20871, 0.20871, 1)
+shader_parameter/wear = 0.0
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_y78cj")
+shader_parameter/wearTexture = ExtResource("3_g8h1j")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7rp1b"]
 
@@ -18,6 +36,7 @@ size = Vector3(0.140381, 0.399902, 0.207031)
 script = ExtResource("1_ftahj")
 IK = NodePath("BetaArm/ArmatureArm/Skeleton3D/SkeletonIK3D")
 skeleton = NodePath("BetaArm/ArmatureArm/Skeleton3D/PhysicalBoneSimulator3D")
+paint_material = SubResource("ShaderMaterial_dn3h2")
 mass = 12
 
 [node name="BetaArm" parent="." instance=ExtResource("1_0lo68")]
@@ -40,6 +59,7 @@ bones/8/scale = Vector3(1, 1, 1)
 [node name="Cube_003" parent="BetaArm/ArmatureArm/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_7rp1b")
 surface_material_override/1 = ExtResource("3_d7ajm")
+script = ExtResource("4_3ssxk")
 
 [node name="SkeletonIK3D" type="SkeletonIK3D" parent="BetaArm/ArmatureArm/Skeleton3D" index="1"]
 root_bone = &"Arm_L"
@@ -54,8 +74,8 @@ influence = 0.0
 [node name="Physical Bone Arm_L" type="PhysicalBone3D" parent="BetaArm/ArmatureArm/Skeleton3D/PhysicalBoneSimulator3D"]
 transform = Transform3D(-0.92519, 0.379491, -0.00315149, -0.00218072, 0.00298792, 0.999993, 0.379498, 0.925191, -0.00193683, 0.318596, 1.29214, -0.0798543)
 collision_layer = 4
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.97885e-08, -5.30539e-09, 0.160235)
-body_offset = Transform3D(1, 2.08616e-07, -3.05008e-08, -3.07336e-08, -1.31549e-08, -1, -2.08616e-07, 1, -1.33878e-08, -1.49012e-08, 0.160235, 7.45058e-09)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.95833e-08, -5.1375e-09, 0.160235)
+body_offset = Transform3D(1, 2.08616e-07, -2.92202e-08, -2.93367e-08, -1.40863e-08, -1, -2.08616e-07, 1, -1.44355e-08, -1.49012e-08, 0.160235, 7.45058e-09)
 bone_name = "Arm_L"
 script = ExtResource("4_mtkwt")
 
@@ -64,11 +84,11 @@ transform = Transform3D(0.866749, 0.00178079, 0.498737, -0.498742, 0.000689479, 
 shape = SubResource("BoxShape3D_74e6h")
 
 [node name="Physical Bone ForeArm_L" type="PhysicalBone3D" parent="BetaArm/ArmatureArm/Skeleton3D/PhysicalBoneSimulator3D"]
-transform = Transform3D(-0.92519, 0.379491, -0.00315147, -0.00218071, 0.00298789, 0.999993, 0.379498, 0.925191, -0.0019368, 0.319572, 0.98243, -0.0792546)
+transform = Transform3D(-0.92519, 0.379491, -0.00315147, -0.00218071, 0.00298789, 0.999993, 0.379498, 0.925191, -0.0019368, 0.319572, 0.98243, -0.0792547)
 collision_layer = 4
 joint_type = 1
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.17229e-07, 1.65897e-07, 0.14948)
-body_offset = Transform3D(1, 5.96046e-08, -8.64384e-08, -8.61473e-08, -1.26893e-08, -1, 0, 1, -1.32713e-08, -1.04308e-07, 0.14948, -1.63913e-07)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.31904e-07, 2.18155e-07, 0.14948)
+body_offset = Transform3D(1, 2.98023e-08, -8.4925e-08, -8.47504e-08, -1.35042e-08, -1, 0, 1, -1.39698e-08, -1.19209e-07, 0.14948, -2.16067e-07)
 bone_name = "ForeArm_L"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0

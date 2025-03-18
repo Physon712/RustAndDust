@@ -12,8 +12,8 @@ var next_position = Vector3.ZERO
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	next_position = global_position+velocity * delta
-	velocity += Vector3.UP*GameData.GRAVITY*delta
+	next_position = global_position + velocity * delta
+	velocity += Vector3.UP * GameData.GRAVITY * delta
 	check_for_collision()
 	global_position = next_position
 		

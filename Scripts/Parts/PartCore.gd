@@ -13,6 +13,9 @@ var rotation_offset = 0.0
 
 func attach():
 	super()
+	right_arm = null
+	left_arm = null
+	movement_module = null
 	if($SlotArmR.get_child_count() > 0):
 		right_arm = $SlotArmR.get_child(0)
 	if($SlotArmL.get_child_count() > 0):

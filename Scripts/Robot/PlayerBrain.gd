@@ -10,11 +10,9 @@ var hud = null
 func attach():
 	super()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	print(hud)
 	if(hud == null):
 		hud = hud_prefab.instantiate()
 		world.add_child.call_deferred(hud)
-	print(world.get_children())
 	hud.robot = robot
 	hud.evaluate_robot()
 	
@@ -24,12 +22,18 @@ func detach():
 		hud.queue_free()
 
 func _process(delta):
+	super(delta)
+	if(robot == null):
+		return
 	if(robot.weapons.size() > 0 && Input.is_action_pressed("Fire")):
 		robot.weapons[0].use()
 	if(robot.weapons.size() > 1 && Input.is_action_pressed("Fire2")):
 		robot.weapons[1].use()
 
 func _physics_process(delta):
+	super(delta)
+	if(robot == null):
+		return
 	if(Input.is_action_pressed("Jump")):
 		robot.action_jump()
 	robot.move_direction = Vector3.ZERO
@@ -44,7 +48,9 @@ func _physics_process(delta):
 		
 	robot.move_direction = robot.move_direction.rotated(Vector3.UP,robot.head.rotation.y)
 	
-func _input(event):  		
+func _input(event):  
+	if(robot == null):
+		return		
 	if event is InputEventMouseMotion:
 		robot.head.rotation.y += -GameData.mouse_sensivity*event.relative.x
 		robot.head.rotation.x += -GameData.mouse_sensivity*event.relative.y

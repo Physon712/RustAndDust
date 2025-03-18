@@ -33,6 +33,6 @@ func _process(delta: float) -> void:
 
 func activate_physics():
 	if(skeleton != null):
-		IK.active = false
 		skeleton.physical_bones_start_simulation()
 		skeleton.influence = 1
+		#IK.active = false

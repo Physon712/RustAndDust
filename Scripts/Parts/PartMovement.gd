@@ -11,3 +11,6 @@ var height = 0.2
 func attach():
 	super()
 	robot.movement_instability = movement_instability
+
+func get_part_type():
+	return GameData.PartType.MOVEMENT

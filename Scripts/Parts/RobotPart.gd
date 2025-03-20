@@ -48,7 +48,6 @@ func detach_parts(): ##Detach part and children without updading the attached pa
 	global_transform = new_transform
 	is_attached = false
 	robot = null
-	print(self)
 	var part_childs = get_slot_parts(self)
 	for child in part_childs:
 		child.detach_parts()
@@ -98,4 +97,6 @@ func take_damage(damage):
 	if(integrity <= 0):
 		detach()
 		
+func get_part_type():
+	return GameData.DataType.CORE
 	

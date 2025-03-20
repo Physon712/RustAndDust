@@ -37,5 +37,6 @@ func fire_a_shot():
 	translate(-Vector3.FORWARD*recoil/60)
 	#parent.recoil(-Vector3.FORWARD*recoil,-recoil,randf_range(-0.5,0.5)*recoil)
 
-
+func get_part_type():
+	return GameData.PartType.HANDTOOL
 	

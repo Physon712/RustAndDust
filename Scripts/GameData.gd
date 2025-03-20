@@ -30,7 +30,8 @@ const MOBILITY_TYPE_LEG = 0
 const MOBILITY_TYPE_QUADLEGS = 1
 const MOBILITY_TYPE_WHEEL = 2
 
-
+enum PartType {CORE,MOVEMENT,HEAD,LEG,ARM,HANDTOOL,BRAIN}
+const part_type_name = ["Core","Movement module","Head","Leg","Arm","Hand tool","AI Chip"]
 ### Game Rules
 const damage_multiplicator =[
 	[1,1,1,1,1,1], #LIGHT

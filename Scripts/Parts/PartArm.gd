@@ -54,3 +54,6 @@ func activate_physics():
 		IK.influence = 0
 		skeleton.physical_bones_start_simulation()
 		skeleton.influence = 1
+
+func get_part_type():
+	return GameData.PartType.ARM

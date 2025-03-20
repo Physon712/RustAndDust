@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://d0fssjvs1knfm"]
+[gd_scene load_steps=13 format=3 uid="uid://d0fssjvs1knfm"]
 
 [ext_resource type="Script" path="res://Scripts/Parts/PartCore.gd" id="1_y0nbn"]
 [ext_resource type="Script" path="res://Scripts/Parts/PhysicalPart.gd" id="2_8q3d7"]
 [ext_resource type="Material" uid="uid://bnhf8bwjl0vxy" path="res://Textures/Materials/base_wearmat.tres" id="2_h1xif"]
 [ext_resource type="Shader" path="res://Shaders/WearingMetal.gdshader" id="2_h144q"]
+[ext_resource type="Script" path="res://Scripts/Parts/Slot.gd" id="3_aqdkb"]
 [ext_resource type="Texture2D" uid="uid://ko37xf1e46nc" path="res://Textures/RoughCowPattern.png" id="3_oadfo"]
 [ext_resource type="PackedScene" uid="uid://c5pwmk1ce72xa" path="res://Models/Parts/BetaCore.glb" id="3_ykk4p"]
 [ext_resource type="Script" path="res://Scripts/Parts/PaintedMesh.gd" id="5_1n6tt"]
@@ -35,15 +36,23 @@ mass = 25
 
 [node name="SlotHead" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.347, 0)
+script = ExtResource("3_aqdkb")
+slot_type = 2
 
 [node name="SlotArmL" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.204638, 0.193682, 0.0606688)
+script = ExtResource("3_aqdkb")
+slot_type = 4
 
 [node name="SlotArmR" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 0.205, 0.194053, 0.0606688)
+script = ExtResource("3_aqdkb")
+slot_type = 4
 
 [node name="SlotMovement" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.004, 0.062)
+script = ExtResource("3_aqdkb")
+slot_type = 1
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 collision_layer = 4

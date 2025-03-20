@@ -9,3 +9,6 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if(robot == null):
 		return
+
+func get_part_type():
+	return GameData.PartType.BRAIN

@@ -4,15 +4,15 @@ extends "res://Scripts/Parts/PartBrain.gd"
 ##As well as display information about the robot in control
 
 @export var hud_prefab = preload("res://Prefabs/UI/robot_hud.tscn")
+@onready var inv = $Inventory
 var hud = null
-
 
 func attach():
 	super()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	if(hud == null):
 		hud = hud_prefab.instantiate()
-		world.add_child.call_deferred(hud)
+		add_child.call_deferred(hud)
 	hud.robot = robot
 	hud.evaluate_robot()
 	
@@ -47,6 +47,23 @@ func _physics_process(delta):
 		robot.move_direction.x -= 1
 		
 	robot.move_direction = robot.move_direction.rotated(Vector3.UP,robot.head.rotation.y)
+	
+	if(Input.is_action_just_pressed("Use")):
+		var space_state = get_world_3d().direct_space_state
+		var query = PhysicsRayQueryParameters3D.create(robot.head.global_position,robot.head.global_position-3*robot.head.basis.z,0b100)
+		var result = space_state.intersect_ray(query)
+		if(result):
+			if(!result.collider.part.is_attached):
+				#Take part and put in inventory
+				inv.add_part(result.collider.part)
+				result.collider.part.detach()
+				result.collider.part.queue_free()
+			else:
+				#Or modify robot the part belongs to
+				if(result.collider.part.robot != robot):
+					print(result.collider.part.robot)
+		else:
+			return  null
 	
 func _input(event):  
 	if(robot == null):

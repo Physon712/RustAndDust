@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d3i41uiqmxr3p"]
+[gd_scene load_steps=12 format=3 uid="uid://d3i41uiqmxr3p"]
 
 [ext_resource type="Script" path="res://Scripts/Parts/PartBipedLegs.gd" id="1_jrrob"]
 [ext_resource type="Shader" path="res://Shaders/WearingMetal.gdshader" id="2_hl1xl"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dlig70pm6eoyv" path="res://Models/Parts/BetaLower.glb" id="2_kmy8k"]
 [ext_resource type="Texture2D" uid="uid://ko37xf1e46nc" path="res://Textures/RoughCowPattern.png" id="3_aals5"]
 [ext_resource type="Script" path="res://Scripts/Parts/PaintedMesh.gd" id="4_findm"]
+[ext_resource type="Script" path="res://Scripts/Parts/Slot.gd" id="4_nxcem"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ylua1"]
 
@@ -35,9 +36,13 @@ energy_consumption = 20
 
 [node name="SlotLegR" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 0.132965, -0.365733, -0.0483278)
+script = ExtResource("4_nxcem")
+slot_type = 3
 
 [node name="SlotLegL" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.133, -0.366139, -0.0483278)
+script = ExtResource("4_nxcem")
+slot_type = 3
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 collision_layer = 4

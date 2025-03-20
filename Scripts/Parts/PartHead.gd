@@ -15,3 +15,6 @@ func _physics_process(delta):
 		##TODO get rid of that code
 		robot.head.global_position = camera.global_position
 		robot.height = robot.to_local(camera.global_position).y
+
+func get_part_type():
+	return GameData.PartType.HEAD

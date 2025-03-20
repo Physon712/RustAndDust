@@ -36,3 +36,6 @@ func activate_physics():
 		skeleton.physical_bones_start_simulation()
 		skeleton.influence = 1
 		#IK.active = false
+		
+func get_part_type():
+	return GameData.PartType.LEG

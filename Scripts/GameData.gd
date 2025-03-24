@@ -2,8 +2,10 @@ extends Node
 
 ### PLAYER SETTINGS
 var mouse_sensivity = 0.005;
-
 var third_person = false;
+
+### GAME VARIABLE
+var in_menu = false
 
 ### GAME CONST
 const GRAVITY = -9.8 
@@ -40,3 +42,11 @@ const damage_multiplicator =[
 	[0.8,0.8,0.8,0.8,0.2,0.2], #REACTIVE
 	[1,1,1,1,2,1] #MAGNETIC SHIELDING
 ]
+
+func enter_menu_mode():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	in_menu = true
+	
+func exit_menu_mode():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	in_menu = false

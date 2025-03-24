@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bit663ribx1au"]
+[gd_scene load_steps=4 format=3 uid="uid://bit663ribx1au"]
 
 [ext_resource type="Script" path="res://Scripts/Robot/RobotController.gd" id="1_02gnq"]
+[ext_resource type="Script" path="res://Scripts/Parts/Slot.gd" id="2_l1j5o"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_byq50"]
 
@@ -22,3 +23,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.470201, 3.44796)
 
 [node name="Parts" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.564913, 0)
+script = ExtResource("2_l1j5o")

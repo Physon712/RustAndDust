@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://cxj6d0aoyacem"]
+[gd_scene load_steps=15 format=3 uid="uid://cxj6d0aoyacem"]
 
 [ext_resource type="Script" path="res://Scripts/Parts/PartHead.gd" id="1_4et2o"]
 [ext_resource type="Script" path="res://Scripts/Parts/PhysicalPart.gd" id="2_ki6ah"]
 [ext_resource type="PackedScene" uid="uid://dgnnwc64divc" path="res://Models/Parts/BetaHead.glb" id="2_n8fod"]
+[ext_resource type="Script" path="res://Scripts/Parts/Slot.gd" id="4_18lgi"]
 [ext_resource type="Shader" path="res://Shaders/WearingMetal.gdshader" id="4_lshbl"]
 [ext_resource type="Script" path="res://Scripts/Parts/PaintedMesh.gd" id="5_1d25v"]
 [ext_resource type="Texture2D" uid="uid://ko37xf1e46nc" path="res://Textures/RoughCowPattern.png" id="5_sgta1"]
@@ -42,6 +43,7 @@ size = Vector3(0.237549, 0.370605, 0.49353)
 
 [node name="PartHead" type="Node3D"]
 script = ExtResource("1_4et2o")
+front_name = "Standard Head"
 paint_material = SubResource("ShaderMaterial_6ksjw")
 mass = 10
 
@@ -52,6 +54,8 @@ near = 0.1
 
 [node name="SlotBrain" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.195677, 0)
+script = ExtResource("4_18lgi")
+slot_type = 2
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 collision_layer = 4

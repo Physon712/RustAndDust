@@ -29,6 +29,7 @@ size = Vector3(0.4, 0.423, 0.454)
 
 [node name="PartCore" type="Node3D"]
 script = ExtResource("1_y0nbn")
+front_name = "Standard Core"
 paint_material = ExtResource("2_h1xif")
 integrity = 60
 max_integrity = 60

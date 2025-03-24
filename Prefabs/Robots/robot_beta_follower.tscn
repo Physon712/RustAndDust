@@ -1,14 +1,142 @@
-[gd_scene load_steps=9 format=3 uid="uid://elcn80b8bu83"]
+[gd_scene load_steps=35 format=3 uid="uid://elcn80b8bu83"]
 
 [ext_resource type="Script" path="res://Scripts/Robot/RobotController.gd" id="1_nqqxn"]
 [ext_resource type="Script" path="res://Scripts/Robot/DummyFollowerBrain.gd" id="2_ga1op"]
+[ext_resource type="Script" path="res://Scripts/Parts/Slot.gd" id="2_ne2jd"]
 [ext_resource type="PackedScene" uid="uid://d0fssjvs1knfm" path="res://Prefabs/Parts/Beta/beta_core.tscn" id="3_3bk50"]
+[ext_resource type="Shader" path="res://Shaders/WearingMetal.gdshader" id="4_cklpc"]
 [ext_resource type="PackedScene" uid="uid://cxj6d0aoyacem" path="res://Prefabs/Parts/Beta/beta_head.tscn" id="4_elc0y"]
 [ext_resource type="PackedScene" uid="uid://5fmcgbbmusuo" path="res://Prefabs/Parts/Beta/beta_arm.tscn" id="5_2v756"]
+[ext_resource type="Texture2D" uid="uid://ko37xf1e46nc" path="res://Textures/RoughCowPattern.png" id="5_xeekq"]
 [ext_resource type="PackedScene" uid="uid://d3i41uiqmxr3p" path="res://Prefabs/Parts/Beta/beta_lower.tscn" id="6_i8pwv"]
 [ext_resource type="PackedScene" uid="uid://yhsguftrisj7" path="res://Prefabs/Parts/Beta/beta_leg.tscn" id="7_ix4t2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_byq50"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4pgkc"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_u4qon"]
+noise = SubResource("FastNoiseLite_4pgkc")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_51dn4"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("4_cklpc")
+shader_parameter/mainColor = Color(0.98, 0.861093, 0.0882, 1)
+shader_parameter/wearColor = Color(0.20871, 0.20871, 0.20871, 1)
+shader_parameter/wear = 0.0
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_u4qon")
+shader_parameter/wearTexture = ExtResource("5_xeekq")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_305oj"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mjsct"]
+noise = SubResource("FastNoiseLite_305oj")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2lku1"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("4_cklpc")
+shader_parameter/mainColor = Color(0.98, 0.861093, 0.0882, 1)
+shader_parameter/wearColor = Color(0.20871, 0.20871, 0.20871, 1)
+shader_parameter/wear = 0.0
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_mjsct")
+shader_parameter/wearTexture = ExtResource("5_xeekq")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_87iup"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ku8vm"]
+noise = SubResource("FastNoiseLite_87iup")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_akadw"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("4_cklpc")
+shader_parameter/mainColor = Color(0.98, 0.861093, 0.0882, 1)
+shader_parameter/wearColor = Color(0.20871, 0.20871, 0.20871, 1)
+shader_parameter/wear = 0.0
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_ku8vm")
+shader_parameter/wearTexture = ExtResource("5_xeekq")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_madeh"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_y78cj"]
+noise = SubResource("FastNoiseLite_madeh")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b6pnc"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("4_cklpc")
+shader_parameter/mainColor = Color(0.98, 0.861093, 0.0882, 1)
+shader_parameter/wearColor = Color(0.20871, 0.20871, 0.20871, 1)
+shader_parameter/wear = 0.0
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_y78cj")
+shader_parameter/wearTexture = ExtResource("5_xeekq")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_msvyk"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("4_cklpc")
+shader_parameter/mainColor = Color(0.98, 0.861093, 0.0882, 1)
+shader_parameter/wearColor = Color(0.20871, 0.20871, 0.20871, 1)
+shader_parameter/wear = 0.0
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_y78cj")
+shader_parameter/wearTexture = ExtResource("5_xeekq")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ylua1"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_10glp"]
+noise = SubResource("FastNoiseLite_ylua1")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_avu5p"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("4_cklpc")
+shader_parameter/mainColor = Color(0.98, 0.861093, 0.0882, 1)
+shader_parameter/wearColor = Color(0.20871, 0.20871, 0.20871, 1)
+shader_parameter/wear = 0.0
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_10glp")
+shader_parameter/wearTexture = ExtResource("5_xeekq")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_gqmin"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_38vfp"]
+noise = SubResource("FastNoiseLite_gqmin")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eueo0"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("4_cklpc")
+shader_parameter/mainColor = Color(0.98, 0.861093, 0.0882, 1)
+shader_parameter/wearColor = Color(0.20871, 0.20871, 0.20871, 1)
+shader_parameter/wear = 0.0
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_38vfp")
+shader_parameter/wearTexture = ExtResource("5_xeekq")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ycwx4"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("4_cklpc")
+shader_parameter/mainColor = Color(0.98, 0.861093, 0.0882, 1)
+shader_parameter/wearColor = Color(0.20871, 0.20871, 0.20871, 1)
+shader_parameter/wear = 0.0
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_38vfp")
+shader_parameter/wearTexture = ExtResource("5_xeekq")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rpkdn"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wiyip"]
+noise = SubResource("FastNoiseLite_rpkdn")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q0m4n"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("4_cklpc")
+shader_parameter/mainColor = Color(0.98, 0.861093, 0.0882, 1)
+shader_parameter/wearColor = Color(0.20871, 0.20871, 0.20871, 1)
+shader_parameter/wear = 0.0
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_wiyip")
+shader_parameter/wearTexture = ExtResource("5_xeekq")
 
 [node name="Robot2" type="CharacterBody3D"]
 collision_layer = 2
@@ -24,24 +152,41 @@ shape = SubResource("CapsuleShape3D_byq50")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 
 [node name="Parts" type="Node3D" parent="."]
+script = ExtResource("2_ne2jd")
 
 [node name="PartCore" parent="Parts" instance=ExtResource("3_3bk50")]
+paint_material = SubResource("ShaderMaterial_51dn4")
 
 [node name="PartHead" parent="Parts/PartCore/SlotHead" index="0" instance=ExtResource("4_elc0y")]
+paint_material = SubResource("ShaderMaterial_2lku1")
 
 [node name="Brain" type="Node3D" parent="Parts/PartCore/SlotHead/PartHead/SlotBrain" index="0"]
 script = ExtResource("2_ga1op")
 
+[node name="Cube_005" parent="Parts/PartCore/SlotHead/PartHead/RigidBody3D/BetaHead" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_akadw")
+
 [node name="BetaArm" parent="Parts/PartCore/SlotArmL" index="0" instance=ExtResource("5_2v756")]
+paint_material = SubResource("ShaderMaterial_b6pnc")
 
 [node name="BetaArm" parent="Parts/PartCore/SlotArmR" index="0" instance=ExtResource("5_2v756")]
+paint_material = SubResource("ShaderMaterial_msvyk")
 
 [node name="PartMovement" parent="Parts/PartCore/SlotMovement" index="0" instance=ExtResource("6_i8pwv")]
+paint_material = SubResource("ShaderMaterial_avu5p")
 
 [node name="PartLegBeta" parent="Parts/PartCore/SlotMovement/PartMovement/SlotLegR" index="0" instance=ExtResource("7_ix4t2")]
+paint_material = SubResource("ShaderMaterial_eueo0")
 
 [node name="PartLegBeta" parent="Parts/PartCore/SlotMovement/PartMovement/SlotLegL" index="0" instance=ExtResource("7_ix4t2")]
+paint_material = SubResource("ShaderMaterial_ycwx4")
+
+[node name="Cube_002" parent="Parts/PartCore/RigidBody3D/BetaCore" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_q0m4n")
 
 [editable path="Parts/PartCore"]
 [editable path="Parts/PartCore/SlotHead/PartHead"]
+[editable path="Parts/PartCore/SlotHead/PartHead/RigidBody3D/BetaHead"]
 [editable path="Parts/PartCore/SlotMovement/PartMovement"]
+[editable path="Parts/PartCore/SlotMovement/PartMovement/RigidBody3D/BetaLower"]
+[editable path="Parts/PartCore/RigidBody3D/BetaCore"]

@@ -3,16 +3,30 @@ extends "res://Scripts/Parts/PartBrain.gd"
 ### Basically take player input, to control a robot
 ##As well as display information about the robot in control
 
+#Load all the menu the player will be able to open
 @export var hud_prefab = preload("res://Prefabs/UI/robot_hud.tscn")
-@onready var inv = $Inventory
+@export var assembly_menu_prefab = preload("res://Prefabs/UI/assembly_menu.tscn")
+
+@export var inv_prefab = preload("res://Prefabs/inventory.tscn")
+
+
+var inv = null
 var hud = null
+
+var frozen = false
+
+func _ready():
+	super()
+	GameData.exit_menu_mode()
 
 func attach():
 	super()
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	if(inv == null):
+		inv = inv_prefab.instantiate()
+		world.add_child.call_deferred(inv)
 	if(hud == null):
 		hud = hud_prefab.instantiate()
-		add_child.call_deferred(hud)
+		world.add_child.call_deferred(hud)
 	hud.robot = robot
 	hud.evaluate_robot()
 	
@@ -25,6 +39,12 @@ func _process(delta):
 	super(delta)
 	if(robot == null):
 		return
+	if(robot.camera != null):
+		robot.camera.current = true
+	
+	if(frozen || GameData.in_menu):
+		return
+	
 	if(robot.weapons.size() > 0 && Input.is_action_pressed("Fire")):
 		robot.weapons[0].use()
 	if(robot.weapons.size() > 1 && Input.is_action_pressed("Fire2")):
@@ -32,7 +52,7 @@ func _process(delta):
 
 func _physics_process(delta):
 	super(delta)
-	if(robot == null):
+	if(robot == null || frozen || GameData.in_menu):
 		return
 	if(Input.is_action_pressed("Jump")):
 		robot.action_jump()
@@ -61,12 +81,16 @@ func _physics_process(delta):
 			else:
 				#Or modify robot the part belongs to
 				if(result.collider.part.robot != robot):
-					print(result.collider.part.robot)
+					open_inventory(result.collider.part.robot)
+					
 		else:
 			return  null
 	
+	if(Input.is_action_just_pressed("Inventory")):
+		open_inventory(null)
+	
 func _input(event):  
-	if(robot == null):
+	if(robot == null || frozen || GameData.in_menu):
 		return		
 	if event is InputEventMouseMotion:
 		robot.head.rotation.y += -GameData.mouse_sensivity*event.relative.x
@@ -79,3 +103,13 @@ func look_for_parent_robot():
 	while(!(parent is Robot)):
 		parent = parent.get_parent()
 	return parent
+
+func open_inventory(target):
+	var assembly_menu = assembly_menu_prefab.instantiate()
+	world.add_child(assembly_menu)
+	assembly_menu.robot_a = robot
+	assembly_menu.robot_b = target
+	assembly_menu.inventory = inv
+	assembly_menu.initialize()
+	GameData.enter_menu_mode()
+	

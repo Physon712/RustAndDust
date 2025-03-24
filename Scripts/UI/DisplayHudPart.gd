@@ -10,12 +10,14 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func initialize():
-	$Container/Status/Label.text = part.name
+	$Container/Status/Label.text = part.front_name
 	$Container/Status/Integrity.max_value = part.max_integrity
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if(part != null):
 		integrity_bar.value = part.integrity
+		if(!part.is_attached):
+			queue_free()
 	else:
 		integrity_bar.value = 0

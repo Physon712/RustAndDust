@@ -92,6 +92,8 @@ bullet_speed = 300
 animator = NodePath("Animator")
 firesound = NodePath("Muzzle/FireSound")
 fireparticle = NodePath("Muzzle/FireParticle")
+front_name = "Pistol 10mm"
+paint_color = Color(0.3432, 0.404507, 0.44, 1)
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 collision_layer = 4

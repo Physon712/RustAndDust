@@ -16,9 +16,10 @@ var movement_instability
 
 @onready var head = $Head
 @onready var collider = $Collider
-
+@onready var main_slot  = $Parts
 var parts = []
 var part_core = null
+
 var camera = null
 var weapons = []
 var move_direction = Vector3.ZERO
@@ -86,9 +87,13 @@ func attach_parts(): #Attach all parts and create the establish the list of the 
 		max_speed = 0.6
 		acceleration = 2
 	
+	#Establish list of all weapons
 	for p in parts:
 		if(p is Weapon):
 			weapons.append(p)
+			
+	if(camera != null):
+		camera.current = false
 	
 		
 func get_parts(node): ##Get every parts equipped and list them in parts

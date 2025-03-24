@@ -5,6 +5,8 @@ class_name RobotPart
 var robot = null
 var is_attached = false
 
+@export var front_name = "Robot Part"
+
 @export var paint_color : Color = Color.YELLOW
 @export var paint_material : ShaderMaterial = preload("res://Textures/Materials/base_wearmat.tres").duplicate()
 
@@ -75,7 +77,7 @@ func look_for_parent_robot():
 		parent = parent.get_parent()
 	return parent
 		
-func get_slot_parts(node): ##Get every parts in the slots
+func get_slot_parts(node): ##Get every parts in the slots of the node
 	var slot_parts = []
 	for _n in node.get_children():
 		if(_n is RobotPart): #Found a robot part, add it to the array
@@ -83,6 +85,15 @@ func get_slot_parts(node): ##Get every parts in the slots
 		else: #Look deeper for robot part
 			slot_parts.append_array(get_slot_parts(_n))
 	return slot_parts
+	
+func get_slots(node): ##Get every slots of the node
+	var slots = []
+	for _n in node.get_children():
+		if(_n is Slot): #Found a robot part, add it to the array
+			slots.append(_n)
+		else: #Look deeper for robot part
+			slots.append_array(get_slots(_n))
+	return slots
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

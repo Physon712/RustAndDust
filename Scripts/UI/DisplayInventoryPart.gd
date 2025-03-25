@@ -18,8 +18,8 @@ func _process(delta: float) -> void:
 
 
 func _on_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.pressed:
-		if(assembly_menu != null):
+	if event is InputEventMouseButton and event.pressed: #Inventory to mouse data unless already holding mouse data
+		if(assembly_menu != null && !assembly_menu.mouse_data.pressed):
 			assembly_menu.mouse_data.pressed = true
 			assembly_menu.mouse_data.from_inventory = true
 			assembly_menu.mouse_data.associated_id = associated_id

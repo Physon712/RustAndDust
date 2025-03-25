@@ -2,7 +2,6 @@ extends "res://Scripts/Parts/RobotPart.gd"
 
 class_name Brain
 
-
 func _process(delta: float) -> void:
 	if(robot == null):
 		return

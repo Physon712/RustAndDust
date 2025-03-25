@@ -55,7 +55,7 @@ near = 0.1
 [node name="SlotBrain" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.195677, 0)
 script = ExtResource("4_18lgi")
-slot_type = 2
+slot_type = 6
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 collision_layer = 4

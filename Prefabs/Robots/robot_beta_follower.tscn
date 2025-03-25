@@ -1,7 +1,6 @@
 [gd_scene load_steps=35 format=3 uid="uid://elcn80b8bu83"]
 
 [ext_resource type="Script" path="res://Scripts/Robot/RobotController.gd" id="1_nqqxn"]
-[ext_resource type="Script" path="res://Scripts/Robot/DummyFollowerBrain.gd" id="2_ga1op"]
 [ext_resource type="Script" path="res://Scripts/Parts/Slot.gd" id="2_ne2jd"]
 [ext_resource type="PackedScene" uid="uid://d0fssjvs1knfm" path="res://Prefabs/Parts/Beta/beta_core.tscn" id="3_3bk50"]
 [ext_resource type="Shader" path="res://Shaders/WearingMetal.gdshader" id="4_cklpc"]
@@ -9,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://5fmcgbbmusuo" path="res://Prefabs/Parts/Beta/beta_arm.tscn" id="5_2v756"]
 [ext_resource type="Texture2D" uid="uid://ko37xf1e46nc" path="res://Textures/RoughCowPattern.png" id="5_xeekq"]
 [ext_resource type="PackedScene" uid="uid://d3i41uiqmxr3p" path="res://Prefabs/Parts/Beta/beta_lower.tscn" id="6_i8pwv"]
+[ext_resource type="PackedScene" uid="uid://cp2wvdojahkkj" path="res://Prefabs/Brains/dummy_brain.tscn" id="7_8jend"]
 [ext_resource type="PackedScene" uid="uid://yhsguftrisj7" path="res://Prefabs/Parts/Beta/beta_leg.tscn" id="7_ix4t2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_byq50"]
@@ -160,8 +160,7 @@ paint_material = SubResource("ShaderMaterial_51dn4")
 [node name="PartHead" parent="Parts/PartCore/SlotHead" index="0" instance=ExtResource("4_elc0y")]
 paint_material = SubResource("ShaderMaterial_2lku1")
 
-[node name="Brain" type="Node3D" parent="Parts/PartCore/SlotHead/PartHead/SlotBrain" index="0"]
-script = ExtResource("2_ga1op")
+[node name="Brain" parent="Parts/PartCore/SlotHead/PartHead/SlotBrain" index="0" instance=ExtResource("7_8jend")]
 
 [node name="Cube_005" parent="Parts/PartCore/SlotHead/PartHead/RigidBody3D/BetaHead" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_akadw")

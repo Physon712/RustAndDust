@@ -11,7 +11,8 @@ func add_part(part : RobotPart):
 		"name" : part.front_name,
 		"integrity" : part.integrity,
 		"max_integrity" : part.max_integrity,
-		"type" : part.get_part_type()
+		"type" : part.get_part_type(),
+		"color1" : part.paint_color
 	}
 	id_count += 1
 	print(inv)
@@ -19,7 +20,10 @@ func add_part(part : RobotPart):
 func remove_part(id):
 	inv.erase(id)
 	
-func instantiate_part(slot,id):
+func instantiate_part(parent,id):
 	var p = load(inv[id].path).instantiate()
-	slot.add_child(p)
+	parent.add_child(p)
 	p.integrity = inv[id].integrity
+	p.paint_color = inv[id].color1
+	
+	

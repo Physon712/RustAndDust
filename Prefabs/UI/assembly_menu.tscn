@@ -13,6 +13,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vrq1h")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -10
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.545098)
+
 [node name="HSplitContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -23,9 +33,11 @@ grow_vertical = 2
 alignment = 1
 
 [node name="ScrollContainer2" type="ScrollContainer" parent="HSplitContainer"]
-custom_minimum_size = Vector2(400, 500)
+custom_minimum_size = Vector2(400, 200)
 layout_mode = 2
 size_flags_vertical = 4
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 0
 
 [node name="RobotA" type="VBoxContainer" parent="HSplitContainer/ScrollContainer2"]
 visible = false
@@ -40,20 +52,23 @@ layout_mode = 2
 text = "Mass : 240 kg"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="HSplitContainer"]
-custom_minimum_size = Vector2(342, 500)
+custom_minimum_size = Vector2(342, 600)
 layout_mode = 2
 size_flags_vertical = 4
+horizontal_scroll_mode = 0
 
 [node name="Inventory" type="VBoxContainer" parent="HSplitContainer/ScrollContainer"]
-custom_minimum_size = Vector2(400, 240)
+custom_minimum_size = Vector2(400, 600)
 layout_mode = 2
 alignment = 1
 script = ExtResource("3_087re")
 
 [node name="ScrollContainer3" type="ScrollContainer" parent="HSplitContainer"]
-custom_minimum_size = Vector2(400, 500)
+custom_minimum_size = Vector2(400, 200)
 layout_mode = 2
 size_flags_vertical = 4
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 0
 
 [node name="RobotB" type="VBoxContainer" parent="HSplitContainer/ScrollContainer3"]
 visible = false

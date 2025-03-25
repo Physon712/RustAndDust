@@ -3,6 +3,13 @@ extends "res://Scripts/Parts/PartBrain.gd"
 @export var target : Robot
 @export var target_distance = 12
 
+func _ready():
+	super()
+	var nodes = world.get_children()
+	for n in nodes:
+		if(n is Robot && robot != null && n != robot):
+			target = n
+
 func _process(delta):
 	if(robot == null):
 		return

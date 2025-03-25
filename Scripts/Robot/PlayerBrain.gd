@@ -15,15 +15,15 @@ var hud = null
 
 var frozen = false
 
-func _ready():
-	super()
-	GameData.exit_menu_mode()
-
 func attach():
 	super()
 	if(inv == null):
-		inv = inv_prefab.instantiate()
-		world.add_child.call_deferred(inv)
+		if(world.has_node("PlayerInventory")): #In case the inventory has already been created
+			inv = world.get_node("PlayerInventory")
+		else:
+			inv = inv_prefab.instantiate()
+			inv.name = "PlayerInventory"
+			world.add_child.call_deferred(inv)
 	if(hud == null):
 		hud = hud_prefab.instantiate()
 		world.add_child.call_deferred(hud)

@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://v8gi5glsxyix" path="res://Textures/UI/Reticule3.png" id="1_ovtxx"]
 
 [node name="RobotHUD" type="Control"]
+z_index = -20
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

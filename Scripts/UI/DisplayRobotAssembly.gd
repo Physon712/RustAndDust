@@ -11,7 +11,8 @@ var slot_displays = []
 
 func evaluate_robot():
 	for d in slot_displays:
-		d.queue_free()
+		if(d!=null):
+			d.queue_free()
 	slot_displays = []
 	$HBoxContainer/MassLabel.text = "Mass : " + str(robot.mass) + " kg"
 	$HBoxContainer/MassLabel.visible = false
@@ -23,6 +24,7 @@ func evaluate_slot(parent,slot): #Create display panel for a single slot and its
 	var display = part_display_prefab.instantiate()
 	parent.add_child(display)
 	display.slot = slot
+	display.robot = robot
 	display.assembly_menu = assembly_menu
 	display.initialize()
 	slot_displays.append(display)

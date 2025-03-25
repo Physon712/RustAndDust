@@ -1,5 +1,7 @@
 extends MeshInstance3D
 
+@export var material_id = 0
+
 var part
 
 func look_for_parent_part():
@@ -10,5 +12,5 @@ func look_for_parent_part():
 
 func _ready():
 	part = look_for_parent_part()
-	set_surface_override_material(0,part.paint_material)
+	set_surface_override_material(material_id,part.paint_material)
 	

@@ -1,31 +1,60 @@
-[gd_scene load_steps=5 format=3 uid="uid://75ncvrb6jw87"]
+[gd_scene load_steps=7 format=3 uid="uid://75ncvrb6jw87"]
 
 [ext_resource type="PackedScene" uid="uid://22j0rdhdpffb" path="res://Models/Parts/Engineer/EngineerLower.glb" id="1_dmw05"]
 [ext_resource type="Script" path="res://Scripts/Parts/PartQuadLegs.gd" id="1_njori"]
-[ext_resource type="Material" uid="uid://bucp5fy2db5xn" path="res://Textures/Materials/engineer_armature.tres" id="3_mt76g"]
-[ext_resource type="Material" uid="uid://dyai2s24mjp2q" path="res://Textures/Materials/WearMetal.tres" id="4_c5tj1"]
+[ext_resource type="Script" path="res://Scripts/Parts/PhysicalPart.gd" id="2_0pk3f"]
+[ext_resource type="Script" path="res://Scripts/Parts/Slot.gd" id="2_cp1a0"]
+[ext_resource type="Script" path="res://Scripts/Parts/PaintedMesh.gd" id="5_gnaks"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yi6yc"]
+size = Vector3(0.43, 0.64, 0.565)
 
 [node name="EngineerLower" type="Node3D"]
 script = ExtResource("1_njori")
+movement_instability = 1
+front_name = "Quadrupedal Module"
 integrity = 30
-
-[node name="EngineerLower" parent="." instance=ExtResource("1_dmw05")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14961, -0.0406948)
-
-[node name="Body_006" parent="EngineerLower" index="0"]
-surface_material_override/0 = ExtResource("3_mt76g")
-surface_material_override/1 = ExtResource("4_c5tj1")
+mass = 25
 
 [node name="SlotLegFR" type="Marker3D" parent="."]
 transform = Transform3D(-0.707107, 6.18172e-08, 0.707107, 8.74228e-08, 1, 0, 0.707107, -6.18172e-08, 0.707107, 0.118609, -0.545279, -0.233922)
+script = ExtResource("2_cp1a0")
+slot_prefix = "Front Right"
+slot_type = 3
 
 [node name="SlotLegBR" type="Marker3D" parent="."]
 transform = Transform3D(-0.819152, -7.16125e-08, -0.573576, -8.74228e-08, 1, 0, -0.573576, -5.01436e-08, 0.819152, 0.118609, -0.545279, 0.0891398)
+script = ExtResource("2_cp1a0")
+slot_prefix = "Back Right"
+slot_type = 3
 
 [node name="SlotLegFL" type="Marker3D" parent="."]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.119, -0.545279, -0.233922)
+script = ExtResource("2_cp1a0")
+slot_prefix = "Front Left"
+slot_type = 3
 
 [node name="SlotLegBL" type="Marker3D" parent="."]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -0.119, -0.545279, 0.0891398)
+script = ExtResource("2_cp1a0")
+slot_prefix = "Back Left"
+slot_type = 3
 
-[editable path="EngineerLower"]
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+collision_layer = 4
+mass = 20.0
+freeze = true
+script = ExtResource("2_0pk3f")
+
+[node name="EngineerLower" parent="RigidBody3D" instance=ExtResource("1_dmw05")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14961, -0.0406948)
+
+[node name="Body_006" parent="RigidBody3D/EngineerLower" index="0"]
+script = ExtResource("5_gnaks")
+material_id = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.307196, 0)
+shape = SubResource("BoxShape3D_yi6yc")
+
+[editable path="RigidBody3D/EngineerLower"]

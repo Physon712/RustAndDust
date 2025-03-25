@@ -5,5 +5,6 @@
 
 [node name="PlayerBrain" type="Node3D"]
 script = ExtResource("1_o8epo")
+front_name = "You"
 
 [node name="Inventory" parent="." instance=ExtResource("2_ea7mg")]

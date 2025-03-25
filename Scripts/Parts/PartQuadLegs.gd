@@ -62,24 +62,25 @@ func attach():
 	leg_count = legs.size()
 	
 	if(legs.is_empty()): #Worst case scenario, no legs avaible
-		min_length = 0
+		min_length = 0.2
 	else: #At least one leg
 		min_length = legs[0].length
 	for i in range(1,legs.size()): #All the other legs (only one though)
 		min_length = min(min_length,legs[i].length)
 		
-	height = min_length*0.6
-	min_height = min_length*0.6
-	max_height = min_length*0.8
+	height = min_length
+	min_height = min_length*0.9
+	max_height = min_length
 
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	if(!is_attached):
-		pass
+		return
 	
 	for i in range(leg_count):
-		legs_targets[i] = look_for_foothold(legs[i])
+		if(legs[i] != null):
+			legs_targets[i] = look_for_foothold(legs[i])
 	
 	var distances_to_targets = []
 	for i in range(leg_count):
@@ -87,7 +88,8 @@ func _physics_process(delta: float) -> void:
 	
 	for i in range(leg_count):
 		if(legs_targets[i] != null):
-			distances_to_targets[i] = legs_targets[i].distance_to(legs[i].target.global_position)
+			if(legs[i] != null):
+				distances_to_targets[i] = legs_targets[i].distance_to(legs[i].target.global_position)
 		
 	#Evaluate which leg to step, if needed at all
 	var maximum_distance = 0
@@ -107,9 +109,12 @@ func _physics_process(delta: float) -> void:
 	
 	#Update the foot placement to the calculated one, TODO: Move this code to the code of the leg
 	for i in range(leg_count):
-		legs[i].local_target.global_transform.origin = legs[i].target.global_position
+		if(legs[i] != null):
+			legs[i].local_target.global_transform.origin = legs[i].target.global_position
 	
 func step(leg,target): #Update the foot location to the target with an animation
+	if(leg == null):
+		return
 	print("stepping")
 	stepping = true
 	var t = get_tree().create_tween()
@@ -119,6 +124,8 @@ func step(leg,target): #Update the foot location to the target with an animation
 
 	
 func look_for_foothold(leg):
+	if(leg == null):
+		return
 	var space_state = get_world_3d().direct_space_state
 	var dir = (leg.placement_target.global_position) + robot.velocity*1*leg.step_time - leg.placement_top.global_position
 	var query = PhysicsRayQueryParameters3D.create(leg.placement_top.global_position,leg.placement_top.global_position + 5*dir,0b001)

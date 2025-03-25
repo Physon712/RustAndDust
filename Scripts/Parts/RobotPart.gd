@@ -33,7 +33,9 @@ func attach():
 		position = Vector3.ZERO
 	else:
 		is_attached = false
-	paint_material.set_shader_parameter("main_color",paint_color)
+		activate_physics()
+	paint_material.set_shader_parameter("mainColor",paint_color)
+	paint_material.set_shader_parameter("wear",1-(float(integrity)/max_integrity))
 
 func detach():
 	if(is_attached && robot != null):
@@ -69,12 +71,12 @@ func activate_physics():
 		if(c is RigidBody3D):
 			c.freeze = false
 			c.mass = mass
-	
 
 func look_for_parent_robot():
 	var parent = get_parent() #Get the robot that the part is parented to 
-	while(!(parent is Robot)):
-		parent = parent.get_parent()
+	if(parent != null):
+		while(!(parent is Robot) && parent != null):
+				parent = parent.get_parent()
 	return parent
 		
 func get_slot_parts(node): ##Get every parts in the slots of the node

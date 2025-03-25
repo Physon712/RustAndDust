@@ -12,13 +12,14 @@ script = ExtResource("1_hlfxu")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 2
-color = Color(0, 0, 0, 1)
+color = Color(0.169245, 0.169245, 0.169245, 1)
 
 [node name="Container" type="VBoxContainer" parent="."]
 layout_mode = 2
 alignment = 1
 
 [node name="Status" type="HBoxContainer" parent="Container"]
+custom_minimum_size = Vector2(342, 0)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="Container/Status"]

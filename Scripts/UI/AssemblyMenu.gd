@@ -39,8 +39,12 @@ func refresh():
 		robot_b_display.visible = true
 		robot_b_display.assembly_menu = self
 		robot_b_display.evaluate_robot()
+		
+var can_close = false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if(GameData.in_menu && Input.is_action_just_pressed("Inventory")):
+	if(Input.is_action_just_released("Inventory")):
+		can_close = true
+	if(can_close && Input.is_action_just_pressed("Inventory")):
 		GameData.exit_menu_mode()
 		queue_free()

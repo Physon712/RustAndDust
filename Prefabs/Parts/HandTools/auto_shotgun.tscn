@@ -1,0 +1,104 @@
+[gd_scene load_steps=14 format=3 uid="uid://dl8nqu14yfxq1"]
+
+[ext_resource type="Script" path="res://Scripts/Parts/HandGun.gd" id="1_lod64"]
+[ext_resource type="Script" path="res://Scripts/Parts/PhysicalPart.gd" id="2_02hcp"]
+[ext_resource type="PackedScene" uid="uid://br6o03a1syy8j" path="res://Models/Parts/HandWeapons/Shotgun.glb" id="3_5jrnp"]
+[ext_resource type="Material" uid="uid://bucp5fy2db5xn" path="res://Textures/Materials/engineer_armature.tres" id="4_6h6rd"]
+[ext_resource type="Script" path="res://Scripts/Parts/PaintedMesh.gd" id="5_b6qs4"]
+[ext_resource type="AudioStream" uid="uid://br3syduh06w5o" path="res://Audio/Sounds/Guns/RFPistolFire.wav" id="7_3sy4l"]
+[ext_resource type="Texture2D" uid="uid://cjoockfy7yjuw" path="res://Textures/Particles/Particle.png" id="8_mnkom"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0guu7"]
+size = Vector3(0.102, 0.276, 0.965597)
+
+[sub_resource type="Curve" id="Curve_3el03"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.04992, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vc0ln"]
+curve = SubResource("Curve_3el03")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cu1vc"]
+angle_min = -15.0
+angle_max = 15.0
+initial_velocity_min = 1.0
+initial_velocity_max = 4.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 0.7
+scale_curve = SubResource("CurveTexture_vc0ln")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l2qxy"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+albedo_color = Color(1, 0.757717, 0.678536, 1)
+albedo_texture = ExtResource("8_mnkom")
+emission_enabled = true
+emission = Color(0.941176, 0.584314, 0.270588, 1)
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_axnff"]
+material = SubResource("StandardMaterial3D_l2qxy")
+
+[node name="AutoShotgun" type="Node3D" node_paths=PackedStringArray("main_hand_target", "off_hand_target", "firesound", "fireparticle")]
+script = ExtResource("1_lod64")
+recoil_potential = 10
+main_hand_target = NodePath("LeftHand")
+off_hand_target = NodePath("RightHand")
+fire_rate = 0.5
+max_ammo = 32
+dispersion = 3.0
+bullet_count = 6
+firesound = NodePath("RigidBody3D/Muzzle/FireSound")
+fireparticle = NodePath("RigidBody3D/Muzzle/FireParticle")
+front_name = "Shotgun 12g"
+paint_color = Color(0.25, 0.0275, 0.0571666, 1)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+collision_layer = 4
+freeze = true
+script = ExtResource("2_02hcp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.014, -0.6722)
+shape = SubResource("BoxShape3D_0guu7")
+
+[node name="Shotgun" parent="RigidBody3D" instance=ExtResource("3_5jrnp")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, -0.257451)
+
+[node name="Cylinder" parent="RigidBody3D/Shotgun" index="0"]
+surface_material_override/0 = ExtResource("4_6h6rd")
+surface_material_override/1 = ExtResource("4_6h6rd")
+script = ExtResource("5_b6qs4")
+
+[node name="Muzzle" type="Marker3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0822746, -0.984015)
+
+[node name="FireSound" type="AudioStreamPlayer3D" parent="RigidBody3D/Muzzle"]
+stream = ExtResource("7_3sy4l")
+max_distance = 50.0
+bus = &"SFX"
+
+[node name="FireParticle" type="GPUParticles3D" parent="RigidBody3D/Muzzle"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+emitting = false
+lifetime = 0.1
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_cu1vc")
+draw_pass_1 = SubResource("QuadMesh_axnff")
+
+[node name="LeftHand" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00391215, -0.257052)
+
+[node name="RightHand" type="Marker3D" parent="."]
+transform = Transform3D(0.0121472, 0, 0.999926, 0, 1, 0, -0.999926, 0, 0.0121472, 0.0109429, -0.0374735, -0.708599)
+
+[editable path="RigidBody3D/Shotgun"]

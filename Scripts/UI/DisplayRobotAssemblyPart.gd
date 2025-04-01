@@ -52,12 +52,12 @@ func _on_gui_input(event: InputEvent) -> void:
 							assembly_menu.inventory.remove_part(assembly_menu.mouse_data.associated_id)
 							assembly_menu.refresh()
 					else: #Mouse data from assembly to assembly
-						print("replace")
-						assembly_menu.mouse_data.associated_part.get_parent().remove_child(assembly_menu.mouse_data.associated_part)
-						assembly_menu.mouse_data.associated_part.robot.attach_parts()
-						slot.add_child(assembly_menu.mouse_data.associated_part)
-						assembly_menu.mouse_data.associated_part.attach()
-						robot.attach_parts()
-						assembly_menu.refresh()
+						if(assembly_menu.mouse_data.associated_part.get_part_type() == slot.slot_type):
+							assembly_menu.mouse_data.associated_part.get_parent().remove_child(assembly_menu.mouse_data.associated_part)
+							assembly_menu.mouse_data.associated_part.robot.attach_parts()
+							slot.add_child(assembly_menu.mouse_data.associated_part)
+							assembly_menu.mouse_data.associated_part.attach()
+							robot.attach_parts()
+							assembly_menu.refresh()
 					assembly_menu.clear_mouse_data()
 			

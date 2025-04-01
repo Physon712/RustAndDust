@@ -6,6 +6,7 @@ class_name MovementModule
 
 ###Stats
 @export var movement_instability = 2
+@export var max_speed = 6
 var height = 0.2
 
 func attach():

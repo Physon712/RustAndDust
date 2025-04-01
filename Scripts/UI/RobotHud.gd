@@ -5,6 +5,7 @@ extends Control
 
 @onready var status_screen = $StatusScreen
 @onready var mass_display = $StatusScreen/HBoxContainer/MassLabel
+@onready var reticle = $Reticule
 
 var part_displays = []
 
@@ -25,5 +26,20 @@ func evaluate_part(parent,part): #Create display panel for a single part and its
 	var children = part.get_slot_parts(part)
 	for p in children:
 		evaluate_part(display.find_child("Container"),p)
+		
+func _physics_process(delta):
+	var max_inaccuracy = 0
+	for w in robot.weapons: ##Evaluate maximum inaccuracy for the reticle size
+		var inaccuracy = w.evaluate_total_inaccuracy()
+		if inaccuracy > max_inaccuracy:
+			max_inaccuracy = inaccuracy
+	var new_size = Vector2.ONE * float(max_inaccuracy)/75 * size.x + Vector2.ONE * 10
+	reticle.set_size(new_size,true)
+	reticle.set_position(Vector2(size.x,size.y)/2-new_size/2)
+	#reticle.offset_left = -new_size.x/2
+	#reticle.offset_right = new_size.x/2
+	#reticle.offset_top = -new_size.y/2
+	#reticle.offset_bottom = new_size.y/2
+	
 	
 	

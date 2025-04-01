@@ -6,6 +6,7 @@ class_name Gun
 @export var fire_rate = 0.1;
 @export var max_ammo = 320;
 @export var dispersion = 0.01 #Degrees
+@export var bullet_count = 1;
 @export var bullet_speed = 150;
 @export var bullet = preload("res://Prefabs/Projectiles/bullet.tscn");
 @export var animator : AnimationPlayer;
@@ -28,10 +29,10 @@ func _physics_process(delta):
 func _process(delta):
 	time_since_last_shot += delta;
 
-func use():
+func use(): #Use the weapon = fire the weapon
 	fire()
 
-func fire():
+func fire(): #Try to fire the weapon, check for ammo and fire rate
 	if(time_since_last_shot > fire_rate):
 		if(ammo > 0):
 			fire_a_shot()
@@ -44,12 +45,19 @@ func fire():
 			if(fireparticle != null):
 				fireparticle.emitting = true
 	
-func fire_a_shot():
-	var b = bullet.instantiate()
-	world.add_child(b)
+func fire_a_shot(): #Fire the weapon, instantiate a bullet and apply it speed in the aim direction of the robot head
 	var dir = -robot.head.basis.z
-	var dispersion = deg_to_rad(inaccuracy+robot.inaccuracy+dispersion)
-	dir = dir.rotated(robot.head.basis.y,randf_range(-dispersion,dispersion) + rotation.y)
-	dir = dir.rotated(robot.head.basis.x,randf_range(-dispersion,dispersion) + rotation.x)
-	b.transform = robot.head.global_transform
-	b.velocity = dir*bullet_speed
+	var deviation = deg_to_rad(inaccuracy+robot.inaccuracy)
+	dir = dir.rotated(robot.head.basis.y,randf_range(-deviation,deviation) + rotation.y)
+	dir = dir.rotated(robot.head.basis.x,randf_range(-deviation,deviation) + rotation.x)
+	for i in range(bullet_count):
+		var b = bullet.instantiate()
+		world.add_child(b)
+		var dispersion = deg_to_rad(dispersion)
+		dir = dir.rotated(robot.head.basis.y,randf_range(-dispersion,dispersion) + rotation.y)
+		dir = dir.rotated(robot.head.basis.x,randf_range(-dispersion,dispersion) + rotation.x)
+		b.transform = robot.head.global_transform
+		b.velocity = dir*bullet_speed
+
+func evaluate_total_inaccuracy():
+	return super() + dispersion

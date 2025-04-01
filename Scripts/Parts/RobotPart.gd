@@ -59,11 +59,6 @@ func detach_parts(): ##Detach part and children without updading the attached pa
 	##TODO : Activate physics
 	activate_physics()
 	
-func paint_meshes():
-	var meshes = []
-	
-	
-
 func activate_physics():
 	#freeze = false
 	var children = get_children()

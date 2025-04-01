@@ -1,6 +1,7 @@
 extends MeshInstance3D
 
 @export var material_id = 0
+@export var material_light_id = 2
 
 var part
 

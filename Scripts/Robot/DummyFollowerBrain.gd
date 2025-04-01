@@ -24,4 +24,4 @@ func _physics_process(delta: float) -> void:
 		return
 	if(robot.global_position.distance_to(target.global_position) > target_distance):
 		robot.move_direction = target.global_position-robot.global_position
-	robot.head.look_at(target.head.global_position)
+	robot.head.look_at(target.collider.global_position)

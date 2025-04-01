@@ -22,11 +22,17 @@ var stride_distance = 0.1
 
 var stepping = false;
 
+@onready var raw_max_speed = max_speed
+
 func _ready() -> void:
 	super()
 
 func attach():
 	super()
+	fright_leg = null
+	fleft_leg = null
+	bright_leg = null
+	bleft_leg = null
 	if($SlotLegFR.get_child_count() > 0):
 		fright_leg = $SlotLegFR.get_child(0)
 	if($SlotLegFL.get_child_count() > 0):
@@ -37,21 +43,31 @@ func attach():
 		bleft_leg = $SlotLegBL.get_child(0)
 	
 	legs = []
+	var no_leg = true
+	
+	
 	if(fright_leg != null):
 		legs.append(fright_leg)
 		legs_targets.append(fright_leg.rest_target.global_position)
-
+		no_leg = false
+		
+	
 	if(bleft_leg != null):
 		legs.append(bleft_leg)
 		legs_targets.append(bleft_leg.rest_target.global_position)
+		no_leg = false
 		
+	
 	if(fleft_leg != null):
 		legs.append(fleft_leg)
 		legs_targets.append(fleft_leg.rest_target.global_position)
+		no_leg = false
 		
+	
 	if(bright_leg != null):
 		legs.append(bright_leg)
 		legs_targets.append(bright_leg.rest_target.global_position)
+		no_leg = false
 		
 	#Establishing opposite from each leg once we got all the legs accounted for
 	opposite_index.append(legs.find(bleft_leg))
@@ -61,16 +77,19 @@ func attach():
 		
 	leg_count = legs.size()
 	
-	if(legs.is_empty()): #Worst case scenario, no legs avaible
+	max_speed = raw_max_speed * float(leg_count)/4
+	
+	if(no_leg): #Worst case scenario, no legs avaible
 		min_length = 0.2
 	else: #At least one leg
 		min_length = legs[0].length
 	for i in range(1,legs.size()): #All the other legs (only one though)
-		min_length = min(min_length,legs[i].length)
-		
+		if(legs[i] != null):
+			min_length = min(min_length,legs[i].length)
 	height = min_length
 	min_height = min_length*0.9
 	max_height = min_length
+	print(legs)
 
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -79,8 +98,7 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	for i in range(leg_count):
-		if(legs[i] != null):
-			legs_targets[i] = look_for_foothold(legs[i])
+		legs_targets[i] = look_for_foothold(legs[i])
 	
 	var distances_to_targets = []
 	for i in range(leg_count):
@@ -88,8 +106,7 @@ func _physics_process(delta: float) -> void:
 	
 	for i in range(leg_count):
 		if(legs_targets[i] != null):
-			if(legs[i] != null):
-				distances_to_targets[i] = legs_targets[i].distance_to(legs[i].target.global_position)
+			distances_to_targets[i] = legs_targets[i].distance_to(legs[i].target.global_position)
 		
 	#Evaluate which leg to step, if needed at all
 	var maximum_distance = 0

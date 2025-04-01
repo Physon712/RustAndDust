@@ -15,6 +15,9 @@ var hud = null
 
 var frozen = false
 
+func ready():
+	team_signature = GameData.Faction.PLAYER
+
 func attach():
 	super()
 	if(inv == null):

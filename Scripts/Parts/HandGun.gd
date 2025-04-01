@@ -28,7 +28,7 @@ func _physics_process(delta):
 		#rotate_x(adj_rotx)
 		#rotate_y(adj_roty)
 
-func fire_a_shot():
+func fire_a_shot(): #Fire the weapon, and aplly recoil
 	super()
 	##Recoil
 	var recoil = recoil_potential * (mass / grip_strength)
@@ -39,4 +39,7 @@ func fire_a_shot():
 
 func get_part_type():
 	return GameData.PartType.HANDTOOL
+	
+func evaluate_total_inaccuracy():
+	return super() + rotation_degrees.x
 	

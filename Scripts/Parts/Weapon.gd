@@ -6,5 +6,8 @@ var inaccuracy = 0
 var grip_strength = 0
 
 ###Stats
-func use():
+func use(): #Interface function, use = fire for firearm, swing = melee weapon
 	pass
+
+func evaluate_total_inaccuracy():
+	return inaccuracy+robot.inaccuracy

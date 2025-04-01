@@ -2,6 +2,12 @@ extends "res://Scripts/Parts/RobotPart.gd"
 
 class_name Brain
 
+@export var team_signature = GameData.Faction.NEUTRAL
+
+func attach():
+	super()
+	robot.brain = self
+
 func _process(delta: float) -> void:
 	if(robot == null):
 		return

@@ -4,7 +4,6 @@ class_name Leg
 
 ###STAT
 @export var acceleration_force = 2000
-@export var max_speed = 2
 @export var jump_momentum = 250
 
 ###ANIMATION
@@ -18,23 +17,26 @@ class_name Leg
 @onready var placement_target = $PlacementTarget
 @onready var placement_top = $PlacementTop
 @export var IK : SkeletonIK3D
-@export var skeleton : PhysicalBoneSimulator3D
+@export var skeleton_phys : PhysicalBoneSimulator3D
+@export var skeleton : Skeleton3D
 
 func attach():
 	super()
 	IK.start()
+	skeleton_phys.anima
 
 func _physics_process(delta: float) -> void:
-	pass
+	if(skeleton_phys.influence < 1):
+		skeleton.force_update_all_bone_transform()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
 func activate_physics():
-	if(skeleton != null):
-		skeleton.physical_bones_start_simulation()
-		skeleton.influence = 1
+	if(skeleton_phys != null):
+		skeleton_phys.physical_bones_start_simulation()
+		skeleton_phys.influence = 1
 		#IK.active = false
 		
 func get_part_type():

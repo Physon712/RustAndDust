@@ -13,11 +13,12 @@ height = 0.783734
 radius = 0.0759931
 height = 0.759931
 
-[node name="QuadLeg" type="Node3D" node_paths=PackedStringArray("IK")]
+[node name="QuadLeg" type="Node3D" node_paths=PackedStringArray("IK", "skeleton_phys", "skeleton")]
 script = ExtResource("1_nvabi")
-max_speed = 1
 length = 1.05
 IK = NodePath("EngineerQuadLeg/Armature_002/Skeleton3D/SkeletonIK3D")
+skeleton_phys = NodePath("EngineerQuadLeg/Armature_002/Skeleton3D/PhysicalBoneSimulator3D")
+skeleton = NodePath("EngineerQuadLeg/Armature_002/Skeleton3D")
 front_name = "Quad Leg"
 mass = 20
 
@@ -45,10 +46,10 @@ target_node = NodePath("../../../../Target")
 influence = 0.0
 
 [node name="Physical Bone LegFront_L" type="PhysicalBone3D" parent="EngineerQuadLeg/Armature_002/Skeleton3D/PhysicalBoneSimulator3D"]
-transform = Transform3D(0.137257, 0.344709, 0.928621, 0.344709, 0.862271, -0.37103, -0.928621, 0.37103, -0.000471598, -0.363176, 0.644323, 0.00209352)
+transform = Transform3D(0.137257, 0.344709, 0.928621, 0.344709, 0.862271, -0.37103, -0.928621, 0.37103, -0.000471598, -0.363177, 0.644323, 0.00209354)
 collision_layer = 4
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.6008e-09, -1.59902e-07, 0.391867)
-body_offset = Transform3D(1, -1.19209e-07, 5.73345e-09, -1.46974e-08, -5.40604e-08, -1, 1.19209e-07, 1, -7.85803e-09, -8.84756e-09, 0.391867, 1.62981e-07)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.84869e-08, -1.68284e-07, 0.391867)
+body_offset = Transform3D(1, -1.19209e-07, 5.73345e-09, -1.46974e-08, -5.40604e-08, -1, 1.19209e-07, 1, -7.85803e-09, -3.07336e-08, 0.391867, 1.71363e-07)
 bone_name = "LegFront.L"
 script = ExtResource("5_iumly")
 
@@ -60,8 +61,8 @@ shape = SubResource("CapsuleShape3D_2blf5")
 transform = Transform3D(0.999994, -0.00245322, 0.00245034, -0.00245302, -0.00108969, 0.999996, -0.00245054, -0.999996, -0.0010957, -0.728004, 0.409753, 0.00269457)
 collision_layer = 4
 joint_type = 1
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.4111e-08, -2.21684e-08, 0.379966)
-body_offset = Transform3D(1, -8.87085e-08, -4.07763e-08, -1.38027e-08, 3.49246e-10, -1, 3.0268e-09, 1, 5.09899e-08, 5.96046e-08, 0.379966, 2.79397e-09)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.44648e-08, -2.30555e-08, 0.379966)
+body_offset = Transform3D(1, -8.96398e-08, -3.98452e-08, -1.28723e-08, 3.49246e-10, -1, 3.95812e-09, 1, 5.08735e-08, 5.96046e-08, 0.379966, 3.72529e-09)
 bone_name = "ForelegFront.L"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0

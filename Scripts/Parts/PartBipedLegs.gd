@@ -13,8 +13,9 @@ var min_length = 0
 var max_height = 0.7
 var min_height = 0.35
 var stride_distance = 0.1
-
 var stepping = false;
+
+@onready var raw_max_speed = max_speed
 
 func attach():
 	super()
@@ -26,12 +27,16 @@ func attach():
 		legs.append(right_leg)
 	if(left_leg != null):
 		legs.append(left_leg)
+		
 	
 	if(legs.is_empty()): #Worst case scenario, no legs avaible
 		min_length = 0.2
 	else: #At least one leg
 		min_length = legs[0].length
-	for i in range(1,legs.size()): #All the other legs (only one though)
+		
+	max_speed = raw_max_speed * float(legs.size())/2
+		
+	for i in range(1,legs.size()): #All the other legs
 		min_length = min(min_length,legs[i].length)
 		
 	height = min_length

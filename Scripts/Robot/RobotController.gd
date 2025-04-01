@@ -17,11 +17,13 @@ var movement_instability
 @onready var head = $Head
 @onready var collider = $Collider
 @onready var main_slot  = $Parts
+
 var parts = []
 var part_core = null
-
 var camera = null
+var brain = null
 var weapons = []
+
 var move_direction = Vector3.ZERO
 
 var height = 1.8;
@@ -35,6 +37,7 @@ var jump_speed
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	add_to_group("Robot")
 	attach_parts()
 
 
@@ -53,14 +56,16 @@ func attach_parts(): #Attach all parts and create the establish the list of the 
 	parts = []
 	weapons = []
 	part_core = null
+	brain = null
 	get_parts(self)
 	
-	if($Parts.get_child_count() > 0):
+	if($Parts.get_child_count() > 0): # Register for the main part, the core
 		part_core = $Parts.get_child(0)
 	else:
-		queue_free()
+		pass
+		#queue_free()
 	
-	for p in parts:
+	for p in parts: ## Account for every stat of every part attached
 		p.attach()
 		#Add basic properties
 		energy_consumption += p.energy_consumption
@@ -108,6 +113,8 @@ func _physics_process(delta):
 	if(height > 0):
 		collider.shape.height = height
 		collider.position.y = height/2
+	else:
+		collider.disabled = true
 	var dir = move_direction.normalized()
 	var wanted_velocity = dir*max_speed
 	
@@ -132,11 +139,30 @@ func _physics_process(delta):
 		velocity += adjusting_velocity
 		
 	inaccuracy = (velocity.length()/max_speed) * movement_instability
-	move_and_slide()
+	
+	if(!collider.disabled):
+		move_and_slide()
 	
 	##Revert to default value and await further instruction
 	move_direction = Vector3.ZERO
 
-func action_jump():
+func action_jump(): # Try to jump
 	if(is_on_floor()):
 		velocity.y = jump_speed
+
+func explosion(force,ray,pos): #Apply force for an explosion
+	var d = (global_transform.origin-pos)
+	if d.length() <= ray:
+		var appliedforce = ((1-d.length()/ray)**2)*force #Square
+		d = d.normalized()
+		apply_central_impulse(d*(appliedforce))
+		
+func directional_explosion(force,ray,pos,direction): #Apply force for a directionnal push
+	var d = (global_transform.origin-pos)
+	if d.length() <= ray:
+		var appliedforce = ((1-d.length()/ray)**2)*force #Square
+		apply_central_impulse(direction*(appliedforce))
+		
+func apply_central_impulse(energie): # Same as function for a rigidbody of the same name
+	var speed = energie/mass
+	velocity += speed

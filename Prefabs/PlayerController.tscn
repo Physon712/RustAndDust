@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://diq7gas308lgq"]
 
-[ext_resource type="Script" path="res://Scripts/PlayerController.gd" id="1_4uok4"]
-[ext_resource type="Script" path="res://Scripts/Inventory.gd" id="1_78dhd"]
+[ext_resource type="Script" uid="uid://cvl5ef4jy41n4" path="res://Scripts/PlayerController.gd" id="1_4uok4"]
+[ext_resource type="Script" uid="uid://b1565334eqikb" path="res://Scripts/Inventory.gd" id="1_78dhd"]
 [ext_resource type="PackedScene" uid="uid://d2d363q0de26m" path="res://Prefabs/UI/robot_hud.tscn" id="2_pwdpn"]
 
 [node name="PlayerController" type="Node"]

@@ -1,10 +1,10 @@
 [gd_scene load_steps=14 format=3 uid="uid://dl8nqu14yfxq1"]
 
-[ext_resource type="Script" path="res://Scripts/Parts/HandGun.gd" id="1_lod64"]
-[ext_resource type="Script" path="res://Scripts/Parts/PhysicalPart.gd" id="2_02hcp"]
+[ext_resource type="Script" uid="uid://cb5f2ixoifgjy" path="res://Scripts/Parts/HandGun.gd" id="1_lod64"]
+[ext_resource type="Script" uid="uid://c0af5hkdeulu" path="res://Scripts/Parts/PhysicalPart.gd" id="2_02hcp"]
 [ext_resource type="PackedScene" uid="uid://br6o03a1syy8j" path="res://Models/Parts/HandWeapons/Shotgun.glb" id="3_5jrnp"]
 [ext_resource type="Material" uid="uid://bucp5fy2db5xn" path="res://Textures/Materials/engineer_armature.tres" id="4_6h6rd"]
-[ext_resource type="Script" path="res://Scripts/Parts/PaintedMesh.gd" id="5_b6qs4"]
+[ext_resource type="Script" uid="uid://cfsd884pdedwm" path="res://Scripts/Parts/PaintedMesh.gd" id="5_b6qs4"]
 [ext_resource type="AudioStream" uid="uid://br3syduh06w5o" path="res://Audio/Sounds/Guns/RFPistolFire.wav" id="7_3sy4l"]
 [ext_resource type="Texture2D" uid="uid://cjoockfy7yjuw" path="res://Textures/Particles/Particle.png" id="8_mnkom"]
 
@@ -45,7 +45,7 @@ particles_anim_loop = false
 [sub_resource type="QuadMesh" id="QuadMesh_axnff"]
 material = SubResource("StandardMaterial3D_l2qxy")
 
-[node name="AutoShotgun" type="Node3D" node_paths=PackedStringArray("main_hand_target", "off_hand_target", "firesound", "fireparticle")]
+[node name="AutoShotgun" type="Node3D" node_paths=PackedStringArray("main_hand_target", "off_hand_target", "firesound", "fireparticle", "muzzle")]
 script = ExtResource("1_lod64")
 recoil_potential = 10
 main_hand_target = NodePath("LeftHand")
@@ -56,6 +56,7 @@ dispersion = 3.0
 bullet_count = 6
 firesound = NodePath("RigidBody3D/Muzzle/FireSound")
 fireparticle = NodePath("RigidBody3D/Muzzle/FireParticle")
+muzzle = NodePath("RigidBody3D/Muzzle")
 front_name = "Shotgun 12g"
 paint_color = Color(0.25, 0.0275, 0.0571666, 1)
 

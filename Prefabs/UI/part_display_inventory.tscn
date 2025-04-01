@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://qxk54yvp8mfn"]
 
-[ext_resource type="Script" path="res://Scripts/UI/DisplayInventoryPart.gd" id="1_xuwkr"]
+[ext_resource type="Script" uid="uid://b7tagks8qklci" path="res://Scripts/UI/DisplayInventoryPart.gd" id="1_xuwkr"]
 
 [node name="Part" type="MarginContainer"]
 custom_minimum_size = Vector2(0, 32)

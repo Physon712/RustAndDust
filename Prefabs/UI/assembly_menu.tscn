@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://ckykbn1u36w4v"]
 
-[ext_resource type="Script" path="res://Scripts/UI/AssemblyMenu.gd" id="1_vrq1h"]
-[ext_resource type="Script" path="res://Scripts/UI/DisplayRobotAssembly.gd" id="2_314t5"]
-[ext_resource type="Script" path="res://Scripts/UI/DisplayInventory.gd" id="3_087re"]
+[ext_resource type="Script" uid="uid://dpps1po4vvpdx" path="res://Scripts/UI/AssemblyMenu.gd" id="1_vrq1h"]
+[ext_resource type="Script" uid="uid://cih0t00mrp420" path="res://Scripts/UI/DisplayRobotAssembly.gd" id="2_314t5"]
+[ext_resource type="Script" uid="uid://da17xsyq1h8yq" path="res://Scripts/UI/DisplayInventory.gd" id="3_087re"]
 
 [node name="AssemblyMenu" type="Control"]
 layout_mode = 3

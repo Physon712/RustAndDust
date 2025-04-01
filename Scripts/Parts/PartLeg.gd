@@ -18,16 +18,10 @@ class_name Leg
 @onready var placement_top = $PlacementTop
 @export var IK : SkeletonIK3D
 @export var skeleton_phys : PhysicalBoneSimulator3D
-@export var skeleton : Skeleton3D
 
 func attach():
 	super()
 	IK.start()
-	skeleton_phys.anima
-
-func _physics_process(delta: float) -> void:
-	if(skeleton_phys.influence < 1):
-		skeleton.force_update_all_bone_transform()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

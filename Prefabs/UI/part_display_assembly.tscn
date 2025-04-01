@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://pbsi2x67qgps"]
 
-[ext_resource type="Script" path="res://Scripts/UI/DisplayRobotAssemblyPart.gd" id="1_hlfxu"]
+[ext_resource type="Script" uid="uid://3pdloixct5cd" path="res://Scripts/UI/DisplayRobotAssemblyPart.gd" id="1_hlfxu"]
 [ext_resource type="Texture2D" uid="uid://dlgrcjfc3fbam" path="res://Textures/HalfSquare.png" id="2_85xtv"]
 
 [node name="Part" type="MarginContainer"]

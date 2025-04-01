@@ -13,7 +13,7 @@ config_version=5
 config/name="Rust and Dust"
 config/version="0.1"
 run/main_scene="res://Levels/Test/Test.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -95,7 +95,3 @@ Inventory={
 3d_physics/layer_1="Geometry"
 3d_physics/layer_2="Entities"
 3d_physics/layer_3="Parts"
-
-[physics]
-
-3d/physics_engine="JoltPhysics3D"

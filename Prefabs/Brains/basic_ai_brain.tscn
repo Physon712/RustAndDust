@@ -1,6 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://lno8iby20wxq"]
 
-[ext_resource type="Script" path="res://Scripts/Robot/BasicAiBrain.gd" id="1_6ybnq"]
+[ext_resource type="Script" uid="uid://bocnfse2jtt8f" path="res://Scripts/Robot/BasicAiBrain.gd" id="1_6ybnq"]
 
 [node name="Brain" type="Node3D"]
 script = ExtResource("1_6ybnq")
+team_signature = 3
+front_name = "Scrapper AI"

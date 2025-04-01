@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://b4dc81337rvha"]
 
-[ext_resource type="Script" path="res://Scripts/FX/ImpactSpark.gd" id="1_agvr7"]
+[ext_resource type="Script" uid="uid://qwoynvdg4daw" path="res://Scripts/FX/ImpactSpark.gd" id="1_agvr7"]
 [ext_resource type="Texture2D" uid="uid://cjoockfy7yjuw" path="res://Textures/Particles/Particle.png" id="1_w5dti"]
 [ext_resource type="AudioStream" uid="uid://br3syduh06w5o" path="res://Audio/Sounds/Guns/RFPistolFire.wav" id="3_iqbqc"]
 

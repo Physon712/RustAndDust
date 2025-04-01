@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cfukrygrecg7f"]
 
-[ext_resource type="Script" path="res://Scripts/Parts/HandGun.gd" id="1_kd1xd"]
+[ext_resource type="Script" uid="uid://cb5f2ixoifgjy" path="res://Scripts/Parts/HandGun.gd" id="1_kd1xd"]
 [ext_resource type="PackedScene" uid="uid://c7tvcmsehqhu6" path="res://Models/Parts/HandWeapons/LightMachineGun.glb" id="2_0oii7"]
 [ext_resource type="Material" uid="uid://bs0a5kuq35kox" path="res://Textures/Materials/beta_plate.tres" id="3_schrx"]
 [ext_resource type="Material" uid="uid://dl3f5cthok1pf" path="res://Textures/Materials/beta_armature.tres" id="4_l8u8v"]

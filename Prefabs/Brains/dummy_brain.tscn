@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cp2wvdojahkkj"]
 
-[ext_resource type="Script" path="res://Scripts/Robot/DummyFollowerBrain.gd" id="1_l0qna"]
+[ext_resource type="Script" uid="uid://cvdf20ad0op7e" path="res://Scripts/Robot/DummyFollowerBrain.gd" id="1_l0qna"]
 
 [node name="Brain" type="Node3D"]
 script = ExtResource("1_l0qna")

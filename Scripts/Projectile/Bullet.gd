@@ -3,6 +3,8 @@ extends Node3D
 @export var speed = 250
 @export var damage = 5
 
+var shooter : Robot;
+
 @onready var velocity = -basis.z*speed
 var next_position = Vector3.ZERO
 
@@ -24,7 +26,7 @@ func check_for_collision(): #Raycast between current position and next position,
 	var result = space_state.intersect_ray(query)
 	if(result):
 		if(result.collider.has_method("bullet_hit")):
-				result.collider.call("bullet_hit",damage)
+				result.collider.call("bullet_hit",damage,shooter)
 				
 				##Create impact spark effect
 				var explosion = spark_prefab.instantiate()

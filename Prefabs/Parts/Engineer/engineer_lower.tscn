@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://75ncvrb6jw87"]
 
 [ext_resource type="PackedScene" uid="uid://22j0rdhdpffb" path="res://Models/Parts/Engineer/EngineerLower.glb" id="1_dmw05"]
-[ext_resource type="Script" path="res://Scripts/Parts/PartQuadLegs.gd" id="1_njori"]
-[ext_resource type="Script" path="res://Scripts/Parts/PhysicalPart.gd" id="2_0pk3f"]
-[ext_resource type="Script" path="res://Scripts/Parts/Slot.gd" id="2_cp1a0"]
-[ext_resource type="Script" path="res://Scripts/Parts/PaintedMesh.gd" id="5_gnaks"]
+[ext_resource type="Script" uid="uid://c3d11mofgkiht" path="res://Scripts/Parts/PartQuadLegs.gd" id="1_njori"]
+[ext_resource type="Script" uid="uid://c0af5hkdeulu" path="res://Scripts/Parts/PhysicalPart.gd" id="2_0pk3f"]
+[ext_resource type="Script" uid="uid://djp13xat2gecj" path="res://Scripts/Parts/Slot.gd" id="2_cp1a0"]
+[ext_resource type="Script" uid="uid://cfsd884pdedwm" path="res://Scripts/Parts/PaintedMesh.gd" id="5_gnaks"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yi6yc"]
 size = Vector3(0.43, 0.64, 0.565)

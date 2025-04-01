@@ -24,7 +24,7 @@ var camera = null
 var brain = null
 var weapons = []
 
-var move_direction = Vector3.ZERO
+@onready var move_direction = Vector3.ZERO
 
 var height = 1.8;
 var inaccuracy = 0;
@@ -150,14 +150,14 @@ func action_jump(): # Try to jump
 	if(is_on_floor()):
 		velocity.y = jump_speed
 
-func explosion(force,ray,pos): #Apply force for an explosion
+func explosion(force,ray,pos,_reponsible : Robot = null): #Apply force for an explosion
 	var d = (global_transform.origin-pos)
 	if d.length() <= ray:
 		var appliedforce = ((1-d.length()/ray)**2)*force #Square
 		d = d.normalized()
 		apply_central_impulse(d*(appliedforce))
 		
-func directional_explosion(force,ray,pos,direction): #Apply force for a directionnal push
+func directional_explosion(force,ray,pos,direction,_responsible : Robot = null): #Apply force for a directionnal push
 	var d = (global_transform.origin-pos)
 	if d.length() <= ray:
 		var appliedforce = ((1-d.length()/ray)**2)*force #Square

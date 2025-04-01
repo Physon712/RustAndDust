@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://d2d363q0de26m"]
 
-[ext_resource type="Script" path="res://Scripts/UI/RobotHud.gd" id="1_eq17u"]
+[ext_resource type="Script" uid="uid://cdbqv5qqwb6i7" path="res://Scripts/UI/RobotHud.gd" id="1_eq17u"]
 [ext_resource type="Texture2D" uid="uid://v8gi5glsxyix" path="res://Textures/UI/Reticule3.png" id="1_ovtxx"]
 [ext_resource type="Texture2D" uid="uid://clsi3tvme03eg" path="res://Textures/UI/Reticule1.png" id="3_e7thi"]
 

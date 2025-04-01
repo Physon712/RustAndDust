@@ -1,9 +1,9 @@
 [gd_scene load_steps=35 format=3 uid="uid://elcn80b8bu83"]
 
-[ext_resource type="Script" path="res://Scripts/Robot/RobotController.gd" id="1_nqqxn"]
-[ext_resource type="Script" path="res://Scripts/Parts/Slot.gd" id="2_ne2jd"]
+[ext_resource type="Script" uid="uid://cxy7jwh4lbmr2" path="res://Scripts/Robot/RobotController.gd" id="1_nqqxn"]
+[ext_resource type="Script" uid="uid://djp13xat2gecj" path="res://Scripts/Parts/Slot.gd" id="2_ne2jd"]
 [ext_resource type="PackedScene" uid="uid://d0fssjvs1knfm" path="res://Prefabs/Parts/Beta/beta_core.tscn" id="3_3bk50"]
-[ext_resource type="Shader" path="res://Shaders/WearingMetal.gdshader" id="4_cklpc"]
+[ext_resource type="Shader" uid="uid://cf8i0c8es1gbi" path="res://Shaders/WearingMetal.gdshader" id="4_cklpc"]
 [ext_resource type="PackedScene" uid="uid://cxj6d0aoyacem" path="res://Prefabs/Parts/Beta/beta_head.tscn" id="4_elc0y"]
 [ext_resource type="PackedScene" uid="uid://5fmcgbbmusuo" path="res://Prefabs/Parts/Beta/beta_arm.tscn" id="5_2v756"]
 [ext_resource type="Texture2D" uid="uid://ko37xf1e46nc" path="res://Textures/RoughCowPattern.png" id="5_xeekq"]
@@ -22,11 +22,11 @@ noise = SubResource("FastNoiseLite_4pgkc")
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("4_cklpc")
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_u4qon")
+shader_parameter/wearTexture = ExtResource("5_xeekq")
 shader_parameter/mainColor = Color(0.98, 0.861093, 0.0882, 1)
 shader_parameter/wearColor = Color(0.20871, 0.20871, 0.20871, 1)
 shader_parameter/wear = 0.0
-shader_parameter/noiseTexture = SubResource("NoiseTexture2D_u4qon")
-shader_parameter/wearTexture = ExtResource("5_xeekq")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_305oj"]
 
@@ -37,11 +37,11 @@ noise = SubResource("FastNoiseLite_305oj")
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("4_cklpc")
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_mjsct")
+shader_parameter/wearTexture = ExtResource("5_xeekq")
 shader_parameter/mainColor = Color(0.98, 0.861093, 0.0882, 1)
 shader_parameter/wearColor = Color(0.20871, 0.20871, 0.20871, 1)
 shader_parameter/wear = 0.0
-shader_parameter/noiseTexture = SubResource("NoiseTexture2D_mjsct")
-shader_parameter/wearTexture = ExtResource("5_xeekq")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_87iup"]
 
@@ -52,11 +52,11 @@ noise = SubResource("FastNoiseLite_87iup")
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("4_cklpc")
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_ku8vm")
+shader_parameter/wearTexture = ExtResource("5_xeekq")
 shader_parameter/mainColor = Color(0.98, 0.861093, 0.0882, 1)
 shader_parameter/wearColor = Color(0.20871, 0.20871, 0.20871, 1)
 shader_parameter/wear = 0.0
-shader_parameter/noiseTexture = SubResource("NoiseTexture2D_ku8vm")
-shader_parameter/wearTexture = ExtResource("5_xeekq")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_madeh"]
 
@@ -67,21 +67,21 @@ noise = SubResource("FastNoiseLite_madeh")
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("4_cklpc")
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_y78cj")
+shader_parameter/wearTexture = ExtResource("5_xeekq")
 shader_parameter/mainColor = Color(0.98, 0.861093, 0.0882, 1)
 shader_parameter/wearColor = Color(0.20871, 0.20871, 0.20871, 1)
 shader_parameter/wear = 0.0
-shader_parameter/noiseTexture = SubResource("NoiseTexture2D_y78cj")
-shader_parameter/wearTexture = ExtResource("5_xeekq")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_msvyk"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("4_cklpc")
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_y78cj")
+shader_parameter/wearTexture = ExtResource("5_xeekq")
 shader_parameter/mainColor = Color(0.98, 0.861093, 0.0882, 1)
 shader_parameter/wearColor = Color(0.20871, 0.20871, 0.20871, 1)
 shader_parameter/wear = 0.0
-shader_parameter/noiseTexture = SubResource("NoiseTexture2D_y78cj")
-shader_parameter/wearTexture = ExtResource("5_xeekq")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ylua1"]
 
@@ -92,11 +92,11 @@ noise = SubResource("FastNoiseLite_ylua1")
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("4_cklpc")
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_10glp")
+shader_parameter/wearTexture = ExtResource("5_xeekq")
 shader_parameter/mainColor = Color(0.98, 0.861093, 0.0882, 1)
 shader_parameter/wearColor = Color(0.20871, 0.20871, 0.20871, 1)
 shader_parameter/wear = 0.0
-shader_parameter/noiseTexture = SubResource("NoiseTexture2D_10glp")
-shader_parameter/wearTexture = ExtResource("5_xeekq")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_gqmin"]
 
@@ -107,21 +107,21 @@ noise = SubResource("FastNoiseLite_gqmin")
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("4_cklpc")
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_38vfp")
+shader_parameter/wearTexture = ExtResource("5_xeekq")
 shader_parameter/mainColor = Color(0.98, 0.861093, 0.0882, 1)
 shader_parameter/wearColor = Color(0.20871, 0.20871, 0.20871, 1)
 shader_parameter/wear = 0.0
-shader_parameter/noiseTexture = SubResource("NoiseTexture2D_38vfp")
-shader_parameter/wearTexture = ExtResource("5_xeekq")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ycwx4"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("4_cklpc")
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_38vfp")
+shader_parameter/wearTexture = ExtResource("5_xeekq")
 shader_parameter/mainColor = Color(0.98, 0.861093, 0.0882, 1)
 shader_parameter/wearColor = Color(0.20871, 0.20871, 0.20871, 1)
 shader_parameter/wear = 0.0
-shader_parameter/noiseTexture = SubResource("NoiseTexture2D_38vfp")
-shader_parameter/wearTexture = ExtResource("5_xeekq")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_rpkdn"]
 
@@ -132,11 +132,11 @@ noise = SubResource("FastNoiseLite_rpkdn")
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("4_cklpc")
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_wiyip")
+shader_parameter/wearTexture = ExtResource("5_xeekq")
 shader_parameter/mainColor = Color(0.98, 0.861093, 0.0882, 1)
 shader_parameter/wearColor = Color(0.20871, 0.20871, 0.20871, 1)
 shader_parameter/wear = 0.0
-shader_parameter/noiseTexture = SubResource("NoiseTexture2D_wiyip")
-shader_parameter/wearTexture = ExtResource("5_xeekq")
 
 [node name="Robot2" type="CharacterBody3D"]
 collision_layer = 2

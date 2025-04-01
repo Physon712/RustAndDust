@@ -12,8 +12,7 @@ class_name Gun
 @export var animator : AnimationPlayer;
 @export var firesound : AudioStreamPlayer3D;
 @export var fireparticle : GPUParticles3D;
-
-@onready var muzzle = $Muzzle
+@export var muzzle : Marker3D;
 
 var output_transform:Transform3D;
 var ammo = max_ammo;

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cpkk7jal2oc44"]
 
-[ext_resource type="Script" path="res://Scripts/Parts/PartBipedLegs.gd" id="1_r67c5"]
+[ext_resource type="Script" uid="uid://5tp7iryqoqm3" path="res://Scripts/Parts/PartBipedLegs.gd" id="1_r67c5"]
 
 [node name="PartMovement" type="Node3D"]
 script = ExtResource("1_r67c5")

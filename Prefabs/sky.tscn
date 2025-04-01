@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dyl8gvieoknak"]
 
-[ext_resource type="Script" path="res://Scripts/SkyCycle.gd" id="1_laxbq"]
+[ext_resource type="Script" uid="uid://byej4mtl4ruff" path="res://Scripts/SkyCycle.gd" id="1_laxbq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pnjn4"]
 sky_top_color = Color(0.158828, 0.416281, 0.88099, 1)
@@ -174,8 +174,8 @@ tracks/5/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a6wxt"]
 _data = {
-"RESET": SubResource("Animation_w5nue"),
-"SimpleDayAndNightCycle": SubResource("Animation_spg47")
+&"RESET": SubResource("Animation_w5nue"),
+&"SimpleDayAndNightCycle": SubResource("Animation_spg47")
 }
 
 [node name="Sky" type="Node3D"]

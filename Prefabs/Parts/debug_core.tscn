@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://0lr5w6dw4hlo"]
 
-[ext_resource type="Script" path="res://Scripts/Parts/PartCore.gd" id="1_dg1ow"]
+[ext_resource type="Script" uid="uid://cbehis5wi14lx" path="res://Scripts/Parts/PartCore.gd" id="1_dg1ow"]
 [ext_resource type="PackedScene" uid="uid://b1xh8r84l5wsg" path="res://Models/Parts/DebugChest.glb" id="1_vy8oa"]
 
 [node name="PartCore" type="Node3D"]

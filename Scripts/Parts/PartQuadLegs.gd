@@ -45,7 +45,6 @@ func attach():
 	legs = []
 	var no_leg = true
 	
-	
 	if(fright_leg != null):
 		legs.append(fright_leg)
 		legs_targets.append(fright_leg.rest_target.global_position)
@@ -68,7 +67,9 @@ func attach():
 		legs.append(bright_leg)
 		legs_targets.append(bright_leg.rest_target.global_position)
 		no_leg = false
-		
+	
+	stepping = false
+	opposite_index = []
 	#Establishing opposite from each leg once we got all the legs accounted for
 	opposite_index.append(legs.find(bleft_leg))
 	opposite_index.append(legs.find(fright_leg))
@@ -89,7 +90,6 @@ func attach():
 	height = min_length
 	min_height = min_length*0.9
 	max_height = min_length
-	print(legs)
 
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -132,7 +132,6 @@ func _physics_process(delta: float) -> void:
 func step(leg,target): #Update the foot location to the target with an animation
 	if(leg == null):
 		return
-	print("stepping")
 	stepping = true
 	var t = get_tree().create_tween()
 	t.tween_property(leg.target,"global_position",leg.rest_target.global_position,leg.step_time/2)

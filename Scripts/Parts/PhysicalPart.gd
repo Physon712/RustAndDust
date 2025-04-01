@@ -12,17 +12,17 @@ func _ready():
 	add_to_group("PhysObj")
 	part = look_for_parent_part()
 
-func bullet_hit(damage):
-	part.bullet_hit(damage)
+func bullet_hit(damage,_responsible : Robot = null):
+	part.bullet_hit(damage,_responsible)
 	
-func explosion(force,ray,pos): #Apply force for an explosion
+func explosion(force,ray,pos,_responsible : Robot = null): #Apply force for an explosion
 	var d = (global_transform.origin-pos)
 	if d.length() <= ray:
 		var appliedforce = ((1-d.length()/ray)**2)*force #Square
 		d = d.normalized()
 		apply_central_impulse(d*(appliedforce))
 		
-func directional_explosion(force,ray,pos,direction): #Apply force for a directionnal push
+func directional_explosion(force,ray,pos,direction,_responsible : Robot = null): #Apply force for a directionnal push
 	var d = (global_transform.origin-pos)
 	if d.length() <= ray:
 		var appliedforce = ((1-d.length()/ray)**2)*force #Square

@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://bl0uckl4khvfd"]
 
-[ext_resource type="Script" path="res://Scripts/Robot/RobotController.gd" id="1_nienf"]
-[ext_resource type="Script" path="res://Scripts/Robot/PlayerBrain.gd" id="2_c8aau"]
+[ext_resource type="Script" uid="uid://cxy7jwh4lbmr2" path="res://Scripts/Robot/RobotController.gd" id="1_nienf"]
+[ext_resource type="Script" uid="uid://ctgxqfuwmj2mp" path="res://Scripts/Robot/PlayerBrain.gd" id="2_c8aau"]
 [ext_resource type="PackedScene" uid="uid://bohxn7hu2gmfk" path="res://Prefabs/Parts/Engineer/engineer_core.tscn" id="3_4nj4h"]
 [ext_resource type="PackedScene" uid="uid://osay08vocqxj" path="res://Prefabs/Parts/Engineer/engineer_arm.tscn" id="4_mxwha"]
 [ext_resource type="PackedScene" uid="uid://cdflht11veebq" path="res://Prefabs/Parts/Engineer/engineer_head.tscn" id="5_wnynk"]

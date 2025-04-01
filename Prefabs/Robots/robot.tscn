@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bit663ribx1au"]
 
-[ext_resource type="Script" path="res://Scripts/Robot/RobotController.gd" id="1_02gnq"]
-[ext_resource type="Script" path="res://Scripts/Parts/Slot.gd" id="2_l1j5o"]
+[ext_resource type="Script" uid="uid://cxy7jwh4lbmr2" path="res://Scripts/Robot/RobotController.gd" id="1_02gnq"]
+[ext_resource type="Script" uid="uid://djp13xat2gecj" path="res://Scripts/Parts/Slot.gd" id="2_l1j5o"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_byq50"]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b0h2ird02ohr"]
 
 [ext_resource type="PackedScene" uid="uid://bsg25hp1rhxlu" path="res://Models/Parts/DebugLeg.glb" id="1_4l4el"]
-[ext_resource type="Script" path="res://Scripts/Parts/PartLeg.gd" id="1_drvc3"]
+[ext_resource type="Script" uid="uid://b3ok516df1mee" path="res://Scripts/Parts/PartLeg.gd" id="1_drvc3"]
 
 [node name="PartLeg" type="Node3D"]
 script = ExtResource("1_drvc3")

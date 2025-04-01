@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://sridm6euuaso"]
 
-[ext_resource type="Script" path="res://Scripts/UI/DisplayHudPart.gd" id="1_tlcva"]
+[ext_resource type="Script" uid="uid://ck3adnc23o6wy" path="res://Scripts/UI/DisplayHudPart.gd" id="1_tlcva"]
 [ext_resource type="Texture2D" uid="uid://dlgrcjfc3fbam" path="res://Textures/HalfSquare.png" id="2_0aet8"]
 
 [node name="Part" type="MarginContainer"]

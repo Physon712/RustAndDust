@@ -96,10 +96,10 @@ func get_slots(node): ##Get every slots of the node
 func _process(delta: float) -> void:
 	pass
 	
-func bullet_hit(damage):
-	take_damage(damage)
+func bullet_hit(damage,_responsible : Robot = null):
+	take_damage(damage,_responsible)
 	
-func take_damage(damage):
+func take_damage(damage,_responsible : Robot = null):
 	integrity -= damage
 	paint_material.set_shader_parameter("wear",1-(float(integrity)/max_integrity))
 	if(integrity <= 0):

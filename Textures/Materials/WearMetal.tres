@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://dyai2s24mjp2q"]
 
-[ext_resource type="Shader" path="res://Shaders/WearingMetal.gdshader" id="1_arkf7"]
+[ext_resource type="Shader" uid="uid://cf8i0c8es1gbi" path="res://Shaders/WearingMetal.gdshader" id="1_arkf7"]
 [ext_resource type="Texture2D" uid="uid://ko37xf1e46nc" path="res://Textures/RoughCowPattern.png" id="2_8x4de"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_4pgkc"]
@@ -11,8 +11,8 @@ noise = SubResource("FastNoiseLite_4pgkc")
 [resource]
 render_priority = 0
 shader = ExtResource("1_arkf7")
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_u4qon")
+shader_parameter/wearTexture = ExtResource("2_8x4de")
 shader_parameter/mainColor = Color(0.98, 0.861093, 0.0882, 1)
 shader_parameter/wearColor = Color(0.20871, 0.20871, 0.20871, 1)
 shader_parameter/wear = 0.686
-shader_parameter/noiseTexture = SubResource("NoiseTexture2D_u4qon")
-shader_parameter/wearTexture = ExtResource("2_8x4de")

@@ -1,42 +1,42 @@
 [gd_scene load_steps=15 format=3 uid="uid://cxj6d0aoyacem"]
 
-[ext_resource type="Script" path="res://Scripts/Parts/PartHead.gd" id="1_4et2o"]
-[ext_resource type="Script" path="res://Scripts/Parts/PhysicalPart.gd" id="2_ki6ah"]
+[ext_resource type="Script" uid="uid://1ivlmbpi6et6" path="res://Scripts/Parts/PartHead.gd" id="1_4et2o"]
+[ext_resource type="Script" uid="uid://c0af5hkdeulu" path="res://Scripts/Parts/PhysicalPart.gd" id="2_ki6ah"]
 [ext_resource type="PackedScene" uid="uid://dgnnwc64divc" path="res://Models/Parts/BetaHead.glb" id="2_n8fod"]
-[ext_resource type="Script" path="res://Scripts/Parts/Slot.gd" id="4_18lgi"]
-[ext_resource type="Shader" path="res://Shaders/WearingMetal.gdshader" id="4_lshbl"]
-[ext_resource type="Script" path="res://Scripts/Parts/PaintedMesh.gd" id="5_1d25v"]
+[ext_resource type="Script" uid="uid://djp13xat2gecj" path="res://Scripts/Parts/Slot.gd" id="4_18lgi"]
+[ext_resource type="Shader" uid="uid://cf8i0c8es1gbi" path="res://Shaders/WearingMetal.gdshader" id="4_lshbl"]
+[ext_resource type="Script" uid="uid://cfsd884pdedwm" path="res://Scripts/Parts/PaintedMesh.gd" id="5_1d25v"]
 [ext_resource type="Texture2D" uid="uid://ko37xf1e46nc" path="res://Textures/RoughCowPattern.png" id="5_sgta1"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_305oj"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_w3if0"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mjsct"]
-noise = SubResource("FastNoiseLite_305oj")
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_is8ck"]
+noise = SubResource("FastNoiseLite_w3if0")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6ksjw"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("4_lshbl")
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_is8ck")
+shader_parameter/wearTexture = ExtResource("5_sgta1")
 shader_parameter/mainColor = Color(0.98, 0.861093, 0.0882, 1)
 shader_parameter/wearColor = Color(0.20871, 0.20871, 0.20871, 1)
 shader_parameter/wear = 0.0
-shader_parameter/noiseTexture = SubResource("NoiseTexture2D_mjsct")
-shader_parameter/wearTexture = ExtResource("5_sgta1")
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_87iup"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_s5e68"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ku8vm"]
-noise = SubResource("FastNoiseLite_87iup")
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2le7u"]
+noise = SubResource("FastNoiseLite_s5e68")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qsk8g"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("4_lshbl")
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_2le7u")
+shader_parameter/wearTexture = ExtResource("5_sgta1")
 shader_parameter/mainColor = Color(0.98, 0.861093, 0.0882, 1)
 shader_parameter/wearColor = Color(0.20871, 0.20871, 0.20871, 1)
 shader_parameter/wear = 0.0
-shader_parameter/noiseTexture = SubResource("NoiseTexture2D_ku8vm")
-shader_parameter/wearTexture = ExtResource("5_sgta1")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2w61h"]
 size = Vector3(0.237549, 0.370605, 0.49353)

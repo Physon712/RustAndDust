@@ -1,28 +1,28 @@
 [gd_scene load_steps=13 format=3 uid="uid://d0fssjvs1knfm"]
 
-[ext_resource type="Script" path="res://Scripts/Parts/PartCore.gd" id="1_y0nbn"]
-[ext_resource type="Script" path="res://Scripts/Parts/PhysicalPart.gd" id="2_8q3d7"]
+[ext_resource type="Script" uid="uid://cbehis5wi14lx" path="res://Scripts/Parts/PartCore.gd" id="1_y0nbn"]
+[ext_resource type="Script" uid="uid://c0af5hkdeulu" path="res://Scripts/Parts/PhysicalPart.gd" id="2_8q3d7"]
 [ext_resource type="Material" uid="uid://bnhf8bwjl0vxy" path="res://Textures/Materials/base_wearmat.tres" id="2_h1xif"]
-[ext_resource type="Shader" path="res://Shaders/WearingMetal.gdshader" id="2_h144q"]
-[ext_resource type="Script" path="res://Scripts/Parts/Slot.gd" id="3_aqdkb"]
+[ext_resource type="Shader" uid="uid://cf8i0c8es1gbi" path="res://Shaders/WearingMetal.gdshader" id="2_h144q"]
+[ext_resource type="Script" uid="uid://djp13xat2gecj" path="res://Scripts/Parts/Slot.gd" id="3_aqdkb"]
 [ext_resource type="Texture2D" uid="uid://ko37xf1e46nc" path="res://Textures/RoughCowPattern.png" id="3_oadfo"]
 [ext_resource type="PackedScene" uid="uid://c5pwmk1ce72xa" path="res://Models/Parts/BetaCore.glb" id="3_ykk4p"]
-[ext_resource type="Script" path="res://Scripts/Parts/PaintedMesh.gd" id="5_1n6tt"]
+[ext_resource type="Script" uid="uid://cfsd884pdedwm" path="res://Scripts/Parts/PaintedMesh.gd" id="5_1n6tt"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_rpkdn"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_l033l"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wiyip"]
-noise = SubResource("FastNoiseLite_rpkdn")
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_i2s2s"]
+noise = SubResource("FastNoiseLite_l033l")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qsk8g"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("2_h144q")
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_i2s2s")
+shader_parameter/wearTexture = ExtResource("3_oadfo")
 shader_parameter/mainColor = Color(0.98, 0.861093, 0.0882, 1)
 shader_parameter/wearColor = Color(0.20871, 0.20871, 0.20871, 1)
 shader_parameter/wear = 0.0
-shader_parameter/noiseTexture = SubResource("NoiseTexture2D_wiyip")
-shader_parameter/wearTexture = ExtResource("3_oadfo")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_34okd"]
 size = Vector3(0.4, 0.423, 0.454)

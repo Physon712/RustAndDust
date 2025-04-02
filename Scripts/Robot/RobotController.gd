@@ -17,6 +17,7 @@ var movement_instability
 @onready var head = $Head
 @onready var collider = $Collider
 @onready var main_slot  = $Parts
+@onready var nav = $NavAgent
 
 var parts = []
 var part_core = null
@@ -166,3 +167,7 @@ func directional_explosion(force,ray,pos,direction,_responsible : Robot = null):
 func apply_central_impulse(energie): # Same as function for a rigidbody of the same name
 	var speed = energie/mass
 	velocity += speed
+
+func take_damage(damage,_responsible : Robot = null):
+	if(brain != null):
+		brain.sense_damage(damage,_responsible)

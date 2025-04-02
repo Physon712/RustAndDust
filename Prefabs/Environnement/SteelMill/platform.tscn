@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://7flwmvrqo4d7"]
+
+[ext_resource type="PackedScene" uid="uid://dnigsglt1frsj" path="res://Models/Environnement/SteelMill/Platform.glb" id="1_30pft"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_30pft"]
+points = PackedVector3Array(-5.06839, -0.242222, -5.06614, -5.06839, -0.242222, 5.06614, -5.06839, 0.0622685, -5.06614, 5.06839, -0.242222, -5.06614, -5.06839, 0.0622685, 5.06614, 5.06839, -0.242222, 5.06614, -4.20613, 0.179867, -4.20426, 5.06839, 0.0622685, -5.06614, -4.20613, 0.179867, 4.20327, 5.06839, 0.0622685, 5.06614, 4.20514, 0.179867, -4.20426, 4.20514, 0.179867, 4.20327)
+
+[node name="Platform" type="StaticBody3D"]
+
+[node name="Platform" parent="." instance=ExtResource("1_30pft")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_30pft")

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://rm8gesn6jhmv"]
+
+[ext_resource type="PackedScene" uid="uid://dkvq6gs6unvmh" path="res://Models/Environnement/SteelMill/Catwalk.glb" id="1_gk3y2"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7n68h"]
+points = PackedVector3Array(-5.06914, 0.0277122, -1.32828, -5.06914, -0.830431, -0.516443, -5.06914, 0.352235, -1.32828, 5.06815, 0.0277122, -1.32828, -5.06914, -0.830431, 0.516168, 5.06815, -0.830431, -0.516443, -5.06914, 0.352235, 1.32827, -4.68707, 0.432068, -1.32828, 5.06815, 0.352235, -1.32828, -5.06914, 0.0277122, 1.32827, 5.06815, -0.830431, 0.516168, -4.68707, 0.432068, 1.32827, 4.68509, 0.432068, -1.32828, 5.06815, 0.352235, 1.32827, 5.06815, 0.0277122, 1.32827, 4.68509, 0.432068, 1.32827)
+
+[node name="Catwalk" type="StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 5.784, 0)
+shape = SubResource("ConvexPolygonShape3D_7n68h")
+
+[node name="Catwalk" parent="." instance=ExtResource("1_gk3y2")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)

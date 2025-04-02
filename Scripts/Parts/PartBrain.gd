@@ -17,3 +17,6 @@ func _physics_process(delta: float) -> void:
 
 func get_part_type():
 	return GameData.PartType.BRAIN
+	
+func sense_damage(damage:float,responsible:Robot):
+	pass

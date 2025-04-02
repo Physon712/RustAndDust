@@ -98,9 +98,12 @@ func _process(delta: float) -> void:
 	
 func bullet_hit(damage,_responsible : Robot = null):
 	take_damage(damage,_responsible)
+		
 	
 func take_damage(damage,_responsible : Robot = null):
 	integrity -= damage
+	if(robot != null):
+		robot.take_damage(damage,_responsible)
 	paint_material.set_shader_parameter("wear",1-(float(integrity)/max_integrity))
 	if(integrity <= 0):
 		detach()

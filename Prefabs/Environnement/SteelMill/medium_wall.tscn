@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://7m4m5ntg6s4l"]
+
+[ext_resource type="PackedScene" uid="uid://gyvjy3bga04w" path="res://Models/Environnement/SteelMill/MediumWall.glb" id="1_h115l"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h115l"]
+size = Vector3(0.57, 6.285, 10.57)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4ojtr"]
+size = Vector3(0.56, 1, 0.55)
+
+[node name="MediumWall" type="StaticBody3D"]
+
+[node name="MediumWall" parent="." instance=ExtResource("1_h115l")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.15085, 0)
+shape = SubResource("BoxShape3D_h115l")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.76142, 4.96558)
+shape = SubResource("BoxShape3D_4ojtr")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.76142, -5.02046)
+shape = SubResource("BoxShape3D_4ojtr")
+
+[editable path="MediumWall"]

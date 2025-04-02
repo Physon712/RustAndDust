@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Rust and Dust"
 config/version="0.1"
-run/main_scene="res://Levels/Test/Test.tscn"
+run/main_scene="uid://c2cingm6jxsro"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -28,6 +28,8 @@ enabled=PackedStringArray("res://addons/terrain_3d/plugin.cfg")
 [file_customization]
 
 folder_colors={
+"res://Audio/": "purple",
+"res://Levels/": "yellow",
 "res://Models/": "red",
 "res://Prefabs/": "green",
 "res://Scripts/": "blue"

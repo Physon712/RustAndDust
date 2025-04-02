@@ -196,6 +196,6 @@ shadow_enabled = true
 
 [node name="DayAndNightCycle" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_a6wxt")
+&"": SubResource("AnimationLibrary_a6wxt")
 }
 speed_scale = 0.01

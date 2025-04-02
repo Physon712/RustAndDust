@@ -4,5 +4,6 @@
 
 [node name="Brain" type="Node3D"]
 script = ExtResource("1_6ybnq")
+target_distance = 1
 team_signature = 3
 front_name = "Scrapper AI"

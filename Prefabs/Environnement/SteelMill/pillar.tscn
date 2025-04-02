@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmkvr134757tq"]
+
+[ext_resource type="PackedScene" uid="uid://44gqg51lhk1n" path="res://Models/Environnement/SteelMill/CatwalkPillar.glb" id="1_jtb5d"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_1gwmc"]
+points = PackedVector3Array(0.7446, 2.65725, 0.7315, -0.7419, -2.62809, -0.755, 0.7446, -2.59575, -0.745905, -0.7419, 2.68959, -0.755, -0.732805, -2.59575, 0.7315, 0.7446, -2.59575, 0.7315, 0.7446, 2.65725, -0.745905, -0.732805, 2.65725, 0.7315)
+
+[node name="Pillar" type="StaticBody3D"]
+
+[node name="CatwalkPillar" parent="." instance=ExtResource("1_jtb5d")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_1gwmc")
+
+[editable path="CatwalkPillar"]

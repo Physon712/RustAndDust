@@ -12,8 +12,7 @@ size = Vector3(0.585, 0.656, 0.595)
 [node name="EngineerCore" type="Node3D"]
 script = ExtResource("1_0fudk")
 front_name = "Engineer Core"
-integrity = 80
-max_integrity = 80
+max_integrity = 160
 mass = 30
 
 [node name="SlotArmL" type="Marker3D" parent="."]

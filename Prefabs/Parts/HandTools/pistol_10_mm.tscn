@@ -94,7 +94,7 @@ firesound = NodePath("Muzzle/FireSound")
 fireparticle = NodePath("Muzzle/FireParticle")
 muzzle = NodePath("Muzzle")
 front_name = "Pistol 10mm"
-paint_color = Color(0.3432, 0.404507, 0.44, 1)
+paint_color = Color(0.5896, 0.64052, 0.67, 1)
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 collision_layer = 4

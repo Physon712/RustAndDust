@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://cb7lh6xukwpxy"]
+
+[ext_resource type="PackedScene" uid="uid://dcc3sb5imvu8n" path="res://Models/Parts/Roller/RollerLower.glb" id="1_jevri"]
+[ext_resource type="Script" uid="uid://o4yqixil58k" path="res://Scripts/Parts/PartRoller.gd" id="1_yejc8"]
+[ext_resource type="Script" uid="uid://c0af5hkdeulu" path="res://Scripts/Parts/PhysicalPart.gd" id="2_g441g"]
+[ext_resource type="Script" uid="uid://cfsd884pdedwm" path="res://Scripts/Parts/PaintedMesh.gd" id="2_qmhwi"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yejc8"]
+size = Vector3(0.29, 0.747, 0.65)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_g441g"]
+height = 0.2
+radius = 0.35
+
+[node name="RollerLower" type="Node3D"]
+script = ExtResource("1_yejc8")
+jump_momentum = 50
+movement_instability = 0.33
+max_speed = 9.0
+max_integrity = 90
+mass = 40
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+collision_layer = 4
+freeze = true
+script = ExtResource("2_g441g")
+
+[node name="RollerLower" parent="RigidBody3D" instance=ExtResource("1_jevri")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.239471, -0.0793927)
+
+[node name="Movement" parent="RigidBody3D/RollerLower" index="0"]
+script = ExtResource("2_qmhwi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.324734, -0.0793927)
+shape = SubResource("BoxShape3D_yejc8")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, -0.848945, -0.109949)
+shape = SubResource("CylinderShape3D_g441g")
+
+[editable path="RigidBody3D/RollerLower"]

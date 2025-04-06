@@ -1,0 +1,111 @@
+[gd_scene load_steps=14 format=3 uid="uid://bb2f823m8sdc0"]
+
+[ext_resource type="Script" uid="uid://cb5f2ixoifgjy" path="res://Scripts/Parts/HandGun.gd" id="1_kfdt2"]
+[ext_resource type="Script" uid="uid://c0af5hkdeulu" path="res://Scripts/Parts/PhysicalPart.gd" id="2_yqa6p"]
+[ext_resource type="PackedScene" uid="uid://c6lytdm1gdr7r" path="res://Models/Parts/HandWeapons/PrecisionRifle.glb" id="3_ais0a"]
+[ext_resource type="AudioStream" uid="uid://bn8a4pa6xon1m" path="res://Audio/Sounds/Guns/Sniper_Fire_01.wav" id="4_dsxgj"]
+[ext_resource type="Script" uid="uid://cfsd884pdedwm" path="res://Scripts/Parts/PaintedMesh.gd" id="5_1466j"]
+[ext_resource type="Texture2D" uid="uid://cjoockfy7yjuw" path="res://Textures/Particles/Particle.png" id="7_sqvga"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0guu7"]
+size = Vector3(0.102, 0.33905, 1.02172)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3rbn2"]
+streams_count = 1
+stream_0/stream = ExtResource("4_dsxgj")
+
+[sub_resource type="Curve" id="Curve_3el03"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.04992, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vc0ln"]
+curve = SubResource("Curve_3el03")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cu1vc"]
+angle_min = -15.0
+angle_max = 15.0
+initial_velocity_min = 1.0
+initial_velocity_max = 4.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 0.7
+scale_curve = SubResource("CurveTexture_vc0ln")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l2qxy"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+albedo_color = Color(1, 0.757717, 0.678536, 1)
+albedo_texture = ExtResource("7_sqvga")
+emission_enabled = true
+emission = Color(0.941176, 0.584314, 0.270588, 1)
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_axnff"]
+material = SubResource("StandardMaterial3D_l2qxy")
+
+[node name="PrecisionRifle" type="Node3D" node_paths=PackedStringArray("main_hand_target", "off_hand_target", "animator", "firesound", "fireparticle", "muzzle")]
+script = ExtResource("1_kfdt2")
+recoil_potential = 7
+main_hand_target = NodePath("LeftHand")
+off_hand_target = NodePath("RightHand")
+damage = 12
+fire_rate = 0.2
+max_ammo = 120
+dispersion = 0.005
+bullet_speed = 400
+animator = NodePath("RigidBody3D/PrecisionRifle/Chassis")
+firesound = NodePath("Muzzle/FireSound")
+fireparticle = NodePath("Muzzle/FireParticle")
+muzzle = NodePath("Muzzle")
+front_name = "Precision Rifle 7.62mm"
+paint_color = Color(0.626754, 0.633805, 0.341086, 1)
+max_integrity = 40
+mass = 10
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+collision_layer = 4
+freeze = true
+script = ExtResource("2_yqa6p")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0455249, -0.337225)
+shape = SubResource("BoxShape3D_0guu7")
+
+[node name="PrecisionRifle" parent="RigidBody3D" instance=ExtResource("3_ais0a")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.180493, 0.202749, 0.158171)
+
+[node name="Chassis" parent="RigidBody3D/PrecisionRifle" index="0"]
+script = ExtResource("5_1466j")
+
+[node name="LeftHand" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.152324)
+
+[node name="RightHand" type="Marker3D" parent="."]
+transform = Transform3D(0.0121472, 0, 0.999926, 0, 1, 0, -0.999926, 0, 0.0121472, 0.0109429, -0.0335614, -0.436144)
+
+[node name="Muzzle" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.115077, -0.917922)
+
+[node name="FireSound" type="AudioStreamPlayer3D" parent="Muzzle"]
+stream = SubResource("AudioStreamRandomizer_3rbn2")
+pitch_scale = 1.2
+max_distance = 50.0
+bus = &"SFX"
+
+[node name="FireParticle" type="GPUParticles3D" parent="Muzzle"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+emitting = false
+lifetime = 0.1
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_cu1vc")
+draw_pass_1 = SubResource("QuadMesh_axnff")
+
+[editable path="RigidBody3D/PrecisionRifle"]

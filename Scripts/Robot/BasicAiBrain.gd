@@ -2,9 +2,15 @@ extends "res://Scripts/Parts/PartBrain.gd"
 
 var target : Robot
 var last_attacker : Robot
-@export var move_target : Vector3
+var move_target : Vector3
+var focus_target : Vector3
 @export var target_distance = 3
 @export var fov = 90
+@export var aim_error_amplitude = 1 #In Degrees
+@export var aim_convergence = 0.1
+@export var ideal_distance = 15
+@export var hearing_distance = 5
+
 
 enum ai_state {IDLE,ENGAGING,CHASING,FLEEING}
 
@@ -12,6 +18,8 @@ var current_state = ai_state.IDLE
 var last_known_target_position
 
 var follow_path = false
+var focus_point = focus_target
+var aim_error : Vector2
 
 @onready var tree = get_tree()
 
@@ -21,25 +29,29 @@ func _ready():
 func attach():
 	super()
 
+var aim_error_delay = 1.0
 func _physics_process(delta):
 	if(robot == null):
 		current_state = ai_state.IDLE
 		return
 		
-	if(robot.weapons.size() <= 0):
+	if(!robot.is_armed()):
 		current_state = ai_state.FLEEING
 		
 	# Main behavior tree
 	match(current_state):
 		ai_state.IDLE: #Look for target
 			look_for_new_target()
-		ai_state.ENGAGING: #Engage target
-			if(target == null || target.brain == null):
+			if(!follow_path || robot.nav.is_navigation_finished()):
+				wander_to_random_point()
+				
+		ai_state.ENGAGING: #Engage current target until complete destruction
+			if(target == null || target.brain == null): #Target down
+				stop_path()
 				current_state = ai_state.IDLE
 			else:
-				robot.head.look_at(target.collider.global_position)
 				var dis_to_target = robot.head.global_position.distance_to(target.collider.global_position)
-				if(is_point_visible(target.collider.global_position)):
+				if(is_point_visible_absolute(target.collider.global_position)):
 					last_known_target_position = target.global_position
 					
 					var should_get_closer = false
@@ -47,11 +59,11 @@ func _physics_process(delta):
 						var total_inaccuracy = w.evaluate_total_inaccuracy()
 						var instability_inaccuracy = robot.inaccuracy
 						
-						if(45.0/total_inaccuracy > dis_to_target): #Try to shoot if has a good enough chance to hit
+						if(25.0/total_inaccuracy > dis_to_target ||w.ammo > w.max_ammo/3): #Try to shoot if has a good enough chance to hit or just have plenty of ammo
 							w.use()
 						
-						if(45.0/(total_inaccuracy-instability_inaccuracy) < dis_to_target): #If can't shoot even when not moving, then move
-							should_get_closer = true
+					if(dis_to_target > 15):
+						should_get_closer = true
 						
 						
 					if(should_get_closer): #If couldn't shoot because way too far, then get closer
@@ -61,10 +73,15 @@ func _physics_process(delta):
 						
 				else:
 					current_state = ai_state.CHASING
-					assign_new_move_target(last_known_target_position)
+					if(last_known_target_position != null):
+						assign_new_move_target(last_known_target_position)
+				if(!target.is_armed()): #If target already pacified look for others target
+					look_for_new_target()
 
 		ai_state.CHASING: #Look for target
 			look_for_new_target()
+			if(robot.nav.is_navigation_finished()):
+				current_state = ai_state.IDLE
 		
 		ai_state.FLEEING: #Get out of here and fast, flee the last attacker
 			target = null
@@ -76,13 +93,25 @@ func _physics_process(delta):
 	# Movement
 	if(robot.global_position.distance_squared_to(move_target) > target_distance):
 		robot.move_direction = move_target-robot.global_position
-		robot.head.look_at(robot.head.global_position + robot.velocity)
+		if(robot.velocity != Vector3.ZERO):
+			focus_target = robot.head.global_position + robot.velocity
 		#robot.head.rotation.x = lerp(robot.head.rotation.x,0.0,0.1)
+	
+	if(target != null && current_state == ai_state.ENGAGING):
+		focus_target = target.part_core.global_position
+	
+	# Aiming
+	aim_error_delay -= delta
+	if(aim_error_delay <= 0):
+		aim_error_delay = 1
+		var dev = deg_to_rad(aim_error_amplitude)
+		aim_error = Vector2(randf_range(-dev,dev),randf_range(-dev,dev))
+	
+	focus_point = lerp(focus_point,focus_target,aim_convergence)
+	robot.head.look_at(focus_point)
+	robot.head.rotate_x(aim_error.x)
+	robot.head.rotate_y	(aim_error.y)
 		
-		
-	#Aim direction
-	if(target != null):
-		robot.head.look_at(target.collider.global_position)
 
 func look_for_new_target(): #Look for hostile robot in field of view and assign as target
 	var robots = tree.get_nodes_in_group("Robot")
@@ -91,7 +120,9 @@ func look_for_new_target(): #Look for hostile robot in field of view and assign 
 	for r in robots:
 		if(r.brain != null && r != robot && (r.brain.team_signature != team_signature || team_signature == GameData.Faction.LONER)):
 			var d = robot.global_position.distance_squared_to(r.collider.global_position)
-			if(d < min_distance && is_point_visible(r.collider.global_position)):
+			if(!r.is_armed()): #Make unarmed opponent less important in the selection
+				d = 3*d
+			if(d < min_distance && (is_point_visible(r.collider.global_position) || d < hearing_distance)):
 				target = r
 				min_distance = d
 				current_state = ai_state.ENGAGING
@@ -107,18 +138,38 @@ func is_point_visible(point):
 		else:
 			return true
 	return false
+	
+func is_point_visible_absolute(point):
+	var dir = point - robot.head.global_position
+	if(true):
+		var space_state = get_world_3d().direct_space_state
+		var query = PhysicsRayQueryParameters3D.create(robot.head.global_position,point,0b001)
+		var result = space_state.intersect_ray(query)
+		if(result):
+			return false
+		else:
+			return true
+	return false
 
 func assign_new_move_target(point):
 	follow_path = true
 	robot.nav.target_position = point
 	move_target = robot.nav.get_next_path_position()
 	
+func wander_to_random_point():
+	var map = robot.nav.get_navigation_map()
+	assign_new_move_target(NavigationServer3D.map_get_random_point(map,1,true))
+	
 func stop_path():
 	move_target = robot.global_position
 	follow_path = false
 		
 func sense_damage(damage,responsible):
-	if(responsible != null && current_state != ai_state.ENGAGING): #Take a good look at the aggressor
+	if(responsible != null): #Take a good look at the aggressor
 		last_attacker = responsible
-		robot.head.look_at(responsible.collider.global_position)
+		if(robot.is_armed()):
+			target = responsible
+			current_state = ai_state.ENGAGING
+		#if(target == null || target.brain == null || target.weapons.size() <= 0):
+			#target = responsible.collider.global_position
 	

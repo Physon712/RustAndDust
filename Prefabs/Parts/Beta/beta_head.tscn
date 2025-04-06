@@ -45,6 +45,8 @@ size = Vector3(0.237549, 0.370605, 0.49353)
 script = ExtResource("1_4et2o")
 front_name = "Standard Head"
 paint_material = SubResource("ShaderMaterial_6ksjw")
+integrity = 75
+max_integrity = 75
 mass = 10
 
 [node name="Camera3D" type="Camera3D" parent="."]

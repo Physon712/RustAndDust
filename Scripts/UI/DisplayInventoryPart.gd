@@ -24,4 +24,3 @@ func _on_gui_input(event: InputEvent) -> void:
 			assembly_menu.mouse_data.from_inventory = true
 			assembly_menu.mouse_data.associated_id = associated_id
 			assembly_menu.mouse_data.associated_part = null
-		print(associated_inventory.inv[associated_id])

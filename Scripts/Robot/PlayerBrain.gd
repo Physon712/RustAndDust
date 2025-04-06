@@ -78,9 +78,10 @@ func _physics_process(delta):
 		if(result):
 			if(!result.collider.part.is_attached):
 				#Take part and put in inventory
-				inv.add_part(result.collider.part)
-				result.collider.part.detach()
-				result.collider.part.queue_free()
+				if(result.collider.part.integrity >= 0):
+					inv.add_part(result.collider.part)
+				else:
+					pass
 			else:
 				#Or modify robot the part belongs to
 				if(result.collider.part.robot != robot):

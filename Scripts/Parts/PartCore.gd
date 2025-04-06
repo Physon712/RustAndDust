@@ -22,7 +22,7 @@ func attach():
 		left_arm = $SlotArmL.get_child(0)
 	if($SlotMovement.get_child_count() > 0):
 		movement_module = $SlotMovement.get_child(0)
-	
+		transform.origin.y = movement_module.height
 	#if(right_arm != null && left_arm != null): #Handle hand cooperation
 		#if(right_arm.is_hand_free() && !left_arm.is_hand_free()):
 			#if(left_arm.hand_tool != null):
@@ -38,11 +38,16 @@ func _physics_process(delta):
 	if(is_attached):
 		rotation.y = robot.head.rotation.y + rotation_offset
 		#transform.origin.y = height
-		rotation.x = clamp(0.2*robot.velocity.dot(robot.head.basis.z)/robot.max_speed,-max_tilt,max_tilt)
-		rotation.z = clamp(-0.2*robot.velocity.dot(robot.head.basis.x)/robot.max_speed,-max_tilt,max_tilt)
-		if(movement_module != null):
-			transform.origin.y = movement_module.height
-	
+		
+		if(robot.brain == null): #Down animation
+			rotation.x = lerp(rotation.x,PI/2.4,0.1)
+			transform.origin.y = lerp(transform.origin.y,0.2,0.1)
+		else:
+			if(movement_module != null):
+				transform.origin.y = movement_module.height
+			rotation.x = clamp(0.2*robot.velocity.dot(robot.head.basis.z)/robot.max_speed,-max_tilt,max_tilt)
+			rotation.z = clamp(-0.2*robot.velocity.dot(robot.head.basis.x)/robot.max_speed,-max_tilt,max_tilt)
+		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass

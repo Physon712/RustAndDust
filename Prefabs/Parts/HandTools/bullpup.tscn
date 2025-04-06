@@ -1,0 +1,112 @@
+[gd_scene load_steps=15 format=3 uid="uid://rtidphuacdig"]
+
+[ext_resource type="Script" uid="uid://cb5f2ixoifgjy" path="res://Scripts/Parts/HandGun.gd" id="1_4osxe"]
+[ext_resource type="Script" uid="uid://c0af5hkdeulu" path="res://Scripts/Parts/PhysicalPart.gd" id="2_jpx13"]
+[ext_resource type="PackedScene" uid="uid://c5dcmix58r3de" path="res://Models/Parts/HandWeapons/SilencedSmg.glb" id="3_1ycbk"]
+[ext_resource type="AudioStream" uid="uid://dvlmfmn5gtigp" path="res://Audio/Sounds/Guns/Silencer_01.wav" id="4_5dxnf"]
+[ext_resource type="Material" uid="uid://dl3f5cthok1pf" path="res://Textures/Materials/beta_armature.tres" id="5_64tkp"]
+[ext_resource type="Script" uid="uid://cfsd884pdedwm" path="res://Scripts/Parts/PaintedMesh.gd" id="6_oag85"]
+[ext_resource type="Texture2D" uid="uid://cjoockfy7yjuw" path="res://Textures/Particles/Particle.png" id="8_s2d0m"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0guu7"]
+size = Vector3(0.102, 0.33905, 1.18113)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3rbn2"]
+streams_count = 1
+stream_0/stream = ExtResource("4_5dxnf")
+
+[sub_resource type="Curve" id="Curve_3el03"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.04992, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vc0ln"]
+curve = SubResource("Curve_3el03")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cu1vc"]
+angle_min = -15.0
+angle_max = 15.0
+initial_velocity_min = 1.0
+initial_velocity_max = 4.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 0.7
+scale_curve = SubResource("CurveTexture_vc0ln")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l2qxy"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+albedo_color = Color(1, 0.757717, 0.678536, 1)
+albedo_texture = ExtResource("8_s2d0m")
+emission_enabled = true
+emission = Color(0.941176, 0.584314, 0.270588, 1)
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_axnff"]
+material = SubResource("StandardMaterial3D_l2qxy")
+
+[node name="Smg" type="Node3D" node_paths=PackedStringArray("main_hand_target", "off_hand_target", "animator", "firesound", "fireparticle", "muzzle")]
+script = ExtResource("1_4osxe")
+recoil_potential = 3
+main_hand_target = NodePath("LeftHand")
+off_hand_target = NodePath("RightHand")
+fire_rate = 0.08
+max_ammo = 600
+dispersion = 0.005
+bullet_speed = 200
+animator = NodePath("RigidBody3D/SilencedSmg/SMG9/Cube_001")
+firesound = NodePath("Muzzle/FireSound")
+fireparticle = NodePath("Muzzle/FireParticle")
+muzzle = NodePath("Muzzle")
+front_name = "Silenced Bullpup 5.56mm"
+paint_color = Color(0.1314, 0.14841, 0.18, 1)
+max_integrity = 40
+mass = 7
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+collision_layer = 4
+freeze = true
+script = ExtResource("2_jpx13")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0455249, -0.416931)
+shape = SubResource("BoxShape3D_0guu7")
+
+[node name="SilencedSmg" parent="RigidBody3D" instance=ExtResource("3_1ycbk")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.0668519, -0.332228)
+
+[node name="SMG9" parent="RigidBody3D/SilencedSmg" index="0"]
+surface_material_override/1 = ExtResource("5_64tkp")
+script = ExtResource("6_oag85")
+
+[node name="LeftHand" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.306449)
+
+[node name="RightHand" type="Marker3D" parent="."]
+transform = Transform3D(0.0121472, 0, 0.999926, 0, 1, 0, -0.999926, 0, 0.0121472, 0.0109429, -0.0335614, -0.530477)
+
+[node name="Muzzle" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.067817, -1.02517)
+
+[node name="FireSound" type="AudioStreamPlayer3D" parent="Muzzle"]
+stream = SubResource("AudioStreamRandomizer_3rbn2")
+pitch_scale = 1.2
+max_distance = 50.0
+bus = &"SFX"
+
+[node name="FireParticle" type="GPUParticles3D" parent="Muzzle"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+emitting = false
+lifetime = 0.1
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_cu1vc")
+draw_pass_1 = SubResource("QuadMesh_axnff")
+
+[editable path="RigidBody3D/SilencedSmg"]

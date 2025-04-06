@@ -9,8 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://5fmcgbbmusuo" path="res://Prefabs/Parts/Beta/beta_arm.tscn" id="5_6yr6d"]
 [ext_resource type="PackedScene" uid="uid://d3i41uiqmxr3p" path="res://Prefabs/Parts/Beta/beta_lower.tscn" id="5_msbew"]
 [ext_resource type="PackedScene" uid="uid://dp3e2eo5ldqfr" path="res://Prefabs/Brains/player_brain.tscn" id="6_sjwnf"]
-[ext_resource type="PackedScene" uid="uid://cmjw3hbsiuicu" path="res://Prefabs/Parts/HandTools/pistol_10_mm.tscn" id="6_yga4h"]
 [ext_resource type="PackedScene" uid="uid://yhsguftrisj7" path="res://Prefabs/Parts/Beta/beta_leg.tscn" id="7_k3eb2"]
+[ext_resource type="PackedScene" uid="uid://rtidphuacdig" path="res://Prefabs/Parts/HandTools/bullpup.tscn" id="9_i2ypv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_byq50"]
 
@@ -145,6 +145,8 @@ collision_mask = 3
 platform_floor_layers = 4294901761
 script = ExtResource("1_1ctkx")
 
+[node name="NavAgent" type="NavigationAgent3D" parent="."]
+
 [node name="Collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_byq50")
@@ -170,29 +172,29 @@ surface_material_override/0 = SubResource("ShaderMaterial_nrm21")
 paint_material = SubResource("ShaderMaterial_t7qdk")
 
 [node name="Physical Bone Arm_L" parent="Parts/PartCore/SlotArmL/BetaArm/BetaArm/ArmatureArm/Skeleton3D/PhysicalBoneSimulator3D" index="0"]
-transform = Transform3D(-0.92519, 0.379491, -0.00315286, -0.00218177, 0.00298896, 0.999993, 0.379498, 0.925191, -0.0019374, 0.318596, 1.29214, -0.0798543)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.64023e-07, 1.62653e-07, 0.160235)
-body_offset = Transform3D(1, 2.08616e-07, 1.02364e-06, 1.02329e-06, -1.06136e-06, -1, -2.08616e-07, 1, -1.06159e-06, 0, 0.160235, 7.45058e-09)
+transform = Transform3D(-0.92519, 0.379491, -0.00315935, -0.00218844, 0.00298979, 0.999993, 0.379498, 0.925191, -0.00193563, 0.318596, 1.29214, -0.0798543)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.23294e-06, 2.95245e-07, 0.160235)
+body_offset = Transform3D(1, 2.08616e-07, 7.69459e-06, 7.69418e-06, -1.88884e-06, -1, -1.78814e-07, 1, -1.88907e-06, 0, 0.160235, 7.45058e-09)
 
 [node name="Physical Bone ForeArm_L" parent="Parts/PartCore/SlotArmL/BetaArm/BetaArm/ArmatureArm/Skeleton3D/PhysicalBoneSimulator3D" index="1"]
-transform = Transform3D(-0.92519, 0.379491, -0.00315284, -0.00218176, 0.00298894, 0.999993, 0.379498, 0.925191, -0.00193738, 0.319572, 0.98243, -0.0792544)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.44348e-07, 1.06532e-07, 0.14948)
-body_offset = Transform3D(1, 2.98023e-08, 9.65665e-07, 9.66247e-07, -1.06124e-06, -1, 0, 1, -1.06159e-06, 0, 0.14948, 5.21541e-08)
+transform = Transform3D(-0.92519, 0.379491, -0.00316351, -0.00219069, 0.00299529, 0.999993, 0.379498, 0.925191, -0.00193987, 0.319572, 0.98243, -0.0792544)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4797e-06, 1.05681e-06, 0.14948)
+body_offset = Transform3D(1, 0, 9.89897e-06, 9.89909e-06, -7.41833e-06, -1, 0, 1, -7.4188e-06, 0, 0.14948, 5.21541e-08)
 
-[node name="Pistol10mm" parent="Parts/PartCore/SlotArmL/BetaArm/ToolTarget/SlotHandTool" index="0" instance=ExtResource("6_yga4h")]
+[node name="Smg" parent="Parts/PartCore/SlotArmL/BetaArm/ToolTarget/SlotHandTool" index="0" instance=ExtResource("9_i2ypv")]
 
 [node name="BetaArm" parent="Parts/PartCore/SlotArmR" index="0" instance=ExtResource("5_6yr6d")]
 paint_material = SubResource("ShaderMaterial_nkeyn")
 
 [node name="Physical Bone Arm_L" parent="Parts/PartCore/SlotArmR/BetaArm/BetaArm/ArmatureArm/Skeleton3D/PhysicalBoneSimulator3D" index="0"]
-transform = Transform3D(-0.92519, 0.379491, -0.00315286, -0.00218177, 0.00298896, 0.999993, 0.379498, 0.925191, -0.0019374, 0.318596, 1.29214, -0.0798543)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.34221e-07, 1.70104e-07, 0.160235)
-body_offset = Transform3D(1, 2.08616e-07, 1.02364e-06, 1.02329e-06, -1.06136e-06, -1, -2.08616e-07, 1, -1.06159e-06, -2.98023e-08, 0.160235, 0)
+transform = Transform3D(-0.92519, 0.379491, -0.00315935, -0.00218844, 0.00298979, 0.999993, 0.379498, 0.925191, -0.00193563, 0.318596, 1.29214, -0.0798543)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.20314e-06, 3.02695e-07, 0.160235)
+body_offset = Transform3D(1, 2.08616e-07, 7.69459e-06, 7.69418e-06, -1.88884e-06, -1, -1.78814e-07, 1, -1.88907e-06, -2.98023e-08, 0.160235, 0)
 
 [node name="Physical Bone ForeArm_L" parent="Parts/PartCore/SlotArmR/BetaArm/BetaArm/ArmatureArm/Skeleton3D/PhysicalBoneSimulator3D" index="1"]
-transform = Transform3D(-0.92519, 0.379491, -0.00315284, -0.00218176, 0.00298894, 0.999993, 0.379498, 0.925191, -0.00193738, 0.319572, 0.98243, -0.0792545)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.49406e-08, 1.73588e-07, 0.14948)
-body_offset = Transform3D(1, 2.98023e-08, 9.65665e-07, 9.66247e-07, -1.06124e-06, -1, 0, 1, -1.06159e-06, -8.9407e-08, 0.14948, -1.49012e-08)
+transform = Transform3D(-0.92519, 0.379491, -0.00316351, -0.00219069, 0.00299529, 0.999993, 0.379498, 0.925191, -0.00193987, 0.319572, 0.98243, -0.0792545)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.39029e-06, 1.12386e-06, 0.14948)
+body_offset = Transform3D(1, 0, 9.89897e-06, 9.89909e-06, -7.41833e-06, -1, 0, 1, -7.4188e-06, -8.9407e-08, 0.14948, -1.49012e-08)
 
 [node name="PartMovement" parent="Parts/PartCore/SlotMovement" index="0" instance=ExtResource("5_msbew")]
 paint_material = SubResource("ShaderMaterial_cfrye")

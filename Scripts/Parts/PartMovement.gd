@@ -5,12 +5,14 @@ extends "res://Scripts/Parts/RobotPart.gd"
 class_name MovementModule
 
 ###Stats
-@export var movement_instability = 2
-@export var max_speed = 6
+@export var movement_instability : float = 2.0
+@export var max_speed : float = 6.0
+
 var height = 0.2
 
 func attach():
 	super()
+	print(max_speed)
 	robot.movement_instability = movement_instability
 
 func get_part_type():

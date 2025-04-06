@@ -3,6 +3,7 @@ extends "res://Scripts/Parts/Weapon.gd"
 class_name Gun
 
 ###Stats
+@export var damage = 5;
 @export var fire_rate = 0.1;
 @export var max_ammo = 320;
 @export var dispersion = 0.01 #Degrees
@@ -26,6 +27,7 @@ func _physics_process(delta):
 		output_transform = robot.head.global_transform
 
 func _process(delta):
+	super(delta)
 	time_since_last_shot += delta;
 
 func use(): #Use the weapon = fire the weapon
@@ -42,6 +44,7 @@ func fire(): #Try to fire the weapon, check for ammo and fire rate
 			if(firesound != null):
 				firesound.play(0.0)
 			if(fireparticle != null):
+				fireparticle.restart()
 				fireparticle.emitting = true
 	
 func fire_a_shot(): #Fire the weapon, instantiate a bullet and apply it speed in the aim direction of the robot head
@@ -58,6 +61,7 @@ func fire_a_shot(): #Fire the weapon, instantiate a bullet and apply it speed in
 		b.transform = robot.head.global_transform
 		b.velocity = dir*bullet_speed
 		b.shooter = robot
+		b.damage = damage
 
 func evaluate_total_inaccuracy():
 	return super() + dispersion

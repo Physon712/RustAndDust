@@ -31,8 +31,8 @@ size = Vector3(0.4, 0.423, 0.454)
 script = ExtResource("1_y0nbn")
 front_name = "Standard Core"
 paint_material = ExtResource("2_h1xif")
-integrity = 60
-max_integrity = 60
+integrity = 120
+max_integrity = 120
 mass = 25
 
 [node name="SlotHead" type="Node3D" parent="."]

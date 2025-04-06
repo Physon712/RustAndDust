@@ -4,8 +4,8 @@ class_name ArmHand
 
 var hand_tool = null
 ###Stats
-@export var inaccuracy = 1 #In degrees
-@export var strength = 3
+@export var inaccuracy : float = 1 #In degrees
+@export var strength : float = 3 #In kg carried
 
 @onready var target : Marker3D = $Target
 @onready var rest_target = $RestTarget

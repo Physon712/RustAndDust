@@ -10,23 +10,29 @@ var is_attached = false
 @export var paint_color : Color = Color.YELLOW
 @export var paint_material : ShaderMaterial = preload("res://Textures/Materials/base_wearmat.tres").duplicate()
 
-@export var integrity = 10
+##Stats
 @export var max_integrity = 10
-
 @export var wear = 0
-
 @export var mass = 5
 @export var energy_consumption = 5
 
 @onready var world = get_tree().get_current_scene()
 var paint_job;
 var freeze = true;
+var lifetime = 30.0;
+var integrity = 10
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	integrity = round(max_integrity*(0.2+0.8*randf()))
 	attach()
 	
+func _process(delta):
+	if(integrity <= 0):
+		lifetime -= delta
+		if(lifetime <= 0): #Automaticly cleanup broken part
+			queue_free()
 	
-func attach():
+func attach(): #Base procedure for attaching part to a robot
 	robot = look_for_parent_robot()
 	if(robot != null):
 		is_attached = true
@@ -92,10 +98,6 @@ func get_slots(node): ##Get every slots of the node
 			slots.append_array(get_slots(_n))
 	return slots
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-	
 func bullet_hit(damage,_responsible : Robot = null):
 	take_damage(damage,_responsible)
 		

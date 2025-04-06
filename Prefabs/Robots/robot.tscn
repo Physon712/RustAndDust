@@ -12,7 +12,6 @@ platform_floor_layers = 4294901761
 script = ExtResource("1_02gnq")
 
 [node name="NavAgent" type="NavigationAgent3D" parent="."]
-debug_enabled = true
 
 [node name="Collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -20,9 +19,6 @@ shape = SubResource("CapsuleShape3D_byq50")
 
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
-
-[node name="CameraTPS" type="Camera3D" parent="Head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.470201, 3.44796)
 
 [node name="Parts" type="Node3D" parent="."]
 script = ExtResource("2_l1j5o")

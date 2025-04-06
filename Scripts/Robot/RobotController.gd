@@ -111,7 +111,8 @@ func get_parts(node): ##Get every parts equipped and list them in parts
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	if(height > 0):
+	if(height > 0 && brain != null):
+		collider.disabled = false
 		collider.shape.height = height
 		collider.position.y = height/2
 	else:
@@ -171,3 +172,9 @@ func apply_central_impulse(energie): # Same as function for a rigidbody of the s
 func take_damage(damage,_responsible : Robot = null):
 	if(brain != null):
 		brain.sense_damage(damage,_responsible)
+		
+func is_armed():
+	for w in weapons:
+		if(w.ammo > 0):
+			return true
+	return false

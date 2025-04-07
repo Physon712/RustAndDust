@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dok8voi4ecf74"]
+
+[ext_resource type="Script" uid="uid://bc6s88kh71xd2" path="res://Scripts/Projectile/Grenade.gd" id="1_hafk7"]
+
+[node name="Bullet" type="Node3D"]
+script = ExtResource("1_hafk7")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+size = Vector3(0.1, 0.1, 0.1)

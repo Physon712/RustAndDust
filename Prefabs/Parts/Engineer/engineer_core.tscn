@@ -15,6 +15,11 @@ front_name = "Engineer Core"
 max_integrity = 160
 mass = 30
 
+[node name="SlotHead" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.366512, 0.0233328)
+script = ExtResource("2_6666x")
+slot_type = 2
+
 [node name="SlotArmL" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.302143, 0.182046, -0.0201968)
 script = ExtResource("2_6666x")
@@ -27,10 +32,10 @@ script = ExtResource("2_6666x")
 slot_prefix = "Right"
 slot_type = 4
 
-[node name="SlotHead" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.366512, 0.0233328)
+[node name="Back" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.399345, 0.2174)
 script = ExtResource("2_6666x")
-slot_type = 2
+slot_type = 7
 
 [node name="SlotMovement" type="Marker3D" parent="."]
 script = ExtResource("2_6666x")

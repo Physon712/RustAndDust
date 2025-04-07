@@ -50,6 +50,7 @@ script = ExtResource("1_lod64")
 recoil_potential = 10
 main_hand_target = NodePath("LeftHand")
 off_hand_target = NodePath("RightHand")
+damage = 15
 fire_rate = 0.5
 max_ammo = 32
 dispersion = 3.0

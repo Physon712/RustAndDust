@@ -23,7 +23,8 @@ var lifetime = 30.0;
 var integrity = 10
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	integrity = round(max_integrity*(0.2+0.8*randf()))
+	#integrity = round(max_integrity*(0.2+0.8*randf()))
+	integrity = max_integrity
 	attach()
 	
 func _process(delta):

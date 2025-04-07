@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://bddmp67ruwdgc"]
+
+[ext_resource type="Script" uid="uid://cbehis5wi14lx" path="res://Scripts/Parts/PartCore.gd" id="1_0ypm5"]
+[ext_resource type="Script" uid="uid://djp13xat2gecj" path="res://Scripts/Parts/Slot.gd" id="2_0jbkh"]
+[ext_resource type="Script" uid="uid://c0af5hkdeulu" path="res://Scripts/Parts/PhysicalPart.gd" id="3_nagdd"]
+[ext_resource type="PackedScene" uid="uid://d4h7p7dttspvj" path="res://Models/Parts/Roller/RollerCore.glb" id="4_api71"]
+[ext_resource type="Script" uid="uid://cfsd884pdedwm" path="res://Scripts/Parts/PaintedMesh.gd" id="5_b1t1k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_257k2"]
+size = Vector3(0.585, 0.671324, 0.60572)
+
+[node name="RollerCore" type="Node3D"]
+script = ExtResource("1_0ypm5")
+front_name = "Roller Core"
+paint_color = Color(0.498039, 0.521569, 0.403922, 1)
+max_integrity = 200
+mass = 40
+
+[node name="SlotHead" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44718, -0.133672)
+script = ExtResource("2_0jbkh")
+slot_type = 2
+
+[node name="SlotArmL" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.358372, 0.326716, -0.0138673)
+script = ExtResource("2_0jbkh")
+slot_prefix = "Left"
+slot_type = 4
+
+[node name="SlotArmR" type="Marker3D" parent="."]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 0.358, 0.327, -0.014)
+script = ExtResource("2_0jbkh")
+slot_prefix = "Right"
+slot_type = 4
+
+[node name="Back" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.566706, 0.138044)
+script = ExtResource("2_0jbkh")
+slot_type = 7
+
+[node name="SlotMovement" type="Marker3D" parent="."]
+script = ExtResource("2_0jbkh")
+slot_type = 1
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+collision_layer = 4
+mass = 30.0
+freeze = true
+script = ExtResource("3_nagdd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.972427, 0.233208, 0, -0.233208, 0.972427, 0, 0.254378, -0.0478784)
+shape = SubResource("BoxShape3D_257k2")
+
+[node name="RollerCore" parent="RigidBody3D" instance=ExtResource("4_api71")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.255259, 0)
+
+[node name="Core" parent="RigidBody3D/RollerCore" index="0"]
+script = ExtResource("5_b1t1k")
+
+[editable path="RigidBody3D/RollerCore"]

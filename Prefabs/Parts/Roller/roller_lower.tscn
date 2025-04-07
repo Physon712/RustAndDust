@@ -17,6 +17,8 @@ script = ExtResource("1_yejc8")
 jump_momentum = 50
 movement_instability = 0.33
 max_speed = 9.0
+front_name = "Single Wheel"
+paint_color = Color(0.498039, 0.521569, 0.403922, 1)
 max_integrity = 90
 mass = 40
 

@@ -1,0 +1,104 @@
+[gd_scene load_steps=13 format=3 uid="uid://bmfhek0nw21nq"]
+
+[ext_resource type="Script" uid="uid://h5txp3iga8d7" path="res://Scripts/Parts/PartArm.gd" id="1_udjwy"]
+[ext_resource type="Shader" uid="uid://cf8i0c8es1gbi" path="res://Shaders/WearingMetal.gdshader" id="2_gcsls"]
+[ext_resource type="Texture2D" uid="uid://ko37xf1e46nc" path="res://Textures/RoughCowPattern.png" id="3_dxe8f"]
+[ext_resource type="PackedScene" uid="uid://dmmdfqxnodnjp" path="res://Models/Parts/Roller/RollerArm.glb" id="4_24pnx"]
+[ext_resource type="Script" uid="uid://cfsd884pdedwm" path="res://Scripts/Parts/PaintedMesh.gd" id="6_ihu4f"]
+[ext_resource type="Script" uid="uid://cp0mj2ij12w11" path="res://Scripts/Parts/PhysicalBone.gd" id="7_uiu3o"]
+[ext_resource type="Script" uid="uid://bvrjsqrnhaa6l" path="res://Scripts/Parts/SlotRecoil.gd" id="8_3vy52"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hc3qj"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cfai4"]
+noise = SubResource("FastNoiseLite_hc3qj")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dn3h2"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_gcsls")
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_cfai4")
+shader_parameter/wearTexture = ExtResource("3_dxe8f")
+shader_parameter/mainColor = Color(0.98, 0.861093, 0.0882, 1)
+shader_parameter/wearColor = Color(0.20871, 0.20871, 0.20871, 1)
+shader_parameter/wear = 0.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yjgdo"]
+radius = 0.1
+height = 0.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oo8sq"]
+radius = 0.05
+height = 0.343263
+
+[node name="BetaArm" type="Node3D" node_paths=PackedStringArray("IK", "skeleton")]
+script = ExtResource("1_udjwy")
+inaccuracy = 1.5
+strength = 40.0
+IK = NodePath("RollerArm/Armature/Skeleton3D/SkeletonIK3D")
+skeleton = NodePath("RollerArm/Armature/Skeleton3D/PhysicalBoneSimulator3D")
+front_name = "Roller Arm"
+paint_color = Color(0.499027, 0.52, 0.4056, 1)
+paint_material = SubResource("ShaderMaterial_dn3h2")
+max_integrity = 100
+mass = 24
+
+[node name="RollerArm" parent="." instance=ExtResource("4_24pnx")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.285924, -0.0725726, 0.00853499)
+
+[node name="Arm" parent="RollerArm/Armature/Skeleton3D" index="0"]
+script = ExtResource("6_ihu4f")
+
+[node name="SkeletonIK3D" type="SkeletonIK3D" parent="RollerArm/Armature/Skeleton3D" index="1"]
+root_bone = &"Arm_2"
+tip_bone = &"Hand"
+target_node = NodePath("../../../../Target/TargetOffset")
+
+[node name="PhysicalBoneSimulator3D" type="PhysicalBoneSimulator3D" parent="RollerArm/Armature/Skeleton3D" index="2"]
+influence = 0.0
+
+[node name="Physical Bone Arm_2" type="PhysicalBone3D" parent="RollerArm/Armature/Skeleton3D/PhysicalBoneSimulator3D"]
+transform = Transform3D(-2.668e-07, -1, 6.25517e-06, 0.0647886, 6.22474e-06, 0.997899, -0.997899, 6.71504e-07, 0.0647886, 0.467299, -0.0968183, 0.00400537)
+collision_layer = 4
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.24666e-06, 8.36543e-07, 0.1631)
+body_offset = Transform3D(1, -2.68875e-07, -2.30893e-05, -2.30819e-05, -6.22542e-06, -1, 2.66801e-07, 1, -6.22537e-06, 5.19212e-07, 0.1631, 1.78814e-07)
+bone_name = "Arm_2"
+script = ExtResource("7_uiu3o")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RollerArm/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Arm_2"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -2.32831e-09, 1.89175e-10, 0.0759832)
+shape = SubResource("CapsuleShape3D_yjgdo")
+
+[node name="Physical Bone ForeArm" type="PhysicalBone3D" parent="RollerArm/Armature/Skeleton3D/PhysicalBoneSimulator3D"]
+transform = Transform3D(-5.69759e-07, -1, 1.00115e-08, -6.67001e-08, 1.00115e-08, 1, -1, 5.69759e-07, -6.67001e-08, 0.467305, -0.431189, -0.00651183)
+collision_layer = 4
+joint_type = 1
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.42903e-05, 5.65987e-06, 0.171632)
+body_offset = Transform3D(1, -5.72614e-07, 7.41507e-08, 7.41507e-08, 1.49012e-08, -1, 5.70684e-07, 1, 1.48386e-08, -4.4303e-05, 0.171632, -5.66244e-06)
+bone_name = "ForeArm"
+joint_constraints/bias = 0.3
+joint_constraints/damping = 1.0
+joint_constraints/impulse_clamp = 0.0
+script = ExtResource("7_uiu3o")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RollerArm/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone ForeArm"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_oo8sq")
+
+[node name="RestTarget" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.606294, 0.795241, 0, -0.795241, 0.606294, -0.239062, -0.446616, -0.225428)
+
+[node name="ToolTarget" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00913672, -0.0707416, -0.311506)
+
+[node name="SlotHandTool" type="Marker3D" parent="ToolTarget"]
+script = ExtResource("8_3vy52")
+slot_type = 5
+
+[node name="Target" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.223059, -0.155225, -0.574468)
+
+[node name="TargetOffset" type="Marker3D" parent="Target"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 0.999999, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, -0.0349023, -0.039368, 0.0678776)
+
+[editable path="RollerArm"]

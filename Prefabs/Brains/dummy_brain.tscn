@@ -1,7 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://cp2wvdojahkkj"]
 
-[ext_resource type="Script" uid="uid://cvdf20ad0op7e" path="res://Scripts/Robot/DummyFollowerBrain.gd" id="1_l0qna"]
+[ext_resource type="Script" uid="uid://c7vrv11f06ybc" path="res://Scripts/Robot/DummyBrain.gd" id="1_ikciu"]
 
 [node name="Brain" type="Node3D"]
-script = ExtResource("1_l0qna")
+script = ExtResource("1_ikciu")
 front_name = "Dummy AI"

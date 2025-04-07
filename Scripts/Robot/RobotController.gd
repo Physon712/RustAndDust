@@ -40,6 +40,7 @@ var jump_speed
 func _ready():
 	add_to_group("Robot")
 	attach_parts()
+	collider.shape = CapsuleShape3D.new()
 
 
 func attach_parts(): #Attach all parts and create the establish the list of the parts
@@ -114,6 +115,7 @@ func _physics_process(delta):
 	if(height > 0 && brain != null):
 		collider.disabled = false
 		collider.shape.height = height
+		collider.shape.radius = height/4
 		collider.position.y = height/2
 	else:
 		collider.disabled = true
@@ -152,21 +154,23 @@ func action_jump(): # Try to jump
 	if(is_on_floor()):
 		velocity.y = jump_speed
 
-func explosion(force,ray,pos,_reponsible : Robot = null): #Apply force for an explosion
-	var d = (global_transform.origin-pos)
+func explosion(damage,force,ray,pos,_reponsible : Robot = null): #Apply force for an explosion
+	var d = (collider.global_position-pos)
 	if d.length() <= ray:
 		var appliedforce = ((1-d.length()/ray)**2)*force #Square
 		d = d.normalized()
 		apply_central_impulse(d*(appliedforce))
 		
 func directional_explosion(force,ray,pos,direction,_responsible : Robot = null): #Apply force for a directionnal push
-	var d = (global_transform.origin-pos)
+	var d = (collider.global_position-pos)
 	if d.length() <= ray:
 		var appliedforce = ((1-d.length()/ray)**2)*force #Square
 		apply_central_impulse(direction*(appliedforce))
 		
 func apply_central_impulse(energie): # Same as function for a rigidbody of the same name
 	var speed = energie/mass
+	if speed.y < 0: #Safety to avoid getting blown up into the ground
+		speed.y = 0
 	velocity += speed
 
 func take_damage(damage,_responsible : Robot = null):

@@ -1,0 +1,105 @@
+[gd_scene load_steps=15 format=3 uid="uid://b6miaugrjbxa6"]
+
+[ext_resource type="Script" uid="uid://covq3q1yemlf8" path="res://Scripts/Parts/PartShoulderGun.gd" id="1_716qf"]
+[ext_resource type="Script" uid="uid://c0af5hkdeulu" path="res://Scripts/Parts/PhysicalPart.gd" id="2_iv0nx"]
+[ext_resource type="PackedScene" uid="uid://dok8voi4ecf74" path="res://Prefabs/Projectiles/grenade.tscn" id="2_lghhs"]
+[ext_resource type="PackedScene" uid="uid://c5xuoyfivi6yn" path="res://Models/Parts/Roller/RollerGL.glb" id="3_lghhs"]
+[ext_resource type="AudioStream" uid="uid://c7ugl1fglly5v" path="res://Audio/Sounds/Guns/163458__lemudcrab__grenade-launcher.wav" id="4_cabra"]
+[ext_resource type="Script" uid="uid://cfsd884pdedwm" path="res://Scripts/Parts/PaintedMesh.gd" id="4_iv0nx"]
+[ext_resource type="Texture2D" uid="uid://cjoockfy7yjuw" path="res://Textures/Particles/Particle.png" id="5_d3amm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yvfuh"]
+size = Vector3(0.395, 0.437, 0.249)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_88vl1"]
+size = Vector3(0.177793, 0.235227, 1.07678)
+
+[sub_resource type="Curve" id="Curve_kl2d3"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.04992, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vc0ln"]
+curve = SubResource("Curve_kl2d3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r4p6q"]
+angle_min = -15.0
+angle_max = 15.0
+initial_velocity_min = 1.0
+initial_velocity_max = 4.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 0.7
+scale_curve = SubResource("CurveTexture_vc0ln")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l2qxy"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+albedo_color = Color(1, 0.757717, 0.678536, 1)
+albedo_texture = ExtResource("5_d3amm")
+emission_enabled = true
+emission = Color(0.941176, 0.584314, 0.270588, 1)
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_rngem"]
+material = SubResource("StandardMaterial3D_l2qxy")
+
+[node name="ShoulderGL" type="Node3D" node_paths=PackedStringArray("firesound", "fireparticle", "muzzle")]
+script = ExtResource("1_716qf")
+damage = 18
+fire_rate = 0.8
+max_ammo = 24
+dispersion = 0.1
+bullet_speed = 50
+bullet = ExtResource("2_lghhs")
+firesound = NodePath("Muzzle/FireSound")
+fireparticle = NodePath("Muzzle/FireParticle")
+muzzle = NodePath("Muzzle")
+front_name = "Shoudler Launcher 40mm"
+max_integrity = 75
+mass = 22
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+collision_layer = 4
+mass = 20.0
+freeze = true
+script = ExtResource("2_iv0nx")
+
+[node name="RollerGL" parent="RigidBody3D" instance=ExtResource("3_lghhs")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.02882e-08, -0.307007, -0.117683)
+
+[node name="ShoulderGL" parent="RigidBody3D/RollerGL" index="0"]
+script = ExtResource("4_iv0nx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.207764, 0.122731)
+shape = SubResource("BoxShape3D_yvfuh")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.316776, 0.180175, -0.246744)
+shape = SubResource("BoxShape3D_88vl1")
+
+[node name="Muzzle" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.30905, 0.181798, -0.831513)
+
+[node name="FireSound" type="AudioStreamPlayer3D" parent="Muzzle"]
+stream = ExtResource("4_cabra")
+max_distance = 50.0
+bus = &"SFX"
+
+[node name="FireParticle" type="GPUParticles3D" parent="Muzzle"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+emitting = false
+lifetime = 0.1
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_r4p6q")
+draw_pass_1 = SubResource("QuadMesh_rngem")
+
+[editable path="RigidBody3D/RollerGL"]

@@ -46,7 +46,7 @@ target_node = NodePath("../../../../Target")
 influence = 0.0
 
 [node name="Physical Bone LegFront_L" type="PhysicalBone3D" parent="EngineerQuadLeg/Armature_002/Skeleton3D/PhysicalBoneSimulator3D"]
-transform = Transform3D(0.137257, 0.344709, 0.928621, 0.344709, 0.862271, -0.37103, -0.928621, 0.37103, -0.000471598, -0.363102, 0.644323, 0.00211144)
+transform = Transform3D(0.137257, 0.344709, 0.928621, 0.344709, 0.862271, -0.37103, -0.928621, 0.37103, -0.000471598, -0.363101, 0.644323, 0.00211144)
 collision_layer = 4
 joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.28557e-06, -3.28419e-05, 0.391797)
 body_offset = Transform3D(1, -1.19209e-07, 5.73345e-09, -1.46974e-08, -5.40604e-08, -1, 1.19209e-07, 1, -7.85803e-09, -6.28782e-06, 0.391797, 3.2845e-05)

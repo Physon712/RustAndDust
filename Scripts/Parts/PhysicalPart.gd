@@ -15,8 +15,9 @@ func _ready():
 func bullet_hit(damage,_responsible : Robot = null):
 	part.bullet_hit(damage,_responsible)
 	
-func explosion(force,ray,pos,_responsible : Robot = null): #Apply force for an explosion
+func explosion(damage,force,ray,pos,_responsible : Robot = null): #Apply force for an explosion
 	var d = (global_transform.origin-pos)
+	part.take_damage(clamp((ray-d.length())/ray*damage,0,damage),_responsible)
 	if d.length() <= ray:
 		var appliedforce = ((1-d.length()/ray)**2)*force #Square
 		d = d.normalized()

@@ -2,7 +2,7 @@ extends "res://Scripts/Parts/PartMovement.gd"
 
 class_name Roller
 
-@export var fixed_height = 1
+@export var fixed_height:float = 1.2
 @export var acceleration_force = 2000
 @export var jump_momentum = 250
 

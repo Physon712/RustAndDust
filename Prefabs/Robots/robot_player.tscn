@@ -1,22 +1,36 @@
-[gd_scene load_steps=15 format=3 uid="uid://b55pbie5minn"]
+[gd_scene load_steps=17 format=3 uid="uid://b55pbie5minn"]
 
 [ext_resource type="PackedScene" uid="uid://bit663ribx1au" path="res://Prefabs/Robots/robot.tscn" id="1_k0e6f"]
-[ext_resource type="PackedScene" uid="uid://bohxn7hu2gmfk" path="res://Prefabs/Parts/Engineer/engineer_core.tscn" id="2_gyym1"]
-[ext_resource type="PackedScene" uid="uid://5fmcgbbmusuo" path="res://Prefabs/Parts/Beta/beta_arm.tscn" id="3_djl11"]
+[ext_resource type="PackedScene" uid="uid://bddmp67ruwdgc" path="res://Prefabs/Parts/Roller/roller_core.tscn" id="2_f66c2"]
+[ext_resource type="PackedScene" uid="uid://bmfhek0nw21nq" path="res://Prefabs/Parts/Roller/roller_arm.tscn" id="3_k0e6f"]
 [ext_resource type="Shader" uid="uid://cf8i0c8es1gbi" path="res://Shaders/WearingMetal.gdshader" id="4_hge8h"]
 [ext_resource type="Texture2D" uid="uid://ko37xf1e46nc" path="res://Textures/RoughCowPattern.png" id="5_0y3aw"]
-[ext_resource type="PackedScene" uid="uid://bb2f823m8sdc0" path="res://Prefabs/Parts/HandTools/precision_rifle.tscn" id="6_djl11"]
-[ext_resource type="PackedScene" uid="uid://rtidphuacdig" path="res://Prefabs/Parts/HandTools/bullpup.tscn" id="6_nicrg"]
-[ext_resource type="PackedScene" uid="uid://cdflht11veebq" path="res://Prefabs/Parts/Engineer/engineer_head.tscn" id="7_0b6p6"]
+[ext_resource type="PackedScene" uid="uid://dp3e2eo5ldqfr" path="res://Prefabs/Brains/player_brain.tscn" id="6_djl11"]
+[ext_resource type="PackedScene" uid="uid://c2a7o76oh5khb" path="res://Prefabs/Parts/Roller/roller_head.tscn" id="6_gyym1"]
+[ext_resource type="PackedScene" uid="uid://b6miaugrjbxa6" path="res://Prefabs/Parts/Roller/shoulder_gl.tscn" id="7_k0e6f"]
 [ext_resource type="PackedScene" uid="uid://cb7lh6xukwpxy" path="res://Prefabs/Parts/Roller/roller_lower.tscn" id="8_46n1q"]
-[ext_resource type="PackedScene" uid="uid://dp3e2eo5ldqfr" path="res://Prefabs/Brains/player_brain.tscn" id="8_gyym1"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_w3if0"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_is8ck"]
+noise = SubResource("FastNoiseLite_w3if0")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0y3aw"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("4_hge8h")
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_is8ck")
+shader_parameter/wearTexture = ExtResource("5_0y3aw")
+shader_parameter/mainColor = Color(0.98, 0.861093, 0.0882, 1)
+shader_parameter/wearColor = Color(0.20871, 0.20871, 0.20871, 1)
+shader_parameter/wear = 0.0
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_hc3qj"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cfai4"]
 noise = SubResource("FastNoiseLite_hc3qj")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_igkre"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_djl11"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("4_hge8h")
@@ -26,7 +40,7 @@ shader_parameter/mainColor = Color(0.98, 0.861093, 0.0882, 1)
 shader_parameter/wearColor = Color(0.20871, 0.20871, 0.20871, 1)
 shader_parameter/wear = 0.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_m0o5u"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hge8h"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("4_hge8h")
@@ -38,56 +52,24 @@ shader_parameter/wear = 0.0
 
 [node name="Robot" instance=ExtResource("1_k0e6f")]
 
-[node name="EngineerCore" parent="Parts" index="0" instance=ExtResource("2_gyym1")]
-paint_color = Color(1, 0.466667, 0, 1)
+[node name="EngineerCore" parent="Parts" index="0" instance=ExtResource("2_f66c2")]
 
-[node name="BetaArm" parent="Parts/EngineerCore/SlotArmL" index="0" instance=ExtResource("3_djl11")]
-paint_color = Color(1, 0.466667, 0, 1)
-paint_material = SubResource("ShaderMaterial_igkre")
+[node name="PartHead" parent="Parts/EngineerCore/SlotHead" index="0" instance=ExtResource("6_gyym1")]
+paint_material = SubResource("ShaderMaterial_0y3aw")
 
-[node name="Physical Bone Arm_L" parent="Parts/EngineerCore/SlotArmL/BetaArm/BetaArm/ArmatureArm/Skeleton3D/PhysicalBoneSimulator3D" index="0"]
-transform = Transform3D(-0.92519, 0.379491, -0.00315935, -0.00218844, 0.00298979, 0.999993, 0.379498, 0.925191, -0.00193563, 0.318596, 1.29214, -0.0798543)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.64675e-07, 2.43203e-07, 0.160235)
-body_offset = Transform3D(1, 2.08616e-07, 7.6943e-06, 7.69418e-06, -1.88954e-06, -1, -1.78814e-07, 1, -1.88977e-06, -2.68221e-07, 0.160235, 5.96046e-08)
+[node name="PlayerBrain" parent="Parts/EngineerCore/SlotHead/PartHead/SlotBrain" index="0" instance=ExtResource("6_djl11")]
 
-[node name="Physical Bone ForeArm_L" parent="Parts/EngineerCore/SlotArmL/BetaArm/BetaArm/ArmatureArm/Skeleton3D/PhysicalBoneSimulator3D" index="1"]
-transform = Transform3D(-0.92519, 0.379491, -0.0031618, -0.00218909, 0.00299468, 0.999993, 0.379498, 0.925191, -0.00193991, 0.319572, 0.98243, -0.0792557)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.33585e-07, 2.19523e-06, 0.14948)
-body_offset = Transform3D(1, 0, 8.29692e-06, 8.29704e-06, -6.81018e-06, -1, 2.98023e-08, 1, -6.81053e-06, -5.06639e-07, 0.14948, -1.17719e-06)
+[node name="BetaArm" parent="Parts/EngineerCore/SlotArmL" index="0" instance=ExtResource("3_k0e6f")]
+paint_material = SubResource("ShaderMaterial_djl11")
 
-[node name="PrecisionRifle" parent="Parts/EngineerCore/SlotArmL/BetaArm/ToolTarget/SlotHandTool" index="0" instance=ExtResource("6_djl11")]
-recoil_potential = 15
+[node name="BetaArm" parent="Parts/EngineerCore/SlotArmR" index="0" instance=ExtResource("3_k0e6f")]
+paint_material = SubResource("ShaderMaterial_hge8h")
 
-[node name="BetaArm" parent="Parts/EngineerCore/SlotArmR" index="0" instance=ExtResource("3_djl11")]
-paint_color = Color(1, 0.466667, 0, 1)
-paint_material = SubResource("ShaderMaterial_m0o5u")
-
-[node name="Physical Bone Arm_L" parent="Parts/EngineerCore/SlotArmR/BetaArm/BetaArm/ArmatureArm/Skeleton3D/PhysicalBoneSimulator3D" index="0"]
-transform = Transform3D(-0.92519, 0.379491, -0.00315935, -0.00218844, 0.00298979, 0.999993, 0.379498, 0.925191, -0.00193563, 0.318596, 1.29214, -0.0798543)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.11369e-06, 2.87906e-07, 0.160235)
-body_offset = Transform3D(1, 2.08616e-07, 7.6943e-06, 7.69418e-06, -1.88954e-06, -1, -1.78814e-07, 1, -1.88977e-06, -1.19209e-07, 0.160235, 1.49012e-08)
-
-[node name="Physical Bone ForeArm_L" parent="Parts/EngineerCore/SlotArmR/BetaArm/BetaArm/ArmatureArm/Skeleton3D/PhysicalBoneSimulator3D" index="1"]
-transform = Transform3D(-0.92519, 0.379491, -0.00316408, -0.0021912, 0.00299555, 0.999993, 0.379498, 0.925191, -0.00193991, 0.319572, 0.98243, -0.0792557)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.04894e-06, 2.32418e-06, 0.14948)
-body_offset = Transform3D(1, 0, 1.04066e-05, 1.04071e-05, -7.67282e-06, -1, 0, 1, -7.67317e-06, -5.06639e-07, 0.14948, -1.17719e-06)
-
-[node name="Smg" parent="Parts/EngineerCore/SlotArmR/BetaArm/ToolTarget/SlotHandTool" index="0" instance=ExtResource("6_nicrg")]
-
-[node name="EngineerHead" parent="Parts/EngineerCore/SlotHead" index="0" instance=ExtResource("7_0b6p6")]
-paint_color = Color(1, 0.466667, 0, 1)
-
-[node name="PlayerBrain" parent="Parts/EngineerCore/SlotHead/EngineerHead/Slot" index="0" instance=ExtResource("8_gyym1")]
-paint_color = Color(1, 0.466667, 0, 1)
+[node name="ShoulderGL" parent="Parts/EngineerCore/Back" index="0" instance=ExtResource("7_k0e6f")]
 
 [node name="RollerLower" parent="Parts/EngineerCore/SlotMovement" index="0" instance=ExtResource("8_46n1q")]
-paint_color = Color(1, 0.466667, 0, 1)
 
 [editable path="Parts/EngineerCore"]
-[editable path="Parts/EngineerCore/SlotArmL/BetaArm"]
-[editable path="Parts/EngineerCore/SlotArmL/BetaArm/BetaArm"]
-[editable path="Parts/EngineerCore/SlotArmR/BetaArm"]
-[editable path="Parts/EngineerCore/SlotArmR/BetaArm/BetaArm"]
-[editable path="Parts/EngineerCore/SlotHead/EngineerHead"]
-[editable path="Parts/EngineerCore/SlotHead/EngineerHead/RigidBody3D/EngineerHead"]
-[editable path="Parts/EngineerCore/RigidBody3D/EngineerCore"]
+[editable path="Parts/EngineerCore/SlotHead/PartHead"]
+[editable path="Parts/EngineerCore/SlotHead/PartHead/RigidBody3D/RollerHead"]
+[editable path="Parts/EngineerCore/RigidBody3D/RollerCore"]

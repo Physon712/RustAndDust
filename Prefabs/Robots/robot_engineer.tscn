@@ -37,14 +37,14 @@ script = ExtResource("2_h8yd3")
 [node name="EngineerArm" parent="Parts/EngineerCore/SlotArmR" index="0" instance=ExtResource("4_025ds")]
 
 [node name="Physical Bone Arm_L" parent="Parts/EngineerCore/SlotArmR/EngineerArm/EngineerArm/Armature_001/Skeleton3D/PhysicalBoneSimulator3D" index="0"]
-transform = Transform3D(-0.983763, -0.179471, 4.31559e-08, 7.55879e-08, -1.73871e-07, 1, -0.179471, 0.983763, 1.84613e-07, -0.366692, 1.1692, -0.00498517)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.41774e-07, 1.85561e-07, 0.156305)
-body_offset = Transform3D(1, 0, -4.63033e-08, -4.63034e-08, 4.49852e-09, -1, -2.98023e-08, 1, 4.4985e-09, 1.49012e-07, 0.156305, -1.86265e-07)
+transform = Transform3D(-0.983763, -0.179471, 4.31853e-08, 7.56219e-08, -1.73893e-07, 1, -0.179471, 0.983763, 1.84642e-07, -0.366692, 1.1692, -0.00498517)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.41769e-07, 1.85558e-07, 0.156305)
+body_offset = Transform3D(1, 0, -4.63374e-08, -4.63374e-08, 4.5212e-09, -1, -2.98023e-08, 1, 4.5212e-09, 1.49012e-07, 0.156305, -1.86265e-07)
 
 [node name="Physical Bone Forearm_L" parent="Parts/EngineerCore/SlotArmR/EngineerArm/EngineerArm/Armature_001/Skeleton3D/PhysicalBoneSimulator3D" index="1"]
-transform = Transform3D(-0.983763, -0.179471, -3.58253e-08, -3.27318e-08, -2.0198e-08, 1, -0.179471, 0.983763, 1.39957e-08, -0.366692, 0.817011, -0.00498494)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.78118e-09, -5.60762e-08, 0.195882)
-body_offset = Transform3D(1, 0, 3.46187e-08, 3.46187e-08, 1.00479e-09, -1, -2.98023e-08, 1, 1.00479e-09, 0, 0.195882, 5.58794e-08)
+transform = Transform3D(-0.983763, -0.179471, -3.58314e-08, -3.27374e-08, -2.02009e-08, 1, -0.179471, 0.983763, 1.39975e-08, -0.366692, 0.817011, -0.00498494)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.78228e-09, -5.60768e-08, 0.195882)
+body_offset = Transform3D(1, 0, 3.46243e-08, 3.46244e-08, 1.00762e-09, -1, -2.98023e-08, 1, 1.00763e-09, 0, 0.195882, 5.58794e-08)
 
 [node name="AutoShotgun" parent="Parts/EngineerCore/SlotArmR/EngineerArm/ToolTarget/SlotHandTool" index="0" instance=ExtResource("5_v55h4")]
 

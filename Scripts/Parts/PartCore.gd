@@ -44,7 +44,7 @@ func _physics_process(delta):
 			transform.origin.y = lerp(transform.origin.y,0.2,0.1)
 		else:
 			if(movement_module != null):
-				transform.origin.y = movement_module.height
+				transform.origin.y = lerp(transform.origin.y,max(movement_module.height,0.2),0.1)
 			rotation.x = clamp(0.2*robot.velocity.dot(robot.head.basis.z)/robot.max_speed,-max_tilt,max_tilt)
 			rotation.z = clamp(-0.2*robot.velocity.dot(robot.head.basis.x)/robot.max_speed,-max_tilt,max_tilt)
 		

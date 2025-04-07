@@ -59,6 +59,7 @@ func fire_a_shot(): #Fire the weapon, instantiate a bullet and apply it speed in
 		dir = dir.rotated(robot.head.basis.y,randf_range(-dispersion,dispersion) + rotation.y)
 		dir = dir.rotated(robot.head.basis.x,randf_range(-dispersion,dispersion) + rotation.x)
 		b.transform = robot.head.global_transform
+		b.position += 1.0*dir #Move the bullet forward a little, so you don't hit yourself
 		b.velocity = dir*bullet_speed
 		b.shooter = robot
 		b.damage = damage

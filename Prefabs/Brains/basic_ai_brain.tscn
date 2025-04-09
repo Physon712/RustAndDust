@@ -2,8 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bocnfse2jtt8f" path="res://Scripts/Robot/BasicAiBrain.gd" id="1_6ybnq"]
 
-[node name="Brain" type="Node3D"]
+[node name="BrainLoner" type="Node3D"]
 script = ExtResource("1_6ybnq")
 target_distance = 1
-team_signature = 3
-front_name = "Scrapper AI"
+team_signature = 1
+front_name = "Rogue AI"
+max_integrity = 100

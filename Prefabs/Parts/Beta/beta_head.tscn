@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cxj6d0aoyacem"]
+[gd_scene load_steps=16 format=3 uid="uid://cxj6d0aoyacem"]
 
 [ext_resource type="Script" uid="uid://1ivlmbpi6et6" path="res://Scripts/Parts/PartHead.gd" id="1_4et2o"]
 [ext_resource type="Script" uid="uid://c0af5hkdeulu" path="res://Scripts/Parts/PhysicalPart.gd" id="2_ki6ah"]
@@ -7,6 +7,7 @@
 [ext_resource type="Shader" uid="uid://cf8i0c8es1gbi" path="res://Shaders/WearingMetal.gdshader" id="4_lshbl"]
 [ext_resource type="Script" uid="uid://cfsd884pdedwm" path="res://Scripts/Parts/PaintedMesh.gd" id="5_1d25v"]
 [ext_resource type="Texture2D" uid="uid://ko37xf1e46nc" path="res://Textures/RoughCowPattern.png" id="5_sgta1"]
+[ext_resource type="Material" uid="uid://c355hn1ffuwmj" path="res://Textures/Materials/base_light.tres" id="7_edwu8"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_w3if0"]
 
@@ -45,7 +46,6 @@ size = Vector3(0.237549, 0.370605, 0.49353)
 script = ExtResource("1_4et2o")
 front_name = "Standard Head"
 paint_material = SubResource("ShaderMaterial_6ksjw")
-integrity = 75
 max_integrity = 75
 mass = 10
 
@@ -69,7 +69,9 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8.6739
 
 [node name="Cube_005" parent="RigidBody3D/BetaHead" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_qsk8g")
+surface_material_override/2 = ExtResource("7_edwu8")
 script = ExtResource("5_1d25v")
+material_light_id = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.193115, 0.0192261)

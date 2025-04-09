@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://ckykbn1u36w4v"]
+[gd_scene load_steps=5 format=3 uid="uid://ckykbn1u36w4v"]
 
 [ext_resource type="Script" uid="uid://dpps1po4vvpdx" path="res://Scripts/UI/AssemblyMenu.gd" id="1_vrq1h"]
 [ext_resource type="Script" uid="uid://cih0t00mrp420" path="res://Scripts/UI/DisplayRobotAssembly.gd" id="2_314t5"]
 [ext_resource type="Script" uid="uid://da17xsyq1h8yq" path="res://Scripts/UI/DisplayInventory.gd" id="3_087re"]
+[ext_resource type="AudioStream" uid="uid://dc738ru1kxaqe" path="res://Audio/Sounds/ar_mag_eject.wav" id="4_1pifw"]
 
-[node name="AssemblyMenu" type="Control"]
+[node name="AssemblyMenu" type="Control" node_paths=PackedStringArray("audio_player")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,6 +13,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vrq1h")
+audio_player = NodePath("AudioStreamPlayer")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -10
@@ -23,63 +25,96 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.545098)
 
-[node name="HSplitContainer" type="HBoxContainer" parent="."]
+[node name="VBoxContainer" type="VSplitContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -604.0
+offset_top = -306.0
+offset_right = 604.0
+offset_bottom = 306.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="HSplitContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
 alignment = 1
 
-[node name="ScrollContainer2" type="ScrollContainer" parent="HSplitContainer"]
+[node name="ScrollContainer2" type="ScrollContainer" parent="VBoxContainer/HSplitContainer"]
 custom_minimum_size = Vector2(400, 200)
 layout_mode = 2
 size_flags_vertical = 4
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 0
 
-[node name="RobotA" type="VBoxContainer" parent="HSplitContainer/ScrollContainer2"]
+[node name="RobotA" type="VBoxContainer" parent="VBoxContainer/HSplitContainer/ScrollContainer2"]
 visible = false
 layout_mode = 2
 script = ExtResource("2_314t5")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/ScrollContainer2/RobotA"]
+[node name="Label" type="Label" parent="VBoxContainer/HSplitContainer/ScrollContainer2/RobotA"]
+layout_mode = 2
+text = "Current Robot"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HSplitContainer/ScrollContainer2/RobotA"]
 layout_mode = 2
 
-[node name="MassLabel" type="Label" parent="HSplitContainer/ScrollContainer2/RobotA/HBoxContainer"]
+[node name="MassLabel" type="Label" parent="VBoxContainer/HSplitContainer/ScrollContainer2/RobotA/HBoxContainer"]
 layout_mode = 2
 text = "Mass : 240 kg"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="HSplitContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/HSplitContainer"]
 custom_minimum_size = Vector2(342, 600)
 layout_mode = 2
 size_flags_vertical = 4
 horizontal_scroll_mode = 0
 
-[node name="Inventory" type="VBoxContainer" parent="HSplitContainer/ScrollContainer"]
+[node name="Inventory" type="VBoxContainer" parent="VBoxContainer/HSplitContainer/ScrollContainer"]
 custom_minimum_size = Vector2(400, 600)
 layout_mode = 2
 alignment = 1
 script = ExtResource("3_087re")
 
-[node name="ScrollContainer3" type="ScrollContainer" parent="HSplitContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/HSplitContainer/ScrollContainer/Inventory"]
+layout_mode = 2
+text = "Inventory"
+horizontal_alignment = 1
+
+[node name="ScrollContainer3" type="ScrollContainer" parent="VBoxContainer/HSplitContainer"]
 custom_minimum_size = Vector2(400, 200)
 layout_mode = 2
 size_flags_vertical = 4
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 0
 
-[node name="RobotB" type="VBoxContainer" parent="HSplitContainer/ScrollContainer3"]
+[node name="RobotB" type="VBoxContainer" parent="VBoxContainer/HSplitContainer/ScrollContainer3"]
 visible = false
 layout_mode = 2
 script = ExtResource("2_314t5")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/ScrollContainer3/RobotB"]
+[node name="Label" type="Label" parent="VBoxContainer/HSplitContainer/ScrollContainer3/RobotB"]
+layout_mode = 2
+text = "Current Robot"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HSplitContainer/ScrollContainer3/RobotB"]
 layout_mode = 2
 
-[node name="MassLabel" type="Label" parent="HSplitContainer/ScrollContainer3/RobotB/HBoxContainer"]
+[node name="MassLabel" type="Label" parent="VBoxContainer/HSplitContainer/ScrollContainer3/RobotB/HBoxContainer"]
 layout_mode = 2
 text = "Mass : 240 kg"
 
-[connection signal="gui_input" from="HSplitContainer/ScrollContainer/Inventory" to="HSplitContainer/ScrollContainer/Inventory" method="_on_gui_input"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Description" type="RichTextLabel" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_1pifw")
+
+[connection signal="gui_input" from="VBoxContainer/HSplitContainer/ScrollContainer/Inventory" to="VBoxContainer/HSplitContainer/ScrollContainer/Inventory" method="_on_gui_input"]

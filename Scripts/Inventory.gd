@@ -5,6 +5,12 @@ class_name Inventory
 var inv = {}
 var id_count = 0
 
+var friendly_ai = preload("res://Prefabs/Brains/basic_ai_brain_friends.tscn")
+
+func _ready(): #Starter Pack
+	for i in range(3):
+		add_part(friendly_ai.instantiate())
+
 func add_part(part : RobotPart):
 	if(part.integrity <= 0):
 		return
@@ -24,7 +30,6 @@ func add_part(part : RobotPart):
 	part.detach()
 	part.queue_free()
 	id_count += 1
-	print(inv)
 	
 func remove_part(id):
 	inv.erase(id)

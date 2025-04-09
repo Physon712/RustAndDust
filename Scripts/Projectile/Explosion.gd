@@ -19,7 +19,7 @@ func _process(delta):
 		$Particles.emitting = true
 		for part in $Particles.get_children():
 			part.emitting = true
-		get_tree().call_group("Robot","explosion",damage,force*20,radius*5,transform.origin)
+		get_tree().call_group("Robot","explosion",damage,force,radius*5,transform.origin)
 		get_tree().call_group("PhysObj","explosion",damage,force,radius,transform.origin)
 		has_exploded = true
 		

@@ -34,10 +34,12 @@ func erase_display_list():
 		
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed: #Part from mouse data to inventory
-		if(assembly_menu != null):
+		if(assembly_menu != null): ## DROP
+			
 			if(assembly_menu.mouse_data.pressed && !assembly_menu.mouse_data.from_inventory):
 				inv.add_part(assembly_menu.mouse_data.associated_part)
 				assembly_menu.mouse_data.associated_part.detach()
 				assembly_menu.mouse_data.associated_part.queue_free()
 				assembly_menu.clear_mouse_data()
 				assembly_menu.refresh()
+				assembly_menu.play_detach_sound()

@@ -4,4 +4,7 @@
 
 [node name="Brain" type="Node3D"]
 script = ExtResource("1_ikciu")
+team_signature = 2
+ai_color = Color(0.305719, 0.493076, 1, 1)
 front_name = "Dummy AI"
+max_integrity = 100

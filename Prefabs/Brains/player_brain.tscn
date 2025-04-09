@@ -6,6 +6,9 @@
 [node name="PlayerBrain" type="Node3D"]
 script = ExtResource("1_o8epo")
 team_signature = 2
+ai_color = Color(0.821326, 0.00169959, 0.960035, 1)
+can_be_leader = true
 front_name = "You"
+max_integrity = 100
 
 [node name="Inventory" parent="." instance=ExtResource("2_ea7mg")]

@@ -1,37 +1,73 @@
-[gd_scene load_steps=9 format=3 uid="uid://b4dc81337rvha"]
+[gd_scene load_steps=19 format=3 uid="uid://b4dc81337rvha"]
 
 [ext_resource type="Script" uid="uid://qwoynvdg4daw" path="res://Scripts/FX/ImpactSpark.gd" id="1_agvr7"]
 [ext_resource type="Texture2D" uid="uid://cjoockfy7yjuw" path="res://Textures/Particles/Particle.png" id="1_w5dti"]
-[ext_resource type="AudioStream" uid="uid://br3syduh06w5o" path="res://Audio/Sounds/Guns/RFPistolFire.wav" id="3_iqbqc"]
+[ext_resource type="AudioStream" uid="uid://2vciddf5vmgb" path="res://Audio/Sounds/Gun_Hit_Metal_01.wav" id="3_ty1qk"]
+[ext_resource type="AudioStream" uid="uid://ca8xp80w4rj5v" path="res://Audio/Sounds/Gun_Hit_Metal_02.wav" id="4_i7l77"]
+[ext_resource type="AudioStream" uid="uid://bsmqitkc4n7xx" path="res://Audio/Sounds/Gun_Hit_Metal_03.wav" id="5_jv4o2"]
+[ext_resource type="AudioStream" uid="uid://cbedodw4b6ddq" path="res://Audio/Sounds/Gun_Hit_Metal_04.wav" id="6_x33t4"]
+[ext_resource type="AudioStream" uid="uid://h333vvd653ms" path="res://Audio/Sounds/ricochet_09.wav" id="7_jv4o2"]
+[ext_resource type="AudioStream" uid="uid://cnauprybfb2og" path="res://Audio/Sounds/ricochet_04.wav" id="8_x33t4"]
 
-[sub_resource type="Curve" id="Curve_h5dgp"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.04992, 0.0, 0, 0]
+[sub_resource type="Gradient" id="Gradient_jv4o2"]
+offsets = PackedFloat32Array(0.691756, 1)
+colors = PackedColorArray(1, 0.313726, 0, 1, 1, 0.501961, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3eq7g"]
+gradient = SubResource("Gradient_jv4o2")
+
+[sub_resource type="Curve" id="Curve_x33t4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_fvhly"]
-curve = SubResource("Curve_h5dgp")
+[sub_resource type="Curve" id="Curve_73817"]
+_limits = [0.0, 6.0, 0.0, 1.0]
+_data = [Vector2(0, 6), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_myd7o"]
+[sub_resource type="Curve" id="Curve_lvral"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_2fbip"]
+curve_x = SubResource("Curve_x33t4")
+curve_y = SubResource("Curve_73817")
+curve_z = SubResource("Curve_lvral")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_63ttg"]
+particle_flag_align_y = true
 spread = 180.0
-initial_velocity_min = 3.0
-initial_velocity_max = 7.0
-gravity = Vector3(0, 0, 0)
-scale_min = 0.5
-scale_max = 0.7
-scale_curve = SubResource("CurveTexture_fvhly")
+initial_velocity_min = 4.0
+initial_velocity_max = 8.0
+gravity = Vector3(0, -20, 0)
+scale_min = 0.1
+scale_max = 0.15
+scale_curve = SubResource("CurveXYZTexture_2fbip")
+color_ramp = SubResource("GradientTexture1D_3eq7g")
+sub_emitter_mode = 1
+sub_emitter_frequency = 4.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vfsk1"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_htl4h"]
 transparency = 1
 blend_mode = 1
-albedo_color = Color(1, 0.757717, 0.678536, 1)
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("1_w5dti")
-emission_enabled = true
-emission = Color(0.941176, 0.584314, 0.270588, 1)
-billboard_mode = 1
 billboard_keep_scale = true
 
-[sub_resource type="QuadMesh" id="QuadMesh_tjayh"]
-material = SubResource("StandardMaterial3D_vfsk1")
+[sub_resource type="QuadMesh" id="QuadMesh_m8gg2"]
+material = SubResource("StandardMaterial3D_htl4h")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_73817"]
+random_pitch = 1.2
+streams_count = 6
+stream_0/stream = ExtResource("3_ty1qk")
+stream_1/stream = ExtResource("4_i7l77")
+stream_2/stream = ExtResource("5_jv4o2")
+stream_3/stream = ExtResource("6_x33t4")
+stream_4/stream = ExtResource("7_jv4o2")
+stream_5/stream = ExtResource("8_x33t4")
 
 [node name="BulletImpactSpark" type="Node3D" node_paths=PackedStringArray("part", "sound")]
 script = ExtResource("1_agvr7")
@@ -39,17 +75,16 @@ part = NodePath("Particle")
 sound = NodePath("Sound")
 
 [node name="Particle" type="GPUParticles3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 emitting = false
-lifetime = 0.1
+amount = 12
+lifetime = 0.4
 one_shot = true
 explosiveness = 1.0
 fixed_fps = 60
-local_coords = true
-process_material = SubResource("ParticleProcessMaterial_myd7o")
-draw_pass_1 = SubResource("QuadMesh_tjayh")
+process_material = SubResource("ParticleProcessMaterial_63ttg")
+draw_pass_1 = SubResource("QuadMesh_m8gg2")
 
 [node name="Sound" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("3_iqbqc")
-pitch_scale = 2.0
+stream = SubResource("AudioStreamRandomizer_73817")
+volume_db = 6.0
 bus = &"SFX"

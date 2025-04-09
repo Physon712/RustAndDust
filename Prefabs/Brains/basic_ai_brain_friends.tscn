@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnukd0o366h6a"]
+
+[ext_resource type="Script" uid="uid://bocnfse2jtt8f" path="res://Scripts/Robot/BasicAiBrain.gd" id="1_hrpyd"]
+
+[node name="BrainFriendly" type="Node3D"]
+script = ExtResource("1_hrpyd")
+target_distance = 1
+cruel = false
+look_for_leader = true
+team_signature = 2
+ai_color = Color(0.15, 1, 0, 1)
+front_name = "Friendly AI"
+max_integrity = 100

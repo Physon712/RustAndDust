@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://cb5f2ixoifgjy" path="res://Scripts/Parts/HandGun.gd" id="1_4osxe"]
 [ext_resource type="Script" uid="uid://c0af5hkdeulu" path="res://Scripts/Parts/PhysicalPart.gd" id="2_jpx13"]
 [ext_resource type="PackedScene" uid="uid://c5dcmix58r3de" path="res://Models/Parts/HandWeapons/SilencedSmg.glb" id="3_1ycbk"]
-[ext_resource type="AudioStream" uid="uid://dvlmfmn5gtigp" path="res://Audio/Sounds/Guns/Silencer_01.wav" id="4_5dxnf"]
 [ext_resource type="Material" uid="uid://dl3f5cthok1pf" path="res://Textures/Materials/beta_armature.tres" id="5_64tkp"]
+[ext_resource type="AudioStream" uid="uid://cbcnsivglrya4" path="res://Audio/Sounds/Guns/m4.wav" id="6_3rbn2"]
 [ext_resource type="Script" uid="uid://cfsd884pdedwm" path="res://Scripts/Parts/PaintedMesh.gd" id="6_oag85"]
 [ext_resource type="Texture2D" uid="uid://cjoockfy7yjuw" path="res://Textures/Particles/Particle.png" id="8_s2d0m"]
 
@@ -12,8 +12,9 @@
 size = Vector3(0.102, 0.33905, 1.18113)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3rbn2"]
+random_pitch = 1.1
 streams_count = 1
-stream_0/stream = ExtResource("4_5dxnf")
+stream_0/stream = ExtResource("6_3rbn2")
 
 [sub_resource type="Curve" id="Curve_3el03"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.04992, 0.0, 0, 0]
@@ -63,7 +64,7 @@ animator = NodePath("RigidBody3D/SilencedSmg/SMG9/Cube_001")
 firesound = NodePath("Muzzle/FireSound")
 fireparticle = NodePath("Muzzle/FireParticle")
 muzzle = NodePath("Muzzle")
-front_name = "Silenced Bullpup 5.56mm"
+front_name = "Bullpup SD 5.56mm"
 paint_color = Color(0.1314, 0.14841, 0.18, 1)
 max_integrity = 40
 mass = 7
@@ -95,7 +96,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.067817, -1.02517)
 
 [node name="FireSound" type="AudioStreamPlayer3D" parent="Muzzle"]
 stream = SubResource("AudioStreamRandomizer_3rbn2")
-pitch_scale = 1.2
 max_distance = 50.0
 bus = &"SFX"
 

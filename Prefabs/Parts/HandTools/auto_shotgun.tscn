@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://br6o03a1syy8j" path="res://Models/Parts/HandWeapons/Shotgun.glb" id="3_5jrnp"]
 [ext_resource type="Material" uid="uid://bucp5fy2db5xn" path="res://Textures/Materials/engineer_armature.tres" id="4_6h6rd"]
 [ext_resource type="Script" uid="uid://cfsd884pdedwm" path="res://Scripts/Parts/PaintedMesh.gd" id="5_b6qs4"]
-[ext_resource type="AudioStream" uid="uid://dhd2woa7aa13v" path="res://Audio/Sounds/Guns/ShotGun_01.wav" id="6_f4equ"]
+[ext_resource type="AudioStream" uid="uid://tg1edb2r8p74" path="res://Audio/Sounds/Guns/shotgun2.wav" id="6_f4equ"]
 [ext_resource type="Texture2D" uid="uid://cjoockfy7yjuw" path="res://Textures/Particles/Particle.png" id="8_mnkom"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0guu7"]
@@ -83,7 +83,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0822746, -0.984015)
 
 [node name="FireSound" type="AudioStreamPlayer3D" parent="RigidBody3D/Muzzle"]
 stream = ExtResource("6_f4equ")
-max_distance = 50.0
+volume_db = 6.0
 bus = &"SFX"
 
 [node name="FireParticle" type="GPUParticles3D" parent="RigidBody3D/Muzzle"]

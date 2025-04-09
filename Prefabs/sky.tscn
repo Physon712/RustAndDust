@@ -193,6 +193,7 @@ transform = Transform3D(0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0, 1, 0, 0, 0)
 transform = Transform3D(0.766044, 1.02265e-08, -0.642787, 0.642787, -2.80971e-08, 0.766044, -1.02265e-08, -1, -2.80971e-08, 0, 0, 0)
 light_color = Color(1, 0.981, 0.81, 1)
 shadow_enabled = true
+shadow_reverse_cull_face = true
 
 [node name="DayAndNightCycle" type="AnimationPlayer" parent="."]
 libraries = {

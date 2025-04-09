@@ -12,7 +12,6 @@ var height = 0.2
 
 func attach():
 	super()
-	print(max_speed)
 	robot.movement_instability = movement_instability
 
 func get_part_type():

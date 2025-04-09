@@ -177,9 +177,9 @@ joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.23294e-06, 2.95244e-07,
 body_offset = Transform3D(1, 2.08616e-07, 7.69459e-06, 7.69418e-06, -1.88884e-06, -1, -1.78814e-07, 1, -1.88907e-06, 0, 0.160235, 7.45058e-09)
 
 [node name="Physical Bone ForeArm_L" parent="Parts/PartCore/SlotArmL/BetaArm/BetaArm/ArmatureArm/Skeleton3D/PhysicalBoneSimulator3D" index="1"]
-transform = Transform3D(-0.92519, 0.379491, -0.00316351, -0.00219069, 0.00299529, 0.999993, 0.379498, 0.925191, -0.00193987, 0.319572, 0.98243, -0.0792544)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4797e-06, 1.05681e-06, 0.14948)
-body_offset = Transform3D(1, 0, 9.89897e-06, 9.89909e-06, -7.41833e-06, -1, 0, 1, -7.4188e-06, 0, 0.14948, 5.21541e-08)
+transform = Transform3D(-0.92519, 0.379491, -0.00316354, -0.00219071, 0.0029953, 0.999993, 0.379498, 0.925191, -0.00193987, 0.319572, 0.98243, -0.0792544)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.48302e-06, 1.05843e-06, 0.14948)
+body_offset = Transform3D(1, 5.96046e-08, 9.9212e-06, 9.92144e-06, -7.42928e-06, -1, 0, 1, -7.42963e-06, 0, 0.14948, 5.21541e-08)
 
 [node name="Smg" parent="Parts/PartCore/SlotArmL/BetaArm/ToolTarget/SlotHandTool" index="0" instance=ExtResource("9_i2ypv")]
 
@@ -192,9 +192,9 @@ joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.20314e-06, 3.02695e-07,
 body_offset = Transform3D(1, 2.08616e-07, 7.69459e-06, 7.69418e-06, -1.88884e-06, -1, -1.78814e-07, 1, -1.88907e-06, -2.98023e-08, 0.160235, 0)
 
 [node name="Physical Bone ForeArm_L" parent="Parts/PartCore/SlotArmR/BetaArm/BetaArm/ArmatureArm/Skeleton3D/PhysicalBoneSimulator3D" index="1"]
-transform = Transform3D(-0.92519, 0.379491, -0.00316351, -0.00219069, 0.00299529, 0.999993, 0.379498, 0.925191, -0.00193987, 0.319572, 0.98243, -0.0792545)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.39029e-06, 1.12386e-06, 0.14948)
-body_offset = Transform3D(1, 0, 9.89897e-06, 9.89909e-06, -7.41833e-06, -1, 0, 1, -7.4188e-06, -8.9407e-08, 0.14948, -1.49012e-08)
+transform = Transform3D(-0.92519, 0.379491, -0.00316354, -0.00219071, 0.0029953, 0.999993, 0.379498, 0.925191, -0.00193987, 0.319572, 0.98243, -0.0792545)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.39361e-06, 1.12548e-06, 0.14948)
+body_offset = Transform3D(1, 5.96046e-08, 9.9212e-06, 9.92144e-06, -7.42928e-06, -1, 0, 1, -7.42963e-06, -8.9407e-08, 0.14948, -1.49012e-08)
 
 [node name="PartMovement" parent="Parts/PartCore/SlotMovement" index="0" instance=ExtResource("5_msbew")]
 paint_material = SubResource("ShaderMaterial_cfrye")

@@ -9,6 +9,7 @@ var shooter : Robot;
 var next_position = Vector3.ZERO
 
 @export var spark_prefab = preload("res://Prefabs/FX/bullet_impact_spark.tscn")
+@export var spark_prefab_env = preload("res://Prefabs/FX/bullet_impact.tscn")
 
 @onready var world = get_tree().get_current_scene() 
 
@@ -27,10 +28,15 @@ func check_for_collision(): #Raycast between current position and next position,
 	if(result):
 		if(result.collider.has_method("bullet_hit")):
 				result.collider.call("bullet_hit",damage,shooter)
-				
 				##Create impact spark effect
 				var explosion = spark_prefab.instantiate()
 				world.add_child(explosion)
 				explosion.transform.origin = result.position - basis.z*0.1
 				explosion.transform = explosion.transform.looking_at(-basis.z+explosion.transform.origin,Vector3.UP)
+		else:
+			##Create impact spark effect
+			var explosion = spark_prefab_env.instantiate()
+			world.add_child(explosion)
+			explosion.transform.origin = result.position - basis.z*0.1
+			explosion.transform = explosion.transform.looking_at(-basis.z+explosion.transform.origin,Vector3.UP)
 		queue_free()

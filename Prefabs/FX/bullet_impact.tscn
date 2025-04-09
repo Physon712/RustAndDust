@@ -1,0 +1,65 @@
+[gd_scene load_steps=13 format=3 uid="uid://dnf74subnhntw"]
+
+[ext_resource type="Script" uid="uid://qwoynvdg4daw" path="res://Scripts/FX/ImpactSpark.gd" id="1_f8fnx"]
+[ext_resource type="Texture2D" uid="uid://cjoockfy7yjuw" path="res://Textures/Particles/Particle.png" id="2_ossm7"]
+[ext_resource type="AudioStream" uid="uid://bpdyup2roaaeb" path="res://Audio/Sounds/Gun_Hit_Default_01.wav" id="3_5ffmw"]
+[ext_resource type="AudioStream" uid="uid://cvg4i2ox6xuf2" path="res://Audio/Sounds/Gun_Hit_Default_02.wav" id="4_xfnd3"]
+[ext_resource type="AudioStream" uid="uid://canaukef12fpp" path="res://Audio/Sounds/Gun_Hit_Default_03.wav" id="5_f8fnx"]
+[ext_resource type="AudioStream" uid="uid://bhhhjacsbo76p" path="res://Audio/Sounds/Gun_Hit_Default_04.wav" id="6_ossm7"]
+
+[sub_resource type="Curve" id="Curve_5ffmw"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.04992, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_xfnd3"]
+curve = SubResource("Curve_5ffmw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f8fnx"]
+spread = 180.0
+initial_velocity_min = 3.0
+initial_velocity_max = 7.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 0.7
+scale_curve = SubResource("CurveTexture_xfnd3")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ossm7"]
+transparency = 1
+blend_mode = 1
+albedo_color = Color(1, 0.757717, 0.678536, 1)
+albedo_texture = ExtResource("2_ossm7")
+emission_enabled = true
+emission = Color(0.941176, 0.584314, 0.270588, 1)
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_yynwy"]
+material = SubResource("StandardMaterial3D_ossm7")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_yynwy"]
+random_pitch = 1.2
+streams_count = 4
+stream_0/stream = ExtResource("3_5ffmw")
+stream_1/stream = ExtResource("4_xfnd3")
+stream_2/stream = ExtResource("5_f8fnx")
+stream_3/stream = ExtResource("6_ossm7")
+
+[node name="BulletImpact" type="Node3D" node_paths=PackedStringArray("part", "sound")]
+script = ExtResource("1_f8fnx")
+part = NodePath("Particle")
+sound = NodePath("Sound")
+
+[node name="Particle" type="GPUParticles3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+emitting = false
+lifetime = 0.1
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_f8fnx")
+draw_pass_1 = SubResource("QuadMesh_yynwy")
+
+[node name="Sound" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_yynwy")
+bus = &"SFX"

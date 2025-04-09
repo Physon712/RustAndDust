@@ -1,0 +1,92 @@
+[gd_scene load_steps=18 format=3 uid="uid://pxhwjyu0ueb4"]
+
+[ext_resource type="PackedScene" uid="uid://bit663ribx1au" path="res://Prefabs/Robots/robot.tscn" id="1_5xbsl"]
+[ext_resource type="PackedScene" uid="uid://bddmp67ruwdgc" path="res://Prefabs/Parts/Roller/roller_core.tscn" id="2_1caes"]
+[ext_resource type="PackedScene" uid="uid://c2a7o76oh5khb" path="res://Prefabs/Parts/Roller/roller_head.tscn" id="3_tjrrg"]
+[ext_resource type="Shader" uid="uid://cf8i0c8es1gbi" path="res://Shaders/WearingMetal.gdshader" id="4_aa6s4"]
+[ext_resource type="Texture2D" uid="uid://ko37xf1e46nc" path="res://Textures/RoughCowPattern.png" id="5_npdqo"]
+[ext_resource type="PackedScene" uid="uid://lno8iby20wxq" path="res://Prefabs/Brains/basic_ai_brain.tscn" id="6_tjrrg"]
+[ext_resource type="PackedScene" uid="uid://bmfhek0nw21nq" path="res://Prefabs/Parts/Roller/roller_arm.tscn" id="7_57io3"]
+[ext_resource type="PackedScene" uid="uid://cb7lh6xukwpxy" path="res://Prefabs/Parts/Roller/roller_lower.tscn" id="8_5qa7l"]
+[ext_resource type="PackedScene" uid="uid://dl8nqu14yfxq1" path="res://Prefabs/Parts/HandTools/auto_shotgun.tscn" id="8_aa6s4"]
+[ext_resource type="PackedScene" uid="uid://b6miaugrjbxa6" path="res://Prefabs/Parts/Roller/shoulder_gl.tscn" id="9_npdqo"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_w3if0"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_is8ck"]
+noise = SubResource("FastNoiseLite_w3if0")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0y3aw"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("4_aa6s4")
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_is8ck")
+shader_parameter/wearTexture = ExtResource("5_npdqo")
+shader_parameter/mainColor = Color(0.98, 0.861093, 0.0882, 1)
+shader_parameter/wearColor = Color(0.20871, 0.20871, 0.20871, 1)
+shader_parameter/wear = 0.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hc3qj"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cfai4"]
+noise = SubResource("FastNoiseLite_hc3qj")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_djl11"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("4_aa6s4")
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_cfai4")
+shader_parameter/wearTexture = ExtResource("5_npdqo")
+shader_parameter/mainColor = Color(0.98, 0.861093, 0.0882, 1)
+shader_parameter/wearColor = Color(0.20871, 0.20871, 0.20871, 1)
+shader_parameter/wear = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hge8h"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("4_aa6s4")
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_cfai4")
+shader_parameter/wearTexture = ExtResource("5_npdqo")
+shader_parameter/mainColor = Color(0.98, 0.861093, 0.0882, 1)
+shader_parameter/wearColor = Color(0.20871, 0.20871, 0.20871, 1)
+shader_parameter/wear = 0.0
+
+[node name="Robot" instance=ExtResource("1_5xbsl")]
+
+[node name="EngineerCore" parent="Parts" index="0" instance=ExtResource("2_1caes")]
+
+[node name="PartHead" parent="Parts/EngineerCore/SlotHead" index="0" instance=ExtResource("3_tjrrg")]
+paint_material = SubResource("ShaderMaterial_0y3aw")
+
+[node name="BrainLoner" parent="Parts/EngineerCore/SlotHead/PartHead/SlotBrain" index="0" instance=ExtResource("6_tjrrg")]
+
+[node name="BetaArm" parent="Parts/EngineerCore/SlotArmL" index="0" instance=ExtResource("7_57io3")]
+paint_material = SubResource("ShaderMaterial_djl11")
+
+[node name="Physical Bone Arm_2" parent="Parts/EngineerCore/SlotArmL/BetaArm/RollerArm/Armature/Skeleton3D/PhysicalBoneSimulator3D" index="0"]
+transform = Transform3D(-2.65663e-07, -1, 6.27266e-06, 0.0647886, 6.24227e-06, 0.997899, -0.997899, 6.71502e-07, 0.0647886, 0.467299, -0.0968208, 0.00388854)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000113178, 8.39489e-07, 0.16311)
+body_offset = Transform3D(1, -2.67739e-07, -2.30893e-05, -2.30819e-05, -6.24291e-06, -1, 2.65664e-07, 1, -6.24286e-06, 0.000116944, 0.16311, 1.78814e-07)
+
+[node name="Physical Bone ForeArm" parent="Parts/EngineerCore/SlotArmL/BetaArm/RollerArm/Armature/Skeleton3D/PhysicalBoneSimulator3D" index="1"]
+transform = Transform3D(-5.67486e-07, -1, 1.00115e-08, -6.64159e-08, 1.00115e-08, 1, -1, 5.67486e-07, -6.64159e-08, 0.467305, -0.431189, -0.00653046)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.56647e-05, 5.65988e-06, 0.171632)
+body_offset = Transform3D(1, -5.70341e-07, 7.38665e-08, 7.38665e-08, 1.49012e-08, -1, 5.6841e-07, 1, 1.48386e-08, -2.56774e-05, 0.171632, -5.66244e-06)
+
+[node name="AutoShotgun" parent="Parts/EngineerCore/SlotArmL/BetaArm/ToolTarget/SlotHandTool" index="0" instance=ExtResource("8_aa6s4")]
+
+[node name="BetaArm" parent="Parts/EngineerCore/SlotArmR" index="0" instance=ExtResource("7_57io3")]
+paint_material = SubResource("ShaderMaterial_hge8h")
+
+[node name="ShoulderGL" parent="Parts/EngineerCore/Back" index="0" instance=ExtResource("9_npdqo")]
+fire_rate = 3.2
+paint_color = Color(0.498039, 0.521569, 0.403922, 1)
+
+[node name="RollerLower" parent="Parts/EngineerCore/SlotMovement" index="0" instance=ExtResource("8_5qa7l")]
+
+[editable path="Parts/EngineerCore"]
+[editable path="Parts/EngineerCore/SlotHead/PartHead"]
+[editable path="Parts/EngineerCore/SlotHead/PartHead/RigidBody3D/RollerHead"]
+[editable path="Parts/EngineerCore/SlotArmL/BetaArm"]
+[editable path="Parts/EngineerCore/SlotArmL/BetaArm/RollerArm"]
+[editable path="Parts/EngineerCore/RigidBody3D/RollerCore"]

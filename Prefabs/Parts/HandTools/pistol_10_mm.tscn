@@ -1,16 +1,21 @@
-[gd_scene load_steps=18 format=3 uid="uid://cmjw3hbsiuicu"]
+[gd_scene load_steps=19 format=3 uid="uid://cmjw3hbsiuicu"]
 
 [ext_resource type="Script" uid="uid://cb5f2ixoifgjy" path="res://Scripts/Parts/HandGun.gd" id="1_wvupq"]
 [ext_resource type="PackedScene" uid="uid://dgr36aiwj0pp0" path="res://Models/Parts/HandWeapons/Pistol.glb" id="2_jxe23"]
 [ext_resource type="Script" uid="uid://c0af5hkdeulu" path="res://Scripts/Parts/PhysicalPart.gd" id="2_wd1kj"]
 [ext_resource type="Material" uid="uid://dyai2s24mjp2q" path="res://Textures/Materials/WearMetal.tres" id="3_iedo4"]
-[ext_resource type="AudioStream" uid="uid://br3syduh06w5o" path="res://Audio/Sounds/Guns/RFPistolFire.wav" id="4_wvg8i"]
 [ext_resource type="Texture2D" uid="uid://cjoockfy7yjuw" path="res://Textures/Particles/Particle.png" id="5_05pu6"]
 [ext_resource type="Script" uid="uid://cfsd884pdedwm" path="res://Scripts/Parts/PaintedMesh.gd" id="5_n44cs"]
 [ext_resource type="Material" uid="uid://dl3f5cthok1pf" path="res://Textures/Materials/beta_armature.tres" id="5_qx2q5"]
+[ext_resource type="AudioStream" uid="uid://gfxpng1hkjnb" path="res://Audio/Sounds/Guns/glock.wav" id="7_vrvhr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0guu7"]
 size = Vector3(0.102, 0.276, 0.504)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7ae4l"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("7_vrvhr")
 
 [sub_resource type="Curve" id="Curve_3el03"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.04992, 0.0, 0, 0]
@@ -96,6 +101,7 @@ fireparticle = NodePath("Muzzle/FireParticle")
 muzzle = NodePath("Muzzle")
 front_name = "Pistol 10mm"
 paint_color = Color(0.5896, 0.64052, 0.67, 1)
+max_integrity = 25
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 collision_layer = 4
@@ -128,8 +134,8 @@ transform = Transform3D(0.0121472, 0, 0.999926, 0, 1, 0, -0.999926, 0, 0.0121472
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11733, -0.77001)
 
 [node name="FireSound" type="AudioStreamPlayer3D" parent="Muzzle"]
-stream = ExtResource("4_wvg8i")
-max_distance = 50.0
+stream = SubResource("AudioStreamRandomizer_7ae4l")
+volume_db = 6.0
 bus = &"SFX"
 
 [node name="FireParticle" type="GPUParticles3D" parent="Muzzle"]

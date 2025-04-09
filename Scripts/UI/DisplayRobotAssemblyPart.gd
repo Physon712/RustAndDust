@@ -33,17 +33,23 @@ func _process(delta: float) -> void:
 			queue_free()
 	else:
 		integrity_bar.value = 0
+		
+	#When selected, show it... somehow
+	if(assembly_menu != null && assembly_menu.mouse_data.pressed && assembly_menu.mouse_data.last_selected == self):
+		modulate = Color.LAWN_GREEN
+	else:
+		modulate = Color.WHITE
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed: #Part from assembly menu to mouse data
 		if(assembly_menu != null):
-			if(associated_part != null):
-				print(associated_part.front_name)
+			if(associated_part != null): ##DRAG
+				assembly_menu.mouse_data.last_selected = self
 				assembly_menu.mouse_data.pressed = true
 				assembly_menu.mouse_data.from_inventory = false
 				assembly_menu.mouse_data.associated_id = 0
 				assembly_menu.mouse_data.associated_part = associated_part
-			else:
+			else: ##DROP
 				if(assembly_menu.mouse_data.pressed):
 					if(assembly_menu.mouse_data.from_inventory): 
 						if(slot.slot_type == assembly_menu.inventory.inv[assembly_menu.mouse_data.associated_id].type && assembly_menu.inventory.inv[assembly_menu.mouse_data.associated_id].integrity > 0): #Mouse data from inventory to assembly
@@ -51,6 +57,7 @@ func _on_gui_input(event: InputEvent) -> void:
 							robot.attach_parts()
 							assembly_menu.inventory.remove_part(assembly_menu.mouse_data.associated_id)
 							assembly_menu.refresh()
+							assembly_menu.play_attach_sound()
 					else: #Mouse data from assembly to assembly
 						if(assembly_menu.mouse_data.associated_part.get_part_type() == slot.slot_type):
 							assembly_menu.mouse_data.associated_part.get_parent().remove_child(assembly_menu.mouse_data.associated_part)
@@ -59,5 +66,6 @@ func _on_gui_input(event: InputEvent) -> void:
 							assembly_menu.mouse_data.associated_part.attach()
 							robot.attach_parts()
 							assembly_menu.refresh()
+							assembly_menu.play_attach_sound()
 					assembly_menu.clear_mouse_data()
 			

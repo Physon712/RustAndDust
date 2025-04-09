@@ -1,20 +1,31 @@
 extends Control
 
-@onready var robot_a_display = $HSplitContainer/ScrollContainer2/RobotA
-@onready var robot_b_display = $HSplitContainer/ScrollContainer3/RobotB
-@onready var inventory_display = $HSplitContainer/ScrollContainer/Inventory
+@onready var robot_a_display = $VBoxContainer/HSplitContainer/ScrollContainer2/RobotA
+@onready var robot_b_display = $VBoxContainer/HSplitContainer/ScrollContainer3/RobotB
+@onready var inventory_display = $VBoxContainer/HSplitContainer/ScrollContainer/Inventory
 
 @export var robot_a : Robot  = null
 @export var inventory : Inventory = null
 @export var robot_b : Robot = null
 
+@export var attach_sound_clip = preload("res://Audio/Sounds/ar_mag_insert.wav")
+@export var detach_sound_clip = preload("res://Audio/Sounds/ar_mag_eject.wav")
+@export var audio_player : AudioStreamPlayer
 var mouse_data = {
-	pressed = false,
-	from_inventory = false,
+	pressed = false, #Is the mouse loaded with data ? Has something being pressed ?
+	from_inventory = false, #Is it coming from a display from the inventory
 	associated_id = 0,
-	associated_part = null
-	
+	associated_part = null, 
+	last_selected = null # The last selected display of a part, inventory or otherwise
 }
+
+func play_detach_sound():
+	audio_player.stream = detach_sound_clip
+	audio_player.playing = true
+	
+func play_attach_sound():
+	audio_player.stream = attach_sound_clip
+	audio_player.playing = true
 
 func initialize():
 	inventory_display.inv = inventory
@@ -24,10 +35,11 @@ func initialize():
 	refresh()
 	
 func clear_mouse_data():
-	mouse_data.pressed = false
-	mouse_data.from_inventory = false
+	mouse_data.pressed = false 
+	mouse_data.from_inventory = false 
 	mouse_data.associated_id = 0
 	mouse_data.associated_part = null
+	mouse_data.selected = null 
 
 func refresh():
 	inventory_display.refresh_display_list()

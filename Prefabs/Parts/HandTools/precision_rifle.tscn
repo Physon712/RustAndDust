@@ -1,18 +1,20 @@
-[gd_scene load_steps=14 format=3 uid="uid://bb2f823m8sdc0"]
+[gd_scene load_steps=15 format=3 uid="uid://bb2f823m8sdc0"]
 
 [ext_resource type="Script" uid="uid://cb5f2ixoifgjy" path="res://Scripts/Parts/HandGun.gd" id="1_kfdt2"]
 [ext_resource type="Script" uid="uid://c0af5hkdeulu" path="res://Scripts/Parts/PhysicalPart.gd" id="2_yqa6p"]
 [ext_resource type="PackedScene" uid="uid://c6lytdm1gdr7r" path="res://Models/Parts/HandWeapons/PrecisionRifle.glb" id="3_ais0a"]
-[ext_resource type="AudioStream" uid="uid://bn8a4pa6xon1m" path="res://Audio/Sounds/Guns/Sniper_Fire_01.wav" id="4_dsxgj"]
+[ext_resource type="Material" uid="uid://dl3f5cthok1pf" path="res://Textures/Materials/beta_armature.tres" id="4_kfdt2"]
 [ext_resource type="Script" uid="uid://cfsd884pdedwm" path="res://Scripts/Parts/PaintedMesh.gd" id="5_1466j"]
+[ext_resource type="AudioStream" uid="uid://gfxpng1hkjnb" path="res://Audio/Sounds/Guns/glock.wav" id="5_dsxgj"]
 [ext_resource type="Texture2D" uid="uid://cjoockfy7yjuw" path="res://Textures/Particles/Particle.png" id="7_sqvga"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0guu7"]
 size = Vector3(0.102, 0.33905, 1.02172)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3rbn2"]
+random_pitch = 1.1
 streams_count = 1
-stream_0/stream = ExtResource("4_dsxgj")
+stream_0/stream = ExtResource("5_dsxgj")
 
 [sub_resource type="Curve" id="Curve_3el03"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.04992, 0.0, 0, 0]
@@ -80,7 +82,21 @@ shape = SubResource("BoxShape3D_0guu7")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.180493, 0.202749, 0.158171)
 
 [node name="Chassis" parent="RigidBody3D/PrecisionRifle" index="0"]
+surface_material_override/1 = ExtResource("4_kfdt2")
+surface_material_override/2 = ExtResource("4_kfdt2")
 script = ExtResource("5_1466j")
+
+[node name="Eject" parent="RigidBody3D/PrecisionRifle/Chassis" index="0"]
+surface_material_override/0 = ExtResource("4_kfdt2")
+
+[node name="Levier" parent="RigidBody3D/PrecisionRifle/Chassis" index="1"]
+surface_material_override/0 = ExtResource("4_kfdt2")
+
+[node name="Mag" parent="RigidBody3D/PrecisionRifle/Chassis" index="2"]
+surface_material_override/0 = ExtResource("4_kfdt2")
+
+[node name="Scope" parent="RigidBody3D/PrecisionRifle/Chassis" index="3"]
+surface_material_override/0 = ExtResource("4_kfdt2")
 
 [node name="LeftHand" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.152324)
@@ -93,8 +109,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.115077, -0.917922)
 
 [node name="FireSound" type="AudioStreamPlayer3D" parent="Muzzle"]
 stream = SubResource("AudioStreamRandomizer_3rbn2")
-pitch_scale = 1.2
-max_distance = 50.0
+volume_db = 8.0
+pitch_scale = 0.8
 bus = &"SFX"
 
 [node name="FireParticle" type="GPUParticles3D" parent="Muzzle"]

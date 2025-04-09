@@ -58,5 +58,6 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 9.7475
 
 [node name="Head" parent="RigidBody3D/RollerHead" index="0"]
 script = ExtResource("7_21nbl")
+material_light_id = 2
 
 [editable path="RigidBody3D/RollerHead"]

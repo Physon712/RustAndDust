@@ -6,6 +6,7 @@ extends Control
 @onready var status_screen = $StatusScreen
 @onready var mass_display = $StatusScreen/HBoxContainer/MassLabel
 @onready var reticle = $Reticule
+@onready var use_hint = $UseHint
 
 var part_displays = []
 

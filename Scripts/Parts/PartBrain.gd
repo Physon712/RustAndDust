@@ -3,6 +3,9 @@ extends "res://Scripts/Parts/RobotPart.gd"
 class_name Brain
 
 @export var team_signature = GameData.Faction.NEUTRAL
+@export var ai_color : Color = Color.RED
+
+@export var can_be_leader = false
 
 func attach():
 	super()

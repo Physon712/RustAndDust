@@ -9,7 +9,8 @@ var is_attached = false
 
 @export var paint_color : Color = Color.YELLOW
 @export var paint_material : ShaderMaterial = preload("res://Textures/Materials/base_wearmat.tres").duplicate()
-
+@export var light_material : StandardMaterial3D  = preload("res://Textures/Materials/base_light.tres").duplicate()
+@export var explosion_prefab = preload("res://Prefabs/FX/part_explosion.tscn")
 ##Stats
 @export var max_integrity = 10
 @export var wear = 0
@@ -21,6 +22,8 @@ var paint_job;
 var freeze = true;
 var lifetime = 30.0;
 var integrity = 10
+var has_exploded = false;
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#integrity = round(max_integrity*(0.2+0.8*randf()))
@@ -43,12 +46,22 @@ func attach(): #Base procedure for attaching part to a robot
 		activate_physics()
 	paint_material.set_shader_parameter("mainColor",paint_color)
 	paint_material.set_shader_parameter("wear",1-(float(integrity)/max_integrity))
-
+	if(robot != null && robot.brain != null):
+		light_material.albedo_color = robot.brain.ai_color
+		light_material.emission = robot.brain.ai_color
+	else:
+		light_material.albedo_color = Color.BLACK
+		light_material.emission = Color.BLACK
+	
+	
 func detach():
 	if(is_attached && robot != null):
 		var old_robot = robot
 		detach_parts()
 		old_robot.attach_parts()
+	light_material.albedo_color = Color.BLACK
+	light_material.emission = Color.BLACK
+		
 
 
 func detach_parts(): ##Detach part and children without updading the attached part of the robot	
@@ -110,6 +123,12 @@ func take_damage(damage,_responsible : Robot = null):
 	paint_material.set_shader_parameter("wear",1-(float(integrity)/max_integrity))
 	if(integrity <= 0):
 		detach()
+		#Explode
+		if(!has_exploded):
+			var exp = explosion_prefab.instantiate()
+			world.add_child(exp)
+			exp.global_position = global_position
+			has_exploded = true
 		
 func get_part_type():
 	return GameData.DataType.CORE

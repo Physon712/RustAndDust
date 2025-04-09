@@ -32,6 +32,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.54946, -0.0602335)
 [node name="Body_003" parent="RigidBody3D/EngineerHead" index="0"]
 script = ExtResource("4_mv8kb")
 material_id = 1
+material_light_id = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.210345, -0.111308)

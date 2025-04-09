@@ -2,6 +2,8 @@ extends CharacterBody3D
 
 class_name Robot
 
+@export var azimuth : float = 0.0
+
 ###Stats
 var mass
 var energy_production
@@ -41,6 +43,8 @@ func _ready():
 	add_to_group("Robot")
 	attach_parts()
 	collider.shape = CapsuleShape3D.new()
+	
+	head.rotate_y(deg_to_rad(azimuth))
 
 
 func attach_parts(): #Attach all parts and create the establish the list of the parts
@@ -90,7 +94,7 @@ func attach_parts(): #Attach all parts and create the establish the list of the 
 	air_acceleration = float(air_acceleration_force)/mass
 	jump_speed = float(jump_momentum)/mass
 	
-	if(acceleration <= 0): ##Always able to move, to avoid softlock of player
+	if(acceleration_force <= 0): ##Always able to move, to avoid softlock of player
 		max_speed = 0.6
 		acceleration = 2
 	

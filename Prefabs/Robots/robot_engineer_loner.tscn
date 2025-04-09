@@ -1,0 +1,72 @@
+[gd_scene load_steps=11 format=3 uid="uid://pknw2gi5midc"]
+
+[ext_resource type="Script" uid="uid://cxy7jwh4lbmr2" path="res://Scripts/Robot/RobotController.gd" id="1_1jg5t"]
+[ext_resource type="Script" uid="uid://djp13xat2gecj" path="res://Scripts/Parts/Slot.gd" id="2_tcduj"]
+[ext_resource type="PackedScene" uid="uid://bohxn7hu2gmfk" path="res://Prefabs/Parts/Engineer/engineer_core.tscn" id="3_imgga"]
+[ext_resource type="PackedScene" uid="uid://cdflht11veebq" path="res://Prefabs/Parts/Engineer/engineer_head.tscn" id="4_r6go2"]
+[ext_resource type="PackedScene" uid="uid://lno8iby20wxq" path="res://Prefabs/Brains/basic_ai_brain.tscn" id="5_1jg5t"]
+[ext_resource type="PackedScene" uid="uid://osay08vocqxj" path="res://Prefabs/Parts/Engineer/engineer_arm.tscn" id="6_watup"]
+[ext_resource type="PackedScene" uid="uid://bb2f823m8sdc0" path="res://Prefabs/Parts/HandTools/precision_rifle.tscn" id="7_1jg5t"]
+[ext_resource type="PackedScene" uid="uid://75ncvrb6jw87" path="res://Prefabs/Parts/Engineer/engineer_lower.tscn" id="8_nj2iv"]
+[ext_resource type="PackedScene" uid="uid://dyo3ytle7ux47" path="res://Prefabs/Parts/Engineer/engineer_quad_leg.tscn" id="9_jy6xa"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_byq50"]
+
+[node name="Robot" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 3
+platform_floor_layers = 4294901761
+script = ExtResource("1_1jg5t")
+
+[node name="NavAgent" type="NavigationAgent3D" parent="."]
+
+[node name="Collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_byq50")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+
+[node name="Parts" type="Node3D" parent="."]
+script = ExtResource("2_tcduj")
+
+[node name="EngineerCore" parent="Parts" instance=ExtResource("3_imgga")]
+
+[node name="EngineerHead" parent="Parts/EngineerCore/SlotHead" index="0" instance=ExtResource("4_r6go2")]
+
+[node name="BrainLoner" parent="Parts/EngineerCore/SlotHead/EngineerHead/Slot" index="0" instance=ExtResource("5_1jg5t")]
+
+[node name="EngineerArm" parent="Parts/EngineerCore/SlotArmL" index="0" instance=ExtResource("6_watup")]
+
+[node name="EngineerArm" parent="Parts/EngineerCore/SlotArmR" index="0" instance=ExtResource("6_watup")]
+
+[node name="Physical Bone Arm_L" parent="Parts/EngineerCore/SlotArmR/EngineerArm/EngineerArm/Armature_001/Skeleton3D/PhysicalBoneSimulator3D" index="0"]
+transform = Transform3D(-0.983763, -0.179471, 4.33094e-08, 7.57655e-08, -1.73989e-07, 1, -0.179471, 0.983763, 1.84762e-07, -0.366692, 1.1692, -0.00498517)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.41746e-07, 1.85543e-07, 0.156305)
+body_offset = Transform3D(1, 0, -4.6481e-08, -4.6481e-08, 4.61696e-09, -1, -2.98023e-08, 1, 4.61698e-09, 1.49012e-07, 0.156305, -1.86265e-07)
+
+[node name="Physical Bone Forearm_L" parent="Parts/EngineerCore/SlotArmR/EngineerArm/EngineerArm/Armature_001/Skeleton3D/PhysicalBoneSimulator3D" index="1"]
+transform = Transform3D(-0.983763, -0.179471, -3.5857e-08, -3.27614e-08, -2.02128e-08, 1, -0.179471, 0.983763, 1.4005e-08, -0.366692, 0.817011, -0.00498494)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.78698e-09, -5.60791e-08, 0.195882)
+body_offset = Transform3D(1, 0, 3.46483e-08, 3.46483e-08, 1.01959e-09, -1, -2.98023e-08, 1, 1.01959e-09, 0, 0.195882, 5.58794e-08)
+
+[node name="PrecisionRifle" parent="Parts/EngineerCore/SlotArmR/EngineerArm/ToolTarget/SlotHandTool" index="0" instance=ExtResource("7_1jg5t")]
+
+[node name="EngineerLower" parent="Parts/EngineerCore/SlotMovement" index="0" instance=ExtResource("8_nj2iv")]
+
+[node name="QuadLeg" parent="Parts/EngineerCore/SlotMovement/EngineerLower/SlotLegFR" index="0" instance=ExtResource("9_jy6xa")]
+
+[node name="QuadLeg" parent="Parts/EngineerCore/SlotMovement/EngineerLower/SlotLegBR" index="0" instance=ExtResource("9_jy6xa")]
+
+[node name="QuadLeg" parent="Parts/EngineerCore/SlotMovement/EngineerLower/SlotLegFL" index="0" instance=ExtResource("9_jy6xa")]
+
+[node name="QuadLeg" parent="Parts/EngineerCore/SlotMovement/EngineerLower/SlotLegBL" index="0" instance=ExtResource("9_jy6xa")]
+
+[editable path="Parts/EngineerCore"]
+[editable path="Parts/EngineerCore/SlotHead/EngineerHead"]
+[editable path="Parts/EngineerCore/SlotHead/EngineerHead/RigidBody3D/EngineerHead"]
+[editable path="Parts/EngineerCore/SlotArmR/EngineerArm"]
+[editable path="Parts/EngineerCore/SlotArmR/EngineerArm/EngineerArm"]
+[editable path="Parts/EngineerCore/SlotMovement/EngineerLower"]
+[editable path="Parts/EngineerCore/SlotMovement/EngineerLower/RigidBody3D/EngineerLower"]
+[editable path="Parts/EngineerCore/RigidBody3D/EngineerCore"]

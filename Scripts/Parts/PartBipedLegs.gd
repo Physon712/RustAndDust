@@ -22,6 +22,8 @@ func attach():
 	if(robot == null):
 		return
 	legs = []
+	right_leg = null
+	left_leg = null
 	if($SlotLegR.get_child_count() > 0):
 		right_leg = $SlotLegR.get_child(0)
 	if($SlotLegL.get_child_count() > 0):

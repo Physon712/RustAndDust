@@ -49,8 +49,8 @@ func _physics_process(delta):
 			rotation.z = clamp(-0.2*robot.velocity.dot(robot.head.basis.x)/robot.max_speed,-max_tilt,max_tilt)
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _process(_delta: float) -> void:
+	super(_delta)
 
 func get_part_type():
 	return GameData.PartType.CORE

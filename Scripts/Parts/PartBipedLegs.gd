@@ -19,9 +19,13 @@ var stepping = false;
 
 func attach():
 	super()
+	if(robot == null):
+		return
 	legs = []
-	right_leg = $SlotLegR.get_child(0)
-	left_leg = $SlotLegL.get_child(0)
+	if($SlotLegR.get_child_count() > 0):
+		right_leg = $SlotLegR.get_child(0)
+	if($SlotLegL.get_child_count() > 0):
+		left_leg = $SlotLegL.get_child(0)
 	
 	if(right_leg != null):
 		legs.append(right_leg)
@@ -45,7 +49,9 @@ func attach():
 	right_target = robot.global_transform.origin+Vector3.RIGHT*min_length*0.2
 	left_target = robot.global_transform.origin-Vector3.RIGHT*min_length*0.2
 
-	
+func _process(_delta: float) -> void:
+	super(_delta)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	if(is_attached):

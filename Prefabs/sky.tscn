@@ -15,7 +15,6 @@ sky_material = SubResource("ProceduralSkyMaterial_pnjn4")
 background_mode = 2
 sky = SubResource("Sky_odybw")
 ambient_light_source = 3
-ambient_light_sky_contribution = 0.5
 tonemap_exposure = 1.5
 fog_light_color = Color(0.670248, 0.481566, 0.286365, 1)
 fog_density = 0.005
@@ -90,6 +89,18 @@ tracks/5/path = NodePath("Axis/SunPivot/Sun:light_energy")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("WorldEnvironment:environment:ambient_light_energy")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -170,6 +181,18 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [1.0, 1.0, 0.0, 0.0, 0.0, 1.0, 1.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("WorldEnvironment:environment:ambient_light_energy")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.431974, 0.566667, 0.702976, 0.998429),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 1.0, 3.0, 3.0, 1.0, 1.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a6wxt"]

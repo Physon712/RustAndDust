@@ -2,12 +2,14 @@ extends "res://Scripts/Parts/PartBrain.gd"
 
 ### Basically take player input, to control a robot
 ##As well as display information about the robot in control
+class_name PlayerBrain
 
 #Load all the menu the player will be able to open
-@export var hud_prefab = preload("res://Prefabs/UI/robot_hud.tscn")
-@export var assembly_menu_prefab = preload("res://Prefabs/UI/assembly_menu.tscn")
+var hud_prefab = preload("res://Prefabs/UI/robot_hud.tscn")
+var assembly_menu_prefab = preload("res://Prefabs/UI/assembly_menu.tscn")
+var inv_prefab = preload("res://Prefabs/inventory.tscn")
 
-@export var inv_prefab = preload("res://Prefabs/inventory.tscn")
+var ghost_cam_prefab = preload("res://Prefabs/player_ghost.tscn")
 
 
 var inv = null
@@ -41,7 +43,12 @@ func detach():
 
 func _process(delta):
 	super(delta)
-	if(robot == null):
+	if(robot == null): #Dead
+		if(hud != null):
+			hud.queue_free()
+		print("Robot Lost")
+		release_ghost_camera()
+		queue_free()
 		return
 	if(robot.camera != null):
 		robot.camera.current = true
@@ -56,6 +63,7 @@ func _process(delta):
 		robot.weapons[1].use()
 	if(robot.weapons.size() > 2 && Input.is_action_pressed("Fire3")):
 		robot.weapons[2].use()
+		
 
 func _physics_process(delta):
 	super(delta)
@@ -85,15 +93,16 @@ func _physics_process(delta):
 		robot.camera.fov = lerp(robot.camera.fov,75.0,0.2)
 		mouse_sensitivity_mult = 1
 		
-	
-	
 	#Interaction raycast
 	var space_state = get_world_3d().direct_space_state
 	var query = PhysicsRayQueryParameters3D.create(robot.head.global_position,robot.head.global_position-3*robot.head.basis.z,0b100)
 	var result = space_state.intersect_ray(query)
 	if(result):
 		if(hud != null && hud.use_hint != null): 
-			hud.use_hint.text = result.collider.part.front_name + " [" + str(round(100*float(result.collider.part.integrity)/result.collider.part.max_integrity)) + "%]"
+			if(result.collider.part.integrity >	 0.0):
+				hud.use_hint.text = result.collider.part.front_name + " [" + str(round(100*float(result.collider.part.integrity)/result.collider.part.max_integrity)) + "%]"
+			else:
+				hud.use_hint.text = result.collider.part.front_name + "[BROKEN]"
 		if(Input.is_action_just_pressed("Use")):
 			if(!result.collider.part.is_attached):
 				#Take part and put in inventory
@@ -126,6 +135,8 @@ func look_for_parent_robot():
 	var parent = get_parent() #Get the robot to which the part is parented
 	while(!(parent is Robot)):
 		parent = parent.get_parent()
+		if(parent == null):
+			return null
 	return parent
 
 func open_inventory(target): #Create an assembly menu between the current robot and the target one
@@ -136,4 +147,10 @@ func open_inventory(target): #Create an assembly menu between the current robot 
 	assembly_menu.inventory = inv
 	assembly_menu.initialize()
 	GameData.enter_menu_mode()
+	
+func release_ghost_camera():
+	var ghost = ghost_cam_prefab.instantiate()
+	world.add_child(ghost)
+	ghost.global_position = global_position + 3*basis.z
+	ghost.look_at(global_position)
 	

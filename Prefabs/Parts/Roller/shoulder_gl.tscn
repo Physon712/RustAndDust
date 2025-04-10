@@ -51,7 +51,7 @@ material = SubResource("StandardMaterial3D_l2qxy")
 [node name="ShoulderGL" type="Node3D" node_paths=PackedStringArray("firesound", "fireparticle", "muzzle")]
 script = ExtResource("1_716qf")
 damage = 18
-fire_rate = 0.8
+fire_rate = 3.2
 max_ammo = 24
 dispersion = 0.1
 bullet_speed = 50

@@ -9,9 +9,11 @@ class_name Brain
 
 func attach():
 	super()
-	robot.brain = self
+	if(robot != null):
+		robot.brain = self
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
+	super(_delta)
 	if(robot == null):
 		return
 func _physics_process(delta: float) -> void:

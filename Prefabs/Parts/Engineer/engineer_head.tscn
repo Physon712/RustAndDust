@@ -17,7 +17,6 @@ mass = 15
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.284323, -0.298578)
-current = true
 near = 0.1
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]

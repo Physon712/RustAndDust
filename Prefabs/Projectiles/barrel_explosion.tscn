@@ -204,7 +204,7 @@ material = SubResource("StandardMaterial3D_qdr67")
 [node name="Explosion" type="Node3D"]
 script = ExtResource("1_12yg3")
 damage = 60
-force = 80
+force = 1000
 radius = 5.0
 lifetime = 4
 

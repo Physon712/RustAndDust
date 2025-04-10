@@ -12,7 +12,11 @@ var height = 0.2
 
 func attach():
 	super()
-	robot.movement_instability = movement_instability
+	if(robot != null):
+		robot.movement_instability = movement_instability
+
+func _process(_delta: float) -> void:
+	super(_delta)
 
 func get_part_type():
 	return GameData.PartType.MOVEMENT

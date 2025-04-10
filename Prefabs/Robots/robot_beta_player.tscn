@@ -165,9 +165,9 @@ joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.20314e-06, 3.02695e-07,
 body_offset = Transform3D(1, 2.08616e-07, 7.69459e-06, 7.69418e-06, -1.88884e-06, -1, -1.78814e-07, 1, -1.88907e-06, -2.98023e-08, 0.160235, 0)
 
 [node name="Physical Bone ForeArm_L" parent="Parts/PartCore/SlotArmR/BetaArm/BetaArm/ArmatureArm/Skeleton3D/PhysicalBoneSimulator3D" index="1"]
-transform = Transform3D(-0.92519, 0.379491, -0.00316332, -0.00219051, 0.00299521, 0.999993, 0.379498, 0.925191, -0.00193985, 0.319572, 0.98243, -0.0792547)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.27441e-06, 1.33433e-06, 0.14948)
-body_offset = Transform3D(1, 0, 9.72184e-06, 9.72213e-06, -7.33102e-06, -1, 0, 1, -7.33149e-06, -1.78814e-07, 0.14948, -2.38419e-07)
+transform = Transform3D(-0.92519, 0.379491, -0.00316801, -0.00219456, 0.00299772, 0.999993, 0.379498, 0.925191, -0.00194065, 0.319572, 0.98243, -0.0792547)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.87882e-06, 1.71054e-06, 0.14948)
+body_offset = Transform3D(1, 1.19209e-07, 1.37653e-05, 1.37659e-05, -9.84792e-06, -1, 0, 1, -9.84827e-06, -1.78814e-07, 0.14948, -2.38419e-07)
 
 [node name="PartMovement" parent="Parts/PartCore/SlotMovement" index="0" instance=ExtResource("7_mjc1o")]
 paint_color = Color(1, 1, 1, 1)

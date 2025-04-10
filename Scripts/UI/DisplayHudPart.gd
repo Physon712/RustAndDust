@@ -21,3 +21,10 @@ func _process(delta: float) -> void:
 			queue_free()
 	else:
 		integrity_bar.value = 0
+		
+	if(part.integrity <= 0.25*part.max_integrity):
+		modulate = Color.RED
+	elif(part.integrity <= 0.5*part.max_integrity):
+		modulate = Color.ORANGE
+	else:	
+		modulate = Color.WHITE

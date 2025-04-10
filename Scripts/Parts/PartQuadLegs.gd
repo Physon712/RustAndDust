@@ -91,7 +91,10 @@ func attach():
 	min_height = min_length*0.9
 	max_height = min_length
 
-	
+
+func _process(_delta: float) -> void:
+	super(_delta)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	if(!is_attached):

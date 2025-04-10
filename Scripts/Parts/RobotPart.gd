@@ -11,6 +11,7 @@ var is_attached = false
 @export var paint_material : ShaderMaterial = preload("res://Textures/Materials/base_wearmat.tres").duplicate()
 @export var light_material : StandardMaterial3D  = preload("res://Textures/Materials/base_light.tres").duplicate()
 @export var explosion_prefab = preload("res://Prefabs/FX/part_explosion.tscn")
+
 ##Stats
 @export var max_integrity = 10
 @export var wear = 0
@@ -59,8 +60,6 @@ func detach():
 		var old_robot = robot
 		detach_parts()
 		old_robot.attach_parts()
-	light_material.albedo_color = Color.BLACK
-	light_material.emission = Color.BLACK
 		
 
 
@@ -76,8 +75,9 @@ func detach_parts(): ##Detach part and children without updading the attached pa
 	for child in part_childs:
 		child.detach_parts()
 	#queue_free()
-	##TODO : Activate physics
 	activate_physics()
+	light_material.albedo_color = Color.BLACK
+	light_material.emission = Color.BLACK
 	
 func activate_physics():
 	#freeze = false

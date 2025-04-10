@@ -6,6 +6,7 @@ func look_for_parent_part():
 	var parent = get_parent() #Get the part that the bone belong to
 	while(!(parent is RobotPart)):
 		parent = parent.get_parent()
+	mass = parent.mass
 	return parent
 	
 func _ready():

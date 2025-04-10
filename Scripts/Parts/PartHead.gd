@@ -6,7 +6,12 @@ class_name Head
 
 func attach():
 	super()
+	if(robot == null):
+		return
 	robot.camera = camera
+
+func _process(_delta: float) -> void:
+	super(_delta)
 
 func _physics_process(delta):
 	if(is_attached):

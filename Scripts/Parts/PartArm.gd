@@ -21,6 +21,8 @@ var is_flipped = false
 
 func attach():
 	super()
+	if(robot == null):
+		return
 	assigned_target = rest_target
 	IK.start()
 	if(tool_slot.get_child_count() > 0):
@@ -28,6 +30,7 @@ func attach():
 		assigned_target = hand_tool.main_hand_target
 		hand_tool.inaccuracy = inaccuracy
 		hand_tool.grip_strength = strength
+	is_flipped = false
 	if(get_parent().scale.x < 0):
 		is_flipped = true
 		#tool_target.scale.x = -1
@@ -36,6 +39,9 @@ func attach():
 	
 func is_hand_free():
 	return (hand_tool == null)
+	
+func _process(_delta: float) -> void:
+	super(_delta)
 	
 func _physics_process(delta: float) -> void:
 	if(is_attached):
@@ -50,10 +56,9 @@ func _physics_process(delta: float) -> void:
 	
 func activate_physics():
 	if(skeleton != null):
-		IK.active = false
-		IK.influence = 0
-		skeleton.physical_bones_start_simulation()
+		skeleton.physical_bones_start_simulation.call_deferred()
 		skeleton.influence = 1
-
+		IK.stop()
+	
 func get_part_type():
 	return GameData.PartType.ARM

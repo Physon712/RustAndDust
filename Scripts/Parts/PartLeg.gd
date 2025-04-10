@@ -20,18 +20,22 @@ class_name Leg
 @export var skeleton_phys : PhysicalBoneSimulator3D
 
 func attach():
-	super()
+	super()	
+	if(robot == null):
+		return
 	IK.start()
+	
+	
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _process(_delta: float) -> void:
+	super(_delta)
 
 func activate_physics():
 	if(skeleton_phys != null):
-		skeleton_phys.physical_bones_start_simulation()
+		skeleton_phys.physical_bones_start_simulation.call_deferred()
 		skeleton_phys.influence = 1
-		#IK.active = false
+		IK.stop()
+		
 		
 func get_part_type():
 	return GameData.PartType.LEG

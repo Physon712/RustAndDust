@@ -28,6 +28,7 @@ text = "Part 1"
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 size_flags_horizontal = 10
+mouse_filter = 2
 value = 40.0
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

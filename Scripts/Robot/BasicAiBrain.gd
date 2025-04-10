@@ -48,7 +48,7 @@ func _physics_process(delta):
 		ai_state.IDLE: #Look for target
 			look_for_new_target()
 			if(leader != null):
-				if(robot.global_position.distance_to(leader.global_position) > 3):
+				if(robot.global_position.distance_to(leader.global_position) > 6):
 					assign_new_move_target(leader.global_position)
 			elif(!follow_path || robot.nav.is_navigation_finished()):
 				wander_to_random_point()
@@ -96,7 +96,7 @@ func _physics_process(delta):
 			if(last_attacker != null && !(leader != null)): #In case i'm alone just run from the danger
 				assign_new_move_target(robot.global_position - (last_attacker.global_position - robot.global_position))
 			if(leader != null): #If i have a leader, regroup with it
-				if(robot.global_position.distance_to(leader.global_position) > 3):
+				if(robot.global_position.distance_to(leader.global_position) > 6):
 					assign_new_move_target(leader.global_position)
 					
 			if(robot.is_armed()):

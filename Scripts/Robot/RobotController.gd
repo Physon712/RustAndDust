@@ -95,13 +95,10 @@ func attach_parts(): #Attach all parts and create the establish the list of the 
 	jump_speed = float(jump_momentum)/mass
 	
 	if(acceleration_force <= 0): ##Always able to move, to avoid softlock of player
-		max_speed = 0.6
-		acceleration = 2
+		max_speed = 1.0
+		acceleration = 10
 	
-	#Establish list of all weapons
-	for p in parts:
-		if(p is Weapon):
-			weapons.append(p)
+	establish_weapon_list()
 			
 	if(camera != null):
 		camera.current = false
@@ -186,3 +183,9 @@ func is_armed():
 		if(w.ammo > 0):
 			return true
 	return false
+
+func establish_weapon_list():
+	#Establish list of all weapons
+	for p in parts:
+		if(p is Weapon):
+			weapons.append(p)

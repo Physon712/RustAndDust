@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://drswoll0ili8f" path="res://Textures/Particles/Flare01.png" id="3_tx68f"]
 [ext_resource type="AudioStream" uid="uid://bn5m7arqjcryv" path="res://Audio/Sounds/Robot/RobotCrunch1.wav" id="4_w5ekn"]
 [ext_resource type="AudioStream" uid="uid://djgqib8qwvhko" path="res://Audio/Sounds/Robot/RobotCrunch2.wav" id="5_thqbv"]
-[ext_resource type="AudioStream" uid="uid://du5g0ybph0bys" path="res://Audio/Sounds/Robot/RobotCrunch3.wav" id="6_ghkpv"]
+[ext_resource type="AudioStream" uid="uid://b8f4cgtw8knfh" path="res://Audio/Sounds/Robot/RobotCrunch5.wav" id="6_w5ekn"]
 
 [sub_resource type="Gradient" id="Gradient_ea43a"]
 offsets = PackedFloat32Array(0.691756, 1)
@@ -135,12 +135,12 @@ random_pitch = 1.1
 streams_count = 3
 stream_0/stream = ExtResource("4_w5ekn")
 stream_1/stream = ExtResource("5_thqbv")
-stream_2/stream = ExtResource("6_ghkpv")
+stream_2/stream = ExtResource("6_w5ekn")
 
 [node name="PartExplosion" type="Node3D"]
 script = ExtResource("1_4v0un")
 damage = 10
-force = 10
+force = 100
 radius = 1.0
 
 [node name="Particles" type="GPUParticles3D" parent="."]

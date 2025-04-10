@@ -16,8 +16,8 @@ class_name Gun
 @export var muzzle : Marker3D;
 
 var output_transform:Transform3D;
-var ammo = max_ammo;
-var time_since_last_shot = 0;
+@onready var ammo = max_ammo;
+@onready var time_since_last_shot = fire_rate;
 
 func attach():
 	super()
@@ -37,7 +37,7 @@ func fire(): #Try to fire the weapon, check for ammo and fire rate
 	if(time_since_last_shot > fire_rate):
 		if(ammo > 0):
 			fire_a_shot()
-			ammo -= 1
+			#ammo -= 1
 			time_since_last_shot = 0
 			if(animator != null):
 				animator.play("Fire")

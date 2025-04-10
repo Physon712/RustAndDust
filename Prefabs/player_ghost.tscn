@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://ceaw72jua48kr"]
+
+[ext_resource type="Script" uid="uid://ntlx8blqxssa" path="res://Scripts/PlayerGhost.gd" id="1_1aptj"]
+
+[node name="PlayerGhost" type="Node3D"]
+script = ExtResource("1_1aptj")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+current = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UseHint" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = 43.0
+offset_right = 88.0
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1

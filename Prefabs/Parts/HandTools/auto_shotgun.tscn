@@ -50,16 +50,17 @@ script = ExtResource("1_lod64")
 recoil_potential = 10
 main_hand_target = NodePath("LeftHand")
 off_hand_target = NodePath("RightHand")
-damage = 15
+damage = 18
 fire_rate = 0.5
 max_ammo = 32
-dispersion = 3.0
-bullet_count = 6
+dispersion = 2.5
+bullet_count = 8
 firesound = NodePath("RigidBody3D/Muzzle/FireSound")
 fireparticle = NodePath("RigidBody3D/Muzzle/FireParticle")
 muzzle = NodePath("RigidBody3D/Muzzle")
 front_name = "Shotgun 12g"
 paint_color = Color(0.25, 0.0275, 0.0571666, 1)
+max_integrity = 40
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 collision_layer = 4

@@ -4,7 +4,7 @@ extends Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	animator.play("SimpleDayAndNightCycle",-1,1.0/600)
+	animator.play("SimpleDayAndNightCycle",-1,0.0/600)
 
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.

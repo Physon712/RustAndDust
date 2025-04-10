@@ -42,11 +42,13 @@ slot_type = 2
 [node name="SlotArmL" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.204638, 0.193682, 0.0606688)
 script = ExtResource("3_aqdkb")
+slot_prefix = "Left"
 slot_type = 4
 
 [node name="SlotArmR" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 0.205, 0.194053, 0.0606688)
 script = ExtResource("3_aqdkb")
+slot_prefix = "Right"
 slot_type = 4
 
 [node name="Back" type="Marker3D" parent="."]

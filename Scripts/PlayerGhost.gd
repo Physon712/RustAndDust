@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var player_brain_prefab = load("res://Prefabs/Brains/player_brain_backup.tscn")
+@onready var player_brain_prefab = load("res://Prefabs/Brains/player_brain.tscn")
 @export var speed : float = 6.0	
 @export var speed_mult : float = 1.0
 @onready var use_hint = $Control/UseHint

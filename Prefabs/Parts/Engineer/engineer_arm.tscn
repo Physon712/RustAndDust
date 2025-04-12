@@ -42,9 +42,9 @@ target_node = NodePath("../../../../Target/TargetOffset")
 influence = 0.0
 
 [node name="Physical Bone Arm_L" type="PhysicalBone3D" parent="EngineerArm/Armature_001/Skeleton3D/PhysicalBoneSimulator3D"]
-transform = Transform3D(-0.983764, -0.17947, 1.32599e-06, 1.33939e-06, 4.65278e-08, 1, -0.17947, 0.983764, 1.94608e-07, -0.366691, 1.1692, -0.00498404)
+transform = Transform3D(-0.983764, -0.17947, 1.326e-06, 1.33939e-06, 4.65277e-08, 1, -0.17947, 0.983764, 1.94608e-07, -0.366691, 1.1692, -0.00498404)
 collision_layer = 4
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.45525e-07, -7.91406e-07, 0.156305)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.45524e-07, -7.91406e-07, 0.156305)
 body_offset = Transform3D(1, -8.04663e-07, -1.3101e-06, -1.31011e-06, -2.159e-07, -1, 7.89762e-07, 1, -2.15901e-07, -6.4075e-07, 0.156305, 8.25152e-07)
 bone_name = "Arm.L"
 script = ExtResource("5_bqco7")
@@ -54,7 +54,7 @@ transform = Transform3D(0.987562, 2.63158e-08, -0.157227, 0.157227, 1.39015e-08,
 shape = SubResource("BoxShape3D_47exq")
 
 [node name="Physical Bone Forearm_L" type="PhysicalBone3D" parent="EngineerArm/Armature_001/Skeleton3D/PhysicalBoneSimulator3D"]
-transform = Transform3D(-0.983762, -0.179476, -8.58405e-07, -1.48889e-06, 3.37822e-06, 1, -0.179476, 0.983762, -3.59058e-06, -0.366691, 0.817006, -0.00499714)
+transform = Transform3D(-0.983762, -0.179476, -8.58409e-07, -1.48889e-06, 3.37822e-06, 1, -0.179476, 0.983762, -3.59058e-06, -0.366691, 0.817006, -0.00499714)
 collision_layer = 4
 joint_type = 1
 joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.33355e-06, 1.26349e-05, 0.195887)

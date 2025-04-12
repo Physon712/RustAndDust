@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bf0odot6klq0i"]
+[gd_scene load_steps=35 format=3 uid="uid://bf0odot6klq0i"]
 
 [ext_resource type="Script" uid="uid://cxy7jwh4lbmr2" path="res://Scripts/Robot/RobotController.gd" id="1_1ctkx"]
 [ext_resource type="Script" uid="uid://djp13xat2gecj" path="res://Scripts/Parts/Slot.gd" id="2_lj0v6"]
@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://ko37xf1e46nc" path="res://Textures/RoughCowPattern.png" id="4_o85n0"]
 [ext_resource type="PackedScene" uid="uid://5fmcgbbmusuo" path="res://Prefabs/Parts/Beta/beta_arm.tscn" id="5_6yr6d"]
 [ext_resource type="PackedScene" uid="uid://d3i41uiqmxr3p" path="res://Prefabs/Parts/Beta/beta_lower.tscn" id="5_msbew"]
-[ext_resource type="PackedScene" uid="uid://dp3e2eo5ldqfr" path="res://Prefabs/Brains/player_brain_backup.tscn" id="6_sjwnf"]
 [ext_resource type="PackedScene" uid="uid://yhsguftrisj7" path="res://Prefabs/Parts/Beta/beta_leg.tscn" id="7_k3eb2"]
 [ext_resource type="PackedScene" uid="uid://rtidphuacdig" path="res://Prefabs/Parts/HandTools/bullpup.tscn" id="9_i2ypv"]
 
@@ -163,8 +162,6 @@ paint_material = SubResource("ShaderMaterial_36t7l")
 [node name="PartHead" parent="Parts/PartCore/SlotHead" index="0" instance=ExtResource("4_dresk")]
 paint_material = SubResource("ShaderMaterial_w0kq2")
 
-[node name="PlayerBrain" parent="Parts/PartCore/SlotHead/PartHead/SlotBrain" index="0" instance=ExtResource("6_sjwnf")]
-
 [node name="Cube_005" parent="Parts/PartCore/SlotHead/PartHead/RigidBody3D/BetaHead" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_nrm21")
 
@@ -173,13 +170,13 @@ paint_material = SubResource("ShaderMaterial_t7qdk")
 
 [node name="Physical Bone Arm_L" parent="Parts/PartCore/SlotArmL/BetaArm/BetaArm/ArmatureArm/Skeleton3D/PhysicalBoneSimulator3D" index="0"]
 transform = Transform3D(-0.92519, 0.379491, -0.00315935, -0.00218844, 0.00298979, 0.999993, 0.379498, 0.925191, -0.00193563, 0.318596, 1.29214, -0.0798543)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.23294e-06, 2.95244e-07, 0.160235)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.23294e-06, 2.95245e-07, 0.160235)
 body_offset = Transform3D(1, 2.08616e-07, 7.69459e-06, 7.69418e-06, -1.88884e-06, -1, -1.78814e-07, 1, -1.88907e-06, 0, 0.160235, 7.45058e-09)
 
 [node name="Physical Bone ForeArm_L" parent="Parts/PartCore/SlotArmL/BetaArm/BetaArm/ArmatureArm/Skeleton3D/PhysicalBoneSimulator3D" index="1"]
-transform = Transform3D(-0.92519, 0.379491, -0.00316368, -0.00219084, 0.00299537, 0.999993, 0.379498, 0.925191, -0.00193988, 0.319572, 0.98243, -0.0792544)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5019e-06, 1.06793e-06, 0.14948)
-body_offset = Transform3D(1, 0, 1.00475e-05, 1.00474e-05, -7.49261e-06, -1, 0, 1, -7.49319e-06, 0, 0.14948, 5.21541e-08)
+transform = Transform3D(-0.92519, 0.379491, -0.00316371, -0.00219087, 0.00299538, 0.999993, 0.379498, 0.925191, -0.00193988, 0.319572, 0.98243, -0.0792544)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.50602e-06, 1.06995e-06, 0.14948)
+body_offset = Transform3D(1, 5.96046e-08, 1.0075e-05, 1.00753e-05, -7.50634e-06, -1, 0, 1, -7.50669e-06, 0, 0.14948, 5.21541e-08)
 
 [node name="Smg" parent="Parts/PartCore/SlotArmL/BetaArm/ToolTarget/SlotHandTool" index="0" instance=ExtResource("9_i2ypv")]
 
@@ -192,9 +189,9 @@ joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.20314e-06, 3.02695e-07,
 body_offset = Transform3D(1, 2.08616e-07, 7.69459e-06, 7.69418e-06, -1.88884e-06, -1, -1.78814e-07, 1, -1.88907e-06, -2.98023e-08, 0.160235, 0)
 
 [node name="Physical Bone ForeArm_L" parent="Parts/PartCore/SlotArmR/BetaArm/BetaArm/ArmatureArm/Skeleton3D/PhysicalBoneSimulator3D" index="1"]
-transform = Transform3D(-0.92519, 0.379491, -0.00316368, -0.00219084, 0.00299537, 0.999993, 0.379498, 0.925191, -0.00193988, 0.319572, 0.98243, -0.0792545)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.41249e-06, 1.13498e-06, 0.14948)
-body_offset = Transform3D(1, 0, 1.00475e-05, 1.00474e-05, -7.49261e-06, -1, 0, 1, -7.49319e-06, -8.9407e-08, 0.14948, -1.49012e-08)
+transform = Transform3D(-0.92519, 0.379491, -0.00316371, -0.00219087, 0.00299538, 0.999993, 0.379498, 0.925191, -0.00193988, 0.319572, 0.98243, -0.0792545)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.41661e-06, 1.137e-06, 0.14948)
+body_offset = Transform3D(1, 5.96046e-08, 1.0075e-05, 1.00753e-05, -7.50634e-06, -1, 0, 1, -7.50669e-06, -8.9407e-08, 0.14948, -1.49012e-08)
 
 [node name="PartMovement" parent="Parts/PartCore/SlotMovement" index="0" instance=ExtResource("5_msbew")]
 paint_material = SubResource("ShaderMaterial_cfrye")

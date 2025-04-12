@@ -33,9 +33,6 @@ func attach():
 	is_flipped = false
 	if(get_parent().scale.x < 0):
 		is_flipped = true
-		#tool_target.scale.x = -1
-		#tool_target.scale.y = -1
-		#tool_target.scale.z = -1
 	
 func is_hand_free():
 	return (hand_tool == null)

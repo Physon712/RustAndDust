@@ -38,6 +38,7 @@ func _process(delta):
 			queue_free()
 	
 func attach(): #Base procedure for attaching part to a robot
+	#Try to attach the part to a robot if possible, otherwiser just fall down to ground
 	robot = look_for_parent_robot()
 	if(robot != null):
 		is_attached = true
@@ -55,7 +56,8 @@ func attach(): #Base procedure for attaching part to a robot
 		light_material.emission = Color.BLACK
 	
 	
-func detach():
+func detach(): #Detach the part and its childs parts
+	#Fall down to the ground afterward
 	if(is_attached && robot != null):
 		var old_robot = robot
 		detach_parts()
@@ -87,14 +89,14 @@ func activate_physics():
 			c.freeze = false
 			c.mass = mass
 
-func look_for_parent_robot():
-	var parent = get_parent() #Get the robot that the part is parented to 
+func look_for_parent_robot(): #Get the robot that the part is parented to 
+	var parent = get_parent()
 	if(parent != null):
 		while(!(parent is Robot) && parent != null):
 				parent = parent.get_parent()
 	return parent
 		
-func get_slot_parts(node): ##Get every parts in the slots of the node
+func get_slot_parts(node): ##Get every parts in the slots of the node given as argument
 	var slot_parts = []
 	for _n in node.get_children():
 		if(_n is RobotPart): #Found a robot part, add it to the array
@@ -106,9 +108,9 @@ func get_slot_parts(node): ##Get every parts in the slots of the node
 func get_slots(node): ##Get every slots of the node
 	var slots = []
 	for _n in node.get_children():
-		if(_n is Slot): #Found a robot part, add it to the array
+		if(_n is Slot): #Found a slot, add it to the array
 			slots.append(_n)
-		else: #Look deeper for robot part
+		else: #Look deeper for slots
 			slots.append_array(get_slots(_n))
 	return slots
 

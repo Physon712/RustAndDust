@@ -135,7 +135,7 @@ func _physics_process(delta):
 	focus_point = lerp(focus_point,focus_target,aim_convergence)
 	robot.head.look_at(focus_point)
 	robot.head.rotate_x(aim_error.x)
-	robot.head.rotate_y	(aim_error.y)
+	robot.head.rotate_y(aim_error.y)
 		
 
 func look_for_new_target(): #Look for hostile robot in field of view and assign as target

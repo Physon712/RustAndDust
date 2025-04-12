@@ -6,8 +6,7 @@ var inv = {}
 var id_count = 0
 
 var friendly_ai = preload("res://Prefabs/Brains/basic_ai_brain_friends.tscn")
-
-func _ready(): #Starter Pack
+func _ready(): #Give starter Pack
 	id_count = 0
 	for i in range(3):
 		var obj = friendly_ai.instantiate()
@@ -20,7 +19,7 @@ func add_part(part : RobotPart): #Add part to inventory along with it's part att
 	var children = part.get_slot_parts(part)
 	for c in children: #Take also the attached parts
 		if(c is PlayerBrain): #Can't pocket your own brain
-			c.detach()
+			c.detach() #Will kill you
 		else:
 			add_part(c)
 	inv[id_count] = {

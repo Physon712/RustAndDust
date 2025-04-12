@@ -1,7 +1,7 @@
 extends "res://Scripts/Parts/PartBrain.gd"
 
-### Basically take player input, to control a robot
-##As well as display information about the robot in control
+## Basically take player input, to control a robot
+##as well as display information about the controlled robot
 class_name PlayerBrain
 
 #Load all the menu the player will be able to open

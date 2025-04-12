@@ -34,14 +34,14 @@ func check_for_collision(): #Raycast between current position and next position,
 	var result = space_state.intersect_ray(query)
 	if(result):
 		if(result.collider.has_method("bullet_hit")):
-				result.collider.call("bullet_hit",damage,shooter)
-				##Create impact spark effect
-				var explosion = spark_prefab.instantiate()
-				world.add_child(explosion)
-				explosion.transform.origin = result.position - basis.z*0.1
-				explosion.transform = explosion.transform.looking_at(-basis.z+explosion.transform.origin,Vector3.UP)
-		else:
+			result.collider.call("bullet_hit",damage,shooter)
 			##Create impact spark effect
+			var explosion = spark_prefab.instantiate()
+			world.add_child(explosion)
+			explosion.transform.origin = result.position - basis.z*0.1
+			explosion.transform = explosion.transform.looking_at(-basis.z+explosion.transform.origin,Vector3.UP)
+		else:
+			##Create impact spark effect for the environment
 			var explosion = spark_prefab_env.instantiate()
 			world.add_child(explosion)
 			explosion.transform.origin = result.position - basis.z*0.1

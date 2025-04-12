@@ -14,7 +14,7 @@ func initialize():
 	$Container/Status/Integrity.max_value = part.max_integrity
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if(part != null):
 		integrity_bar.value = part.integrity
 		if(!part.is_attached):

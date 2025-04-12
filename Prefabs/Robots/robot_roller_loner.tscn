@@ -64,14 +64,14 @@ paint_material = SubResource("ShaderMaterial_0y3aw")
 paint_material = SubResource("ShaderMaterial_djl11")
 
 [node name="Physical Bone Arm_2" parent="Parts/EngineerCore/SlotArmL/BetaArm/RollerArm/Armature/Skeleton3D/PhysicalBoneSimulator3D" index="0"]
-transform = Transform3D(-2.65663e-07, -1, 6.27266e-06, 0.0647886, 6.24227e-06, 0.997899, -0.997899, 6.71502e-07, 0.0647886, 0.467299, -0.0968208, 0.00388854)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000113178, 8.39489e-07, 0.16311)
-body_offset = Transform3D(1, -2.67739e-07, -2.30893e-05, -2.30819e-05, -6.24291e-06, -1, 2.65664e-07, 1, -6.24286e-06, 0.000116944, 0.16311, 1.78814e-07)
+transform = Transform3D(-2.65658e-07, -1, 6.27278e-06, 0.0647886, 6.24239e-06, 0.997899, -0.997899, 6.71505e-07, 0.0647886, 0.467299, -0.0968206, 0.00388807)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000113665, 8.39507e-07, 0.16311)
+body_offset = Transform3D(1, -2.67734e-07, -2.30893e-05, -2.30819e-05, -6.24303e-06, -1, 2.65659e-07, 1, -6.24297e-06, 0.000117431, 0.16311, 1.78814e-07)
 
 [node name="Physical Bone ForeArm" parent="Parts/EngineerCore/SlotArmL/BetaArm/RollerArm/Armature/Skeleton3D/PhysicalBoneSimulator3D" index="1"]
-transform = Transform3D(-5.67486e-07, -1, 1.00115e-08, -6.64159e-08, 1.00115e-08, 1, -1, 5.67486e-07, -6.64159e-08, 0.467305, -0.431189, -0.00653046)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.56647e-05, 5.65988e-06, 0.171632)
-body_offset = Transform3D(1, -5.70341e-07, 7.38665e-08, 7.38665e-08, 1.49012e-08, -1, 5.6841e-07, 1, 1.48386e-08, -2.56774e-05, 0.171632, -5.66244e-06)
+transform = Transform3D(-5.67476e-07, -1, 1.00114e-08, -6.64147e-08, 1.00115e-08, 1, -1, 5.67476e-07, -6.64147e-08, 0.467305, -0.431189, -0.00653053)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.55878e-05, 5.65988e-06, 0.171632)
+body_offset = Transform3D(1, -5.70331e-07, 7.38653e-08, 7.38653e-08, 1.49012e-08, -1, 5.68401e-07, 1, 1.48386e-08, -2.56005e-05, 0.171632, -5.66244e-06)
 
 [node name="AutoShotgun" parent="Parts/EngineerCore/SlotArmL/BetaArm/ToolTarget/SlotHandTool" index="0" instance=ExtResource("8_aa6s4")]
 
@@ -79,7 +79,6 @@ body_offset = Transform3D(1, -5.70341e-07, 7.38665e-08, 7.38665e-08, 1.49012e-08
 paint_material = SubResource("ShaderMaterial_hge8h")
 
 [node name="ShoulderGL" parent="Parts/EngineerCore/Back" index="0" instance=ExtResource("9_npdqo")]
-fire_rate = 3.2
 paint_color = Color(0.498039, 0.521569, 0.403922, 1)
 
 [node name="RollerLower" parent="Parts/EngineerCore/SlotMovement" index="0" instance=ExtResource("8_5qa7l")]

@@ -34,7 +34,7 @@ func attach():
 				#left_arm.assigned_target = right_arm.hand_tool.off_hand_target
 var max_tilt = PI/4
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if(is_attached):
 		rotation.y = robot.head.rotation.y + rotation_offset
 		#transform.origin.y = height

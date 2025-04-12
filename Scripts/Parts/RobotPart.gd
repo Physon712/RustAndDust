@@ -125,9 +125,9 @@ func take_damage(damage,_responsible : Robot = null):
 		detach()
 		#Explode
 		if(!has_exploded):
-			var exp = explosion_prefab.instantiate()
-			world.add_child(exp)
-			exp.global_position = global_position
+			var e = explosion_prefab.instantiate()
+			world.add_child(e)
+			e.global_position = global_position
 			has_exploded = true
 		
 func get_part_type():

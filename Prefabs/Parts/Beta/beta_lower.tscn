@@ -28,7 +28,8 @@ size = Vector3(0.233887, 0.483337, 0.28418)
 
 [node name="PartMovement" type="Node3D"]
 script = ExtResource("1_jrrob")
-front_name = "Bipedal Module"
+movement_instability = 1.2
+front_name = "Biped Module"
 paint_material = SubResource("ShaderMaterial_h48vt")
 max_integrity = 100
 mass = 20

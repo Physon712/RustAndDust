@@ -13,7 +13,7 @@ func attach():
 func _process(_delta: float) -> void:
 	super(_delta)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if(is_attached):
 		global_rotation = robot.head.global_rotation
 		

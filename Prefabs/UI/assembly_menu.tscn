@@ -98,7 +98,7 @@ script = ExtResource("2_314t5")
 
 [node name="Label" type="Label" parent="VBoxContainer/HSplitContainer/ScrollContainer3/RobotB"]
 layout_mode = 2
-text = "Current Robot"
+text = "Selected Robot"
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HSplitContainer/ScrollContainer3/RobotB"]
@@ -117,4 +117,5 @@ layout_mode = 2
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_1pifw")
 
+[connection signal="gui_input" from="ColorRect" to="VBoxContainer/HSplitContainer/ScrollContainer/Inventory" method="_on_gui_input"]
 [connection signal="gui_input" from="VBoxContainer/HSplitContainer/ScrollContainer/Inventory" to="VBoxContainer/HSplitContainer/ScrollContainer/Inventory" method="_on_gui_input"]

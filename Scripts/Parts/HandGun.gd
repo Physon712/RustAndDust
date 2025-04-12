@@ -31,7 +31,7 @@ func _physics_process(delta):
 func fire_a_shot(): #Fire the weapon, and apply recoil
 	super()
 	##Recoil
-	var recoil = recoil_potential * (mass / grip_strength)
+	var recoil = recoil_potential * (float(mass) / grip_strength)
 	rotate_x(deg_to_rad(recoil))
 	rotate_y(deg_to_rad(randf_range(-0.5,0.5)*recoil))
 	translate(-Vector3.FORWARD*recoil/60)

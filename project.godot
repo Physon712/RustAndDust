@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Rust and Dust"
 config/version="0.1"
-run/main_scene="uid://c2cingm6jxsro"
+run/main_scene="uid://dayv5j8f42cmj"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -112,3 +112,7 @@ Fire3={
 3d_physics/layer_1="Geometry"
 3d_physics/layer_2="Entities"
 3d_physics/layer_3="Parts"
+
+[navigation]
+
+3d/default_link_connection_radius=2.0

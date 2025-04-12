@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bmfhek0nw21nq" path="res://Prefabs/Parts/Roller/roller_arm.tscn" id="3_k0e6f"]
 [ext_resource type="Shader" uid="uid://cf8i0c8es1gbi" path="res://Shaders/WearingMetal.gdshader" id="4_hge8h"]
 [ext_resource type="Texture2D" uid="uid://ko37xf1e46nc" path="res://Textures/RoughCowPattern.png" id="5_0y3aw"]
-[ext_resource type="PackedScene" uid="uid://dp3e2eo5ldqfr" path="res://Prefabs/Brains/player_brain.tscn" id="6_djl11"]
+[ext_resource type="PackedScene" uid="uid://dp3e2eo5ldqfr" path="res://Prefabs/Brains/player_brain_backup.tscn" id="6_djl11"]
 [ext_resource type="PackedScene" uid="uid://c2a7o76oh5khb" path="res://Prefabs/Parts/Roller/roller_head.tscn" id="6_gyym1"]
 [ext_resource type="PackedScene" uid="uid://b6miaugrjbxa6" path="res://Prefabs/Parts/Roller/shoulder_gl.tscn" id="7_k0e6f"]
 [ext_resource type="PackedScene" uid="uid://cb7lh6xukwpxy" path="res://Prefabs/Parts/Roller/roller_lower.tscn" id="8_46n1q"]

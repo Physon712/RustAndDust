@@ -20,5 +20,7 @@ shape = SubResource("CapsuleShape3D_byq50")
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 
+[node name="HeadLight" type="OmniLight3D" parent="Head"]
+
 [node name="Parts" type="Node3D" parent="."]
 script = ExtResource("2_l1j5o")

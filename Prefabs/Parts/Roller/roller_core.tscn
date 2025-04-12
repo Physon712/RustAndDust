@@ -11,7 +11,7 @@ size = Vector3(0.585, 0.671324, 0.60572)
 
 [node name="RollerCore" type="Node3D"]
 script = ExtResource("1_0ypm5")
-front_name = "Roller Core"
+front_name = "Heavy Core"
 paint_color = Color(0.498039, 0.521569, 0.403922, 1)
 max_integrity = 200
 mass = 40

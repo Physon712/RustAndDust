@@ -165,9 +165,9 @@ joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.20314e-06, 3.02695e-07,
 body_offset = Transform3D(1, 2.08616e-07, 7.69459e-06, 7.69418e-06, -1.88884e-06, -1, -1.78814e-07, 1, -1.88907e-06, -2.98023e-08, 0.160235, 0)
 
 [node name="Physical Bone ForeArm_L" parent="Parts/PartCore/SlotArmR/BetaArm/BetaArm/ArmatureArm/Skeleton3D/PhysicalBoneSimulator3D" index="1"]
-transform = Transform3D(-0.92519, 0.379491, -0.00316285, -0.00219006, 0.00299509, 0.999993, 0.379498, 0.925191, -0.00193992, 0.319572, 0.98243, -0.0792547)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2063e-06, 1.31707e-06, 0.14948)
-body_offset = Transform3D(1, 0, 9.26619e-06, 9.26648e-06, -7.21554e-06, -1, 0, 1, -7.216e-06, -1.78814e-07, 0.14948, -2.38419e-07)
+transform = Transform3D(-0.92519, 0.379491, -0.00316288, -0.00219009, 0.0029951, 0.999993, 0.379498, 0.925191, -0.00193992, 0.319572, 0.98243, -0.0792547)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.21066e-06, 1.31926e-06, 0.14948)
+body_offset = Transform3D(1, 5.96046e-08, 9.29536e-06, 9.29559e-06, -7.23021e-06, -1, 0, 1, -7.23067e-06, -1.78814e-07, 0.14948, -2.38419e-07)
 
 [node name="AutoShotgun" parent="Parts/PartCore/SlotArmR/BetaArm/ToolTarget/SlotHandTool" index="0" instance=ExtResource("8_nr8ym")]
 

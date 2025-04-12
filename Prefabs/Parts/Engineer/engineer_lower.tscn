@@ -11,9 +11,9 @@ size = Vector3(0.43, 0.64, 0.565)
 
 [node name="EngineerLower" type="Node3D"]
 script = ExtResource("1_njori")
-movement_instability = 0.5
+movement_instability = 0.0
 max_speed = 4.5
-front_name = "Quadrupedal Module"
+front_name = "Quadruped Module"
 max_integrity = 120
 mass = 25
 

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhpgqrs663uy3"]
+
+[ext_resource type="Script" uid="uid://bg3v358maa0gn" path="res://Scripts/FakeWalkableRegion.gd" id="1_li21h"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_isdqf"]
+
+[node name="FakeWalkableRegion" type="StaticBody3D"]
+script = ExtResource("1_li21h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_isdqf")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]

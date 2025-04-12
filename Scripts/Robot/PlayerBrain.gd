@@ -46,7 +46,6 @@ func _process(delta):
 	if(robot == null): #Dead
 		if(hud != null):
 			hud.queue_free()
-		print("Robot Lost")
 		release_ghost_camera()
 		queue_free()
 		return

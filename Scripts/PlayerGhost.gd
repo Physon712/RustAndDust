@@ -11,7 +11,7 @@ func _process(_delta):
 	dir = Vector3.ZERO
 	
 	if(Input.is_action_pressed("Zoom")):
-		speed_mult = 2.0
+		speed_mult = 4.0
 	else:
 		speed_mult = 1.0
 	
@@ -36,7 +36,7 @@ func _process(_delta):
 func _physics_process(_delta):
 	#Interaction raycast
 	var space_state = get_world_3d().direct_space_state
-	var query = PhysicsRayQueryParameters3D.create(global_position,position-3*basis.z,0b010)
+	var query = PhysicsRayQueryParameters3D.create(global_position,position-5*basis.z,0b010)
 	var result = space_state.intersect_ray(query)
 	if(result && result.collider is Robot && result.collider.brain != null):
 		use_hint.text = "Take Control"
@@ -53,8 +53,6 @@ func _input(event):  #Mouse input
 		rotation.x = clamp(rotation.x,-1.5,1.5)
 		
 func take_control(robot : Robot): #Replace the current brain with the one from the player
-	print(player_brain_prefab)
-	
 	var parent = robot.brain.get_parent()
 	var new_brain = player_brain_prefab.instantiate()
 	var old_brain = robot.brain

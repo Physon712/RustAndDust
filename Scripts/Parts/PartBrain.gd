@@ -16,12 +16,12 @@ func _process(_delta: float) -> void:
 	super(_delta)
 	if(robot == null):
 		return
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if(robot == null):
 		return
 
 func get_part_type():
 	return GameData.PartType.BRAIN
 	
-func sense_damage(damage:float,responsible:Robot):
+func sense_damage(_damage:float,_responsible:Robot):
 	pass

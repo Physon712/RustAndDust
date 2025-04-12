@@ -37,7 +37,7 @@ inaccuracy = 1.5
 strength = 40.0
 IK = NodePath("RollerArm/Armature/Skeleton3D/SkeletonIK3D")
 skeleton = NodePath("RollerArm/Armature/Skeleton3D/PhysicalBoneSimulator3D")
-front_name = "Roller Arm"
+front_name = "Strong Arm"
 paint_color = Color(0.499027, 0.52, 0.4056, 1)
 paint_material = SubResource("ShaderMaterial_dn3h2")
 max_integrity = 100
@@ -58,10 +58,10 @@ target_node = NodePath("../../../../Target/TargetOffset")
 influence = 0.0
 
 [node name="Physical Bone Arm_2" type="PhysicalBone3D" parent="RollerArm/Armature/Skeleton3D/PhysicalBoneSimulator3D"]
-transform = Transform3D(-2.668e-07, -1, 6.25517e-06, 0.0647886, 6.22474e-06, 0.997899, -0.997899, 6.71504e-07, 0.0647886, 0.467299, -0.0968183, 0.00400537)
+transform = Transform3D(-2.65247e-07, -1, 6.27907e-06, 0.0647886, 6.2487e-06, 0.997899, -0.997899, 6.71503e-07, 0.0647886, 0.467299, -0.0968183, 0.00400539)
 collision_layer = 4
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.24666e-06, 8.36543e-07, 0.1631)
-body_offset = Transform3D(1, -2.68875e-07, -2.30893e-05, -2.30819e-05, -6.22542e-06, -1, 2.66801e-07, 1, -6.22537e-06, 5.19212e-07, 0.1631, 1.78814e-07)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2597e-06, 8.40442e-07, 0.1631)
+body_offset = Transform3D(1, -2.67322e-07, -2.30893e-05, -2.30819e-05, -6.24933e-06, -1, 2.65248e-07, 1, -6.24927e-06, 5.06174e-07, 0.1631, 1.78814e-07)
 bone_name = "Arm_2"
 script = ExtResource("7_uiu3o")
 
@@ -70,11 +70,11 @@ transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -2.32831e-09, 1.89175e-10, 0
 shape = SubResource("CapsuleShape3D_yjgdo")
 
 [node name="Physical Bone ForeArm" type="PhysicalBone3D" parent="RollerArm/Armature/Skeleton3D/PhysicalBoneSimulator3D"]
-transform = Transform3D(-5.69759e-07, -1, 1.00115e-08, -6.67001e-08, 1.00115e-08, 1, -1, 5.69759e-07, -6.67001e-08, 0.467305, -0.431189, -0.00651183)
+transform = Transform3D(-5.66653e-07, -1, 1.00115e-08, -6.63118e-08, 1.00115e-08, 1, -1, 5.66653e-07, -6.63118e-08, 0.467305, -0.431189, -0.00646094)
 collision_layer = 4
 joint_type = 1
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.42903e-05, 5.65987e-06, 0.171632)
-body_offset = Transform3D(1, -5.72614e-07, 7.41507e-08, 7.41507e-08, 1.49012e-08, -1, 5.70684e-07, 1, 1.48386e-08, -4.4303e-05, 0.171632, -5.66244e-06)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.51862e-05, 5.65984e-06, 0.171632)
+body_offset = Transform3D(1, -5.69508e-07, 7.37624e-08, 7.37624e-08, 1.49012e-08, -1, 5.67578e-07, 1, 1.48386e-08, -9.51989e-05, 0.171632, -5.66244e-06)
 bone_name = "ForeArm"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0

@@ -43,7 +43,7 @@ func is_hand_free():
 func _process(_delta: float) -> void:
 	super(_delta)
 	
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if(is_attached):
 		target.global_position = assigned_target.global_position
 		target.global_rotation = assigned_target.global_rotation

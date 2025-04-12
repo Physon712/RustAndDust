@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://clfblfn772l3w"]
+
+[ext_resource type="PackedScene" uid="uid://c0e5u3nypk770" path="res://Models/Environnement/SteelMill/Silo.glb" id="1_fml1q"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_2m3e5"]
+height = 8.73877
+radius = 3.39551
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_jvglv"]
+height = 0.18425
+radius = 5.28955
+
+[node name="Silo" type="StaticBody3D"]
+
+[node name="Silo2" parent="." instance=ExtResource("1_fml1q")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.36646, 0)
+shape = SubResource("CylinderShape3D_2m3e5")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.20436, 0)
+shape = SubResource("CylinderShape3D_jvglv")

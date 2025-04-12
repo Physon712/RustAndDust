@@ -20,7 +20,7 @@ func initialize():
 	if("ammo" in robot.weapons[weapon_id]):
 		has_ammo = true
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if(has_ammo && false):
 		labels[2].text = str(robot.weapons[weapon_id].ammo)+ "/" +str(robot.weapons[weapon_id].max_ammo)
 	else:

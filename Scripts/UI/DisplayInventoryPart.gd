@@ -13,7 +13,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	#When selected, show it... somehow
 	if(assembly_menu != null && assembly_menu.mouse_data.pressed && assembly_menu.mouse_data.last_selected == self):
 		modulate = Color.LAWN_GREEN

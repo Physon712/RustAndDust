@@ -118,6 +118,8 @@ func _physics_process(delta):
 			stuck_timer += delta
 			if(stuck_timer > 1.0):
 				robot.action_jump()
+			if(stuck_timer > 4.0):
+				stop_path()
 		#robot.head.rotation.x = lerp(robot.head.rotation.x,0.0,0.1)
 	
 	if(target != null && current_state == ai_state.ENGAGING):
@@ -176,7 +178,6 @@ func is_point_visible(point): #Check if we can actually see the point
 	return false
 	
 func is_point_visible_absolute(point): #Check if a point could be visible from our currrent position
-	var dir = point - robot.head.global_position
 	if(true):
 		var space_state = get_world_3d().direct_space_state
 		var query = PhysicsRayQueryParameters3D.create(robot.head.global_position,point,0b001)
@@ -187,10 +188,12 @@ func is_point_visible_absolute(point): #Check if a point could be visible from o
 			return true
 	return false
 
+
 func assign_new_move_target(point):
 	follow_path = true
 	robot.nav.target_position = point
 	move_target = robot.nav.get_next_path_position()
+
 	
 func wander_to_random_point():
 	var map = robot.nav.get_navigation_map()
@@ -200,7 +203,7 @@ func stop_path():
 	move_target = robot.global_position
 	follow_path = false
 		
-func sense_damage(damage,responsible):
+func sense_damage(_damage,responsible):
 	if(responsible != null): #Take a good look at the aggressor
 		last_attacker = responsible
 		if(robot.is_armed()):

@@ -20,6 +20,7 @@ var movement_instability
 @onready var collider = $Collider
 @onready var main_slot  = $Parts
 @onready var nav = $NavAgent
+@onready var light = $Head/HeadLight
 
 var parts = []
 var part_core = null
@@ -89,7 +90,13 @@ func attach_parts(): #Attach all parts and create the establish the list of the 
 			
 		if("movement_instability" in p):
 			movement_instability += p.movement_instability
-			
+	
+	if(brain != null):
+		light.visible = true
+		light.light_color = brain.ai_color
+	else:
+		light.visible = false
+		
 	acceleration = float(acceleration_force)/mass
 	air_acceleration = float(air_acceleration_force)/mass
 	jump_speed = float(jump_momentum)/mass
@@ -155,7 +162,7 @@ func action_jump(): # Try to jump
 	if(is_on_floor()):
 		velocity.y = jump_speed
 
-func explosion(damage,force,ray,pos,_reponsible : Robot = null): #Apply force for an explosion
+func explosion(_damage,force,ray,pos,_reponsible : Robot = null): #Apply force for an explosion
 	var d = (collider.global_position-pos)
 	if d.length() <= ray:
 		var appliedforce = ((1-d.length()/ray)**2)*force #Square

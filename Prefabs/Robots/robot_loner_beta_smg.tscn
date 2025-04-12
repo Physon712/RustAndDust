@@ -147,7 +147,6 @@ paint_color = Color(0.155652, 0.529556, 1, 1)
 paint_material = SubResource("ShaderMaterial_37byo")
 
 [node name="Brain" parent="Parts/PartCore/SlotHead/PartHead/SlotBrain" index="0" instance=ExtResource("6_3qy5f")]
-team_signature = 1
 
 [node name="Cube_005" parent="Parts/PartCore/SlotHead/PartHead/RigidBody3D/BetaHead" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_jormu")
@@ -166,9 +165,9 @@ joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.20314e-06, 3.02695e-07,
 body_offset = Transform3D(1, 2.08616e-07, 7.69459e-06, 7.69418e-06, -1.88884e-06, -1, -1.78814e-07, 1, -1.88907e-06, -2.98023e-08, 0.160235, 0)
 
 [node name="Physical Bone ForeArm_L" parent="Parts/PartCore/SlotArmR/BetaArm/BetaArm/ArmatureArm/Skeleton3D/PhysicalBoneSimulator3D" index="1"]
-transform = Transform3D(-0.92519, 0.379491, -0.00316186, -0.00218915, 0.00299469, 0.999993, 0.379498, 0.925191, -0.00193989, 0.319572, 0.98243, -0.0792547)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.07009e-06, 1.2566e-06, 0.14948)
-body_offset = Transform3D(1, 0, 8.35501e-06, 8.35524e-06, -6.81111e-06, -1, 2.98023e-08, 1, -6.81146e-06, -1.78814e-07, 0.14948, -2.38419e-07)
+transform = Transform3D(-0.92519, 0.379491, -0.00316188, -0.00218918, 0.00299469, 0.999993, 0.379498, 0.925191, -0.00193988, 0.319572, 0.98243, -0.0792547)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.07431e-06, 1.25663e-06, 0.14948)
+body_offset = Transform3D(1, 0, 8.38324e-06, 8.38365e-06, -6.81134e-06, -1, 2.98023e-08, 1, -6.81169e-06, -1.78814e-07, 0.14948, -2.38419e-07)
 
 [node name="Smg" parent="Parts/PartCore/SlotArmR/BetaArm/ToolTarget/SlotHandTool" index="0" instance=ExtResource("8_vmoyv")]
 

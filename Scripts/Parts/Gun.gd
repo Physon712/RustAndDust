@@ -22,7 +22,7 @@ var output_transform:Transform3D;
 func attach():
 	super()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if(is_attached):
 		output_transform = robot.head.global_transform
 
@@ -55,9 +55,9 @@ func fire_a_shot(): #Fire the weapon, instantiate a bullet and apply it speed in
 	for i in range(bullet_count):
 		var b = bullet.instantiate()
 		world.add_child(b)
-		var dispersion = deg_to_rad(dispersion)
-		dir = dir.rotated(robot.head.basis.y,randf_range(-dispersion,dispersion) + rotation.y)
-		dir = dir.rotated(robot.head.basis.x,randf_range(-dispersion,dispersion) + rotation.x)
+		var dispersion_rad = deg_to_rad(dispersion)
+		dir = dir.rotated(robot.head.basis.y,randf_range(-dispersion_rad,dispersion_rad) + rotation.y)
+		dir = dir.rotated(robot.head.basis.x,randf_range(-dispersion_rad,dispersion_rad) + rotation.x)
 		b.transform = robot.head.global_transform
 		b.position += 1.0*dir #Move the bullet forward a little, so you don't hit yourself
 		b.velocity = dir*bullet_speed

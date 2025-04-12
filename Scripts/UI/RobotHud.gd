@@ -47,7 +47,7 @@ func evaluate_part(parent,part): #Create display panel for a single part and its
 	for p in children:
 		evaluate_part(display.find_child("Container"),p)
 		
-func _physics_process(delta):
+func _physics_process(_delta):
 	var max_inaccuracy = 0
 	for w in robot.weapons: ##Evaluate maximum inaccuracy for the reticle size
 		var inaccuracy = w.evaluate_total_inaccuracy()

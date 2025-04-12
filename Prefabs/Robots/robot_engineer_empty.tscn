@@ -27,6 +27,8 @@ shape = SubResource("CapsuleShape3D_byq50")
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 
+[node name="HeadLight" type="OmniLight3D" parent="Head"]
+
 [node name="Parts" type="Node3D" parent="."]
 script = ExtResource("2_pf5eh")
 
@@ -41,14 +43,14 @@ script = ExtResource("2_pf5eh")
 [node name="EngineerArm" parent="Parts/EngineerCore/SlotArmR" index="0" instance=ExtResource("4_cg7j8")]
 
 [node name="Physical Bone Arm_L" parent="Parts/EngineerCore/SlotArmR/EngineerArm/EngineerArm/Armature_001/Skeleton3D/PhysicalBoneSimulator3D" index="0"]
-transform = Transform3D(-0.983763, -0.179471, 4.32176e-08, 7.56592e-08, -1.73918e-07, 1, -0.179471, 0.983763, 1.84673e-07, -0.366692, 1.1692, -0.00498517)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.41763e-07, 1.85554e-07, 0.156305)
-body_offset = Transform3D(1, 0, -4.63747e-08, -4.63747e-08, 4.5461e-09, -1, -2.98023e-08, 1, 4.54608e-09, 1.49012e-07, 0.156305, -1.86265e-07)
+transform = Transform3D(-0.983763, -0.179471, 4.32513e-08, 7.56983e-08, -1.73944e-07, 1, -0.179471, 0.983763, 1.84706e-07, -0.366692, 1.1692, -0.00498517)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.41757e-07, 1.8555e-07, 0.156305)
+body_offset = Transform3D(1, 0, -4.64138e-08, -4.64138e-08, 4.5722e-09, -1, -2.98023e-08, 1, 4.5722e-09, 1.49012e-07, 0.156305, -1.86265e-07)
 
 [node name="Physical Bone Forearm_L" parent="Parts/EngineerCore/SlotArmR/EngineerArm/EngineerArm/Armature_001/Skeleton3D/PhysicalBoneSimulator3D" index="1"]
-transform = Transform3D(-0.983763, -0.179471, -3.5838e-08, -3.27437e-08, -2.0204e-08, 1, -0.179471, 0.983763, 1.39994e-08, -0.366692, 0.817011, -0.00498494)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.78351e-09, -5.60773e-08, 0.195882)
-body_offset = Transform3D(1, 0, 3.46306e-08, 3.46306e-08, 1.01073e-09, -1, -2.98023e-08, 1, 1.01073e-09, 0, 0.195882, 5.58794e-08)
+transform = Transform3D(-0.983763, -0.179471, -3.58392e-08, -3.27344e-08, -2.0261e-08, 1, -0.179471, 0.983763, 1.40571e-08, -0.366692, 0.817011, -0.00498494)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.78351e-09, -5.60787e-08, 0.195882)
+body_offset = Transform3D(1, 0, 3.46306e-08, 3.46306e-08, 1.01726e-09, -1, -2.98023e-08, 1, 1.01726e-09, 0, 0.195882, 5.58794e-08)
 
 [node name="ShoulderGL" parent="Parts/EngineerCore/Back" index="0" instance=ExtResource("7_45a0a")]
 

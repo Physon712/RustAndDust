@@ -6,7 +6,7 @@ extends Node3D
 
 @export var nav_region : NavigationRegion3D
 
-var delay = 0
+var delay = 15.0
 var nav_map
 @onready var world = get_tree().get_current_scene()
 
@@ -40,4 +40,6 @@ func spawn():
 	robots.append(robot)
 	world.add_child(robot)
 	robot.global_position = NavigationServer3D.map_get_random_point(nav_map,1,true)
+	if(robot.global_position.y > 40): #Quick fix to the robot spawning in the player spawn area
+		robot.global_position = Vector3.ZERO
 	

@@ -1,0 +1,135 @@
+[gd_scene load_steps=2 format=3 uid="uid://cojxhok4e1m7o"]
+
+[ext_resource type="Script" uid="uid://j4xdf3rjiuo" path="res://Scripts/PauseManager.gd" id="1_gsxbo"]
+
+[node name="PauseManager" type="Node"]
+process_mode = 3
+script = ExtResource("1_gsxbo")
+
+[node name="Menu" type="Control" parent="."]
+process_mode = 3
+z_index = 40
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Hide" type="Button" parent="Menu"]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -93.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = "Hide Menu"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -64.0
+offset_right = 35.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Menu/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+text = "PAUSE"
+horizontal_alignment = 1
+
+[node name="Resume" type="Button" parent="Menu/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+text = "Resume"
+
+[node name="Restart" type="Button" parent="Menu/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+text = "Reset"
+
+[node name="Quit" type="Button" parent="Menu/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+text = "Quit"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu"]
+process_mode = 3
+layout_mode = 0
+offset_right = 388.0
+offset_bottom = 48.0
+
+[node name="Label" type="Label" parent="Menu/HBoxContainer"]
+process_mode = 3
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Mouse sensivity:"
+
+[node name="HSlider" type="HSlider" parent="Menu/HBoxContainer"]
+process_mode = 3
+custom_minimum_size = Vector2(256, 48)
+layout_mode = 2
+size_flags_horizontal = 0
+min_value = 0.1
+max_value = 2.0
+step = 0.1
+value = 1.1
+
+[node name="ColorRect" type="ColorRect" parent="Menu"]
+process_mode = 3
+z_index = -10
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.52549)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Menu"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -367.0
+offset_top = -141.0
+offset_right = -30.0
+offset_bottom = 178.0
+grow_horizontal = 0
+grow_vertical = 2
+bbcode_enabled = true
+text = "
+
+[b]WASD/ZQSD[/b] - Move around
+[b]Space[/b] - Jump
+
+[b]E[/b] - PickUp/Modify Robot
+[b]Tab[/b] - Inventory/Modify Self
+
+[b]Shift[/b] - Zoom
+[b]Left Mouse Button[/b] - Fire 1st weapon 
+[b]Right Mouse Button[/b] - Fire 2nd weapon 
+[b]Left Mouse Button[/b] - Fire 3rd weapon
+
+
+"
+horizontal_alignment = 1
+
+[connection signal="button_down" from="Menu/Hide" to="." method="hide"]
+[connection signal="button_down" from="Menu/VBoxContainer/Resume" to="." method="resume"]
+[connection signal="button_down" from="Menu/VBoxContainer/Restart" to="." method="reset"]
+[connection signal="button_down" from="Menu/VBoxContainer/Quit" to="." method="quit"]
+[connection signal="value_changed" from="Menu/HBoxContainer/HSlider" to="." method="modify_mouse_sensitivity"]

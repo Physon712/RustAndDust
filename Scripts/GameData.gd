@@ -6,6 +6,7 @@ var third_person = false;
 
 ### GAME VARIABLE
 var in_menu = false
+var is_paused = false
 
 ### GAME CONST
 const GRAVITY = -9.8 
@@ -43,6 +44,15 @@ const damage_multiplicator =[
 	[0.8,0.8,0.8,0.8,0.2,0.2], #REACTIVE
 	[1,1,1,1,2,1] #MAGNETIC SHIELDING
 ]
+
+func pause():
+	is_paused = true
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	
+func unpause():
+	is_paused = false
+	if(!in_menu):
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func enter_menu_mode():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

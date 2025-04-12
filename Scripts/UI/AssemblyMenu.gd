@@ -54,9 +54,9 @@ func refresh():
 		
 var can_close = false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if(Input.is_action_just_released("Inventory")):
+func _process(_delta: float) -> void:
+	if(Input.is_action_just_released("Inventory") || Input.is_action_just_released("Use")):
 		can_close = true
-	if(can_close && Input.is_action_just_pressed("Inventory")):
+	if(can_close && (Input.is_action_just_pressed("Inventory")||Input.is_action_just_pressed("Use"))):
 		GameData.exit_menu_mode()
 		queue_free()

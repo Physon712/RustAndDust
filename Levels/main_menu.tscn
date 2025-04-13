@@ -32,13 +32,12 @@ alignment = 1
 [node name="RichTextLabel" type="RichTextLabel" parent="Control/VBoxContainer"]
 custom_minimum_size = Vector2(412, 256)
 layout_mode = 2
-text = "Hello and welcome to Rust And Dust.
+bbcode_enabled = true
+text = "Hello and welcome to [b]Rust And Dust[/b].
 
-This is only a prototype made to explore what would result if you were to mix the gameplay of a FPS game such as Stalker and Fallout with the robot building aspect of games such as Cogmind or Armored Core
+This demo will drop you into an arena where endless waves of robots duke it out in an endless battle.
 
-This demo will drop you into an arena where endless wave of robot appear in an endless battle.
-
-Everything is subject to change.
+This build is a prototype. Everything is subject to change.
 
 Thank you for giving it a try!"
 fit_content = true
@@ -56,7 +55,7 @@ color = Color(0, 0, 0, 0.576471)
 
 [node name="Button" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
-text = "CONTINUE"
+text = "Seek, Subdue, Scrap"
 
 [node name="Label" type="Label" parent="Control"]
 layout_mode = 1

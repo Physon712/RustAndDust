@@ -1,18 +1,50 @@
 @startuml
-class RobotPart
-class MovementModule
+class RobotPart{
+mass
+max_integrity
+paint_color
+}
+class MovementModule{
+movement_instability
+max_speed
+}
 class Core
-class Brain
-class Weapon
-class MeleeWeapon
-class Gun
-class HandGun
-class Arm
-class ArmHand
-class Leg
+class Brain{
+ai_color
+team_signature
+}
+class Weapon{
+use()
+}
+class Gun{
+bullet_prefab
+damage
+firerate
+bullet_velocity
+dispersion
+}
+
+class HandGun{
+recoil_potential
+}
+
+class ShoulderGun
+class Arm{
+inaccuracy
+strength
+}
+
+class Leg{
+acceleration_force
+jump_momentum
+}
+
 class BipedsLegs
 class QuadLegs
-class Wheel
+class Wheel{
+acceleration_force
+jump_momentum
+}
 class Head
 
 MovementModule --> BipedsLegs
@@ -27,11 +59,8 @@ RobotPart --> Leg
 RobotPart --> Head
 RobotPart --> MovementModule
 
-Arm --> ArmHand
-
 Weapon --> Gun
-Weapon --> MeleeWeapon
 
+Gun --> ShoulderGun
 Gun --> HandGun
-
 @enduml
